@@ -1,5 +1,4 @@
 #include "../include/Trainer.h"
-#include "Customer.cpp"
 
 using namespace std;
 

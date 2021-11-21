@@ -1,6 +1,5 @@
 #include "../include/Action.h"
 #include "../include/Workout.h"
-#include "Studio.cpp"
 
 // ^_^
 
