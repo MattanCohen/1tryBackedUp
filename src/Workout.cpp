@@ -2,23 +2,16 @@
 using namespace std;
 
 //rule of 5:
-//d-tor in case Workout refrence is deleted
+//d-tor in case Workout reference is deleted
 Workout::~Workout() {
     this->stole();
 }
 //we can not implement move c-tor ass.op and move ass. op. because all variable are constant
 //ass.op. sole purpose is to overload any calls to the ass.op via other classes
 Workout& Workout::operator=(const Workout& rhs){return *this;}
-//move ass.op. to overload any calls via other classes
-Workout& Workout::operator=(Workout &&rhs) {return *this;}
 //copy c-tor:
 Workout::Workout(const Workout& rhs):id(rhs.id),name(rhs.name),price(rhs.price),type(rhs.type){}
-//move c-tor
-Workout::Workout(Workout &&rhs):id(rhs.id),name(rhs.name),price(rhs.price),type(rhs.type){
-    if (this!=&rhs)
-        rhs.stole();
-}
-
+// fixed function
 void Workout::stole() {delete this;}
 
 //C-tor

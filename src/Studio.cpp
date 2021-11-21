@@ -2,7 +2,6 @@
 
 using namespace std;
 
-
 //for debugging only
 //recieves trainers vector, workout options vector and action log to set to new Studio
 Studio::Studio(const std::vector<Trainer *> _trainers, const std::vector <Workout> _workout_options):trainers(_trainers),
@@ -15,7 +14,7 @@ Studio::Studio(const std::vector<Trainer *> _trainers, const std::vector <Workou
 
 
 //rule of 5:
-//d-tor in case Customer refrence is deleted
+//d-tor in case Customer reference is deleted
 Studio::~Studio() {
     this->stole();
 }
@@ -35,10 +34,10 @@ Studio& Studio::operator=(const Studio &rhs) {
 Studio& Studio::operator=(Studio &&rhs) {
     if (this!=&rhs){
         open=rhs.open;
-        trainers=rhs.trainers;
+       // trainers=rhs.trainers;
         workout_options=rhs.workout_options;
         sorted_workout_options=rhs.sorted_workout_options;
-        actionsLog=rhs.actionsLog;
+     //   actionsLog=rhs.actionsLog;
         workout_number=rhs.workout_number;
         rhs.stole();
     }
@@ -46,13 +45,28 @@ Studio& Studio::operator=(Studio &&rhs) {
 }
 //move c-tor
 Studio::Studio(Studio &&rhs):open(rhs.open),trainers(rhs.trainers),workout_options(rhs.workout_options),sorted_workout_options(rhs.sorted_workout_options),actionsLog(rhs.actionsLog),workout_number(rhs.workout_number) {
+    //copy trainers
+    //copy actionsLog
     if(this!=&rhs)
         rhs.stole();
 }
 //copy c-tor:
-Studio::Studio(const Studio& rhs):open(rhs.open),trainers(rhs.trainers),workout_options(rhs.workout_options),sorted_workout_options(rhs.sorted_workout_options),actionsLog(rhs.actionsLog),workout_number(rhs.workout_number) {}
+Studio::Studio(const Studio& rhs):open(rhs.open),/*trainers(rhs.trainers), copy inside the method scope instead*/workout_options(rhs.workout_options),sorted_workout_options(rhs.sorted_workout_options),/*actionsLog(rhs.actionsLog),copy inside the method scope instead*/workout_number(rhs.workout_number) {}
 
-void Studio::stole() {delete this;}
+void Studio::stole() {
+    // remove elements+pointers in trainers
+    while (!trainers.empty()){
+        delete trainers.at(0);
+        trainers.erase(trainers.begin());
+    }
+    // remove elements+pointers in action logs
+    while (!actionsLog.empty()){
+        delete actionsLog.at(0);
+        actionsLog.erase(actionsLog.begin());
+    }
+    // regular deletion process
+    delete this;
+}
 
 //creating an empty Studio
 Studio::Studio():open(false){workout_number=0;}

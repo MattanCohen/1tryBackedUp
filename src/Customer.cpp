@@ -2,60 +2,38 @@
 
 using namespace std;
 
-
 //rule of 5:
-//d-tor in case Customer refrence is deleted
+//d-tor in case Customer reference is deleted
 Customer::~Customer() {
     this->stole();
 }
 //we can not implement ass.op and move ass. op. because all variable are constant
 //ass.op. sole purpose is to overload any calls to the ass.op via other classes
 Customer& Customer::operator=(const Customer &rhs) {return *this;}
-//move ass.op. to overload any calls via other classes
-Customer& Customer::operator=(Customer &&rhs) {return *this;}
 //copy c-tor:
 Customer::Customer(const Customer& rhs):name(rhs.name),id(rhs.id){}
-//move c-tor
-Customer::Customer(Customer &&rhs):name(rhs.name),id(rhs.id){
-    if (this!=&rhs)
-        rhs.stole();
-}
 
 void Customer::stole() {delete this;}
-
-
 
 // Requested functions
 Customer::Customer(string c_name, int c_id):name(c_name),id(c_id){};
 string Customer:: getName() const {return name;};
 int Customer::getId() const {return id;}
 
-
-
-
 // Customer Types:
-
 
 // swt: orders all cardio from beginning to end
 //......................................class: SweatyCustomer
 SweatyCustomer::SweatyCustomer(string name, int id):Customer(name,id){}
 
 //rule of 5:
-//d-tor in case Customer refrence is deleted
+//d-tor in case Customer reference is deleted
 SweatyCustomer::~SweatyCustomer() {delete this;}
 //we can not implement ass.op and move ass. op. because all variable are constant
 //ass.op. sole purpose is to overload any calls to the ass.op via other classes
 SweatyCustomer& SweatyCustomer::operator=(const SweatyCustomer &rhs) {return *this;}
-//move ass.op. to overload any calls via other classes
-SweatyCustomer& SweatyCustomer::operator=(SweatyCustomer &&rhs) {return *this;}
 //copy c-tor:
 SweatyCustomer::SweatyCustomer(const SweatyCustomer &other): Customer(other){}
-//move c-tor
-SweatyCustomer::SweatyCustomer(SweatyCustomer &&rhs): Customer(rhs){
-    if (this!=&rhs)
-        rhs.stole();
-}
-
 
 // get swt order list, needs at least one Cardio in workout_options
 vector<int> SweatyCustomer::order(const vector<Workout> &workout_options) {
@@ -72,30 +50,19 @@ vector<int> SweatyCustomer::order(const vector<Workout> &workout_options) {
 //returns customer order strategy
 string SweatyCustomer::toString() const {return "swt";}
 
-
-
-
 //chp - cheapest workout orders only once
 //......................................class: CheapCustomer
 //rule of 5:
-//d-tor in case Workout refrence is deleted
+//d-tor in case Workout reference is deleted
 CheapCustomer::~CheapCustomer() {delete this;}
 //we can not implement ass.op and move ass. op. because all variable are constant
 //ass.op. sole purpose is to overload any calls to the ass.op via other classes
 CheapCustomer& CheapCustomer::operator=(const CheapCustomer& rhs){return *this;}
-//move ass.op. to overload any calls via other classes
-CheapCustomer& CheapCustomer::operator=(CheapCustomer &&rhs) {return *this;}
 //copy c-tor:
 CheapCustomer::CheapCustomer(const CheapCustomer &rhs): Customer(rhs) {}
-//move c-tor
-CheapCustomer::CheapCustomer(CheapCustomer &&rhs): Customer(rhs){
-    if (this!=&rhs)
-        rhs.stole();
-}
 
 //c-tor
 CheapCustomer::CheapCustomer(string name, int id):Customer(name,id){}
-
 
 // get chp order list, needs at least one order in workout_options
 std::vector<int> CheapCustomer::order(const std::vector <Workout> &workout_options) {
@@ -117,9 +84,6 @@ std::vector<int> CheapCustomer::order(const std::vector <Workout> &workout_optio
 
 string CheapCustomer::toString() const {return"chp";};
 
-
-
-
 // mcl - only anaerobic from most expensive to cheapest
 //......................................class: HeavyMuscleCustomer
 //rule of 5:
@@ -128,15 +92,8 @@ HeavyMuscleCustomer::~HeavyMuscleCustomer() {delete this;}
 //we can not implement ass.op and move ass. op. because all variable are constant
 //ass.op. sole purpose is to overload any calls to the ass.op via other classes
 HeavyMuscleCustomer& HeavyMuscleCustomer::operator=(const HeavyMuscleCustomer& rhs){return *this;}
-//move ass.op. to overload any calls via other classes
-HeavyMuscleCustomer& HeavyMuscleCustomer::operator=(HeavyMuscleCustomer &&rhs) {return *this;}
 //copy c-tor:
 HeavyMuscleCustomer::HeavyMuscleCustomer(const HeavyMuscleCustomer &rhs):Customer(rhs){}
-//move c-tor
-HeavyMuscleCustomer::HeavyMuscleCustomer(HeavyMuscleCustomer &&rhs): Customer(rhs){
-    if (this!=&rhs)
-        rhs.stole();
-}
 
 HeavyMuscleCustomer::HeavyMuscleCustomer(string name, int id):Customer(name,id){}
 
@@ -159,9 +116,6 @@ vector<int> HeavyMuscleCustomer::order(const vector<Workout> &workout_options) {
 string HeavyMuscleCustomer::toString() const {return "mcl";}
 
 
-
-
-
 // fbd - cheapest cardio,  expensive mix, cheapest anaerobic
 //......................................class: FullBodyCustomer
 //rule of 5:
@@ -170,16 +124,8 @@ FullBodyCustomer::~FullBodyCustomer() {delete this;}
 //we can not implement ass.op and move ass. op. because all variable are constant
 //ass.op. sole purpose is to overload any calls to the ass.op via other classes
 FullBodyCustomer& FullBodyCustomer::operator=(const FullBodyCustomer& rhs){return *this;}
-//move ass.op. to overload any calls via other classes.
-FullBodyCustomer& FullBodyCustomer::operator=(FullBodyCustomer &&rhs) {return *this;}
 //copy c-tor:
 FullBodyCustomer::FullBodyCustomer(const FullBodyCustomer &rhs): Customer(rhs){}
-//move c-tor
-FullBodyCustomer::FullBodyCustomer(FullBodyCustomer &&rhs): Customer(rhs){
-    if (this!=&rhs)
-        rhs.stole();
-}
-
 
 FullBodyCustomer::FullBodyCustomer(string name, int id):Customer(name,id){}
 

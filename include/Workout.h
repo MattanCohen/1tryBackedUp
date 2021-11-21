@@ -17,9 +17,7 @@ public:
 
     virtual  ~Workout();
     Workout& operator=(const Workout& rhs);
-    Workout& operator=(Workout&& rhs);
     Workout(const Workout& rhs);
-    Workout(Workout&& rhs);
     void stole();
 private:
     const int id;

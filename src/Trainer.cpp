@@ -2,12 +2,13 @@
 
 using namespace std;
 
-int currId=0;
+extern int currId; // currId defualt initialization is 0
 
 //c-tor with given capacity. the lists will remain empty
 Trainer::Trainer (int t_capacity):capacity(t_capacity),open(false),id(currId),accumulatedSalary(0){
     currId++;
 }
+
 
 //rule of 5:
 //d-tor
@@ -19,10 +20,10 @@ Trainer& Trainer::operator=(const Trainer& rhs){
     if (&*this!=&rhs){
         capacity=rhs.capacity;
         open=rhs.open;
-        customersList=rhs.customersList;
         orderList=rhs.orderList;
         id=rhs.id;
         accumulatedSalary=rhs.accumulatedSalary;
+        copyCustomersList(rhs);
     }
     return *this;
 }
@@ -31,24 +32,54 @@ Trainer& Trainer::operator=(Trainer&& rhs){
     if (this!=&rhs){
         capacity=rhs.capacity;
         open=rhs.open;
-        customersList=rhs.customersList;
         orderList=rhs.orderList;
         id=rhs.id;
         accumulatedSalary=rhs.accumulatedSalary;
+        copyCustomersList(rhs);
         rhs.stole();
     }
     return *this;
 }
 //copy c-tor:
-Trainer::Trainer(const Trainer& rhs):capacity(rhs.capacity),open(rhs.open),id(rhs.id),orderList(rhs.orderList),accumulatedSalary(rhs.accumulatedSalary){}
+Trainer::Trainer(const Trainer& rhs):capacity(rhs.capacity),open(rhs.open),id(rhs.id),orderList(rhs.orderList),accumulatedSalary(rhs.accumulatedSalary){
+    copyCustomersList(rhs);
+}
 //move c-tor
 Trainer::Trainer(Trainer&& rhs):capacity(rhs.capacity),open(rhs.open),id(rhs.id),orderList(rhs.orderList),accumulatedSalary(rhs.accumulatedSalary){
-    if(this!=&rhs)
-        rhs.stole();
+    copyCustomersList(rhs);
+    rhs.stole();
 }
 
 void Trainer::stole() {
+    while (!customersList.empty()){
+        delete customersList.at(0);
+        customersList.erase(customersList.begin());
+    }
     delete this;
+}
+
+void Trainer::copyCustomersList(const Trainer& rhs) {
+    int i=0;
+    while (customersList.size()<rhs.customersList.size()) {
+        // according to Customer type create new and push to customerList
+        if(rhs.customersList.at(i)->toString()=="swt"){
+            SweatyCustomer *bruteCopy=new SweatyCustomer(rhs.customersList.at(i)->getName(),rhs.customersList.at(i)->getId());
+            customersList.push_back(bruteCopy);
+        }
+        else if (rhs.customersList.at(i)->toString()=="chp"){
+            CheapCustomer *bruteCopy=new CheapCustomer(rhs.customersList.at(i)->getName(),rhs.customersList.at(i)->getId());
+            customersList.push_back(bruteCopy);
+        }
+        else if (rhs.customersList.at(i)->toString()=="mcl"){
+            HeavyMuscleCustomer *bruteCopy=new HeavyMuscleCustomer(rhs.customersList.at(i)->getName(),rhs.customersList.at(i)->getId());
+            customersList.push_back(bruteCopy);
+        }
+        else { // only fbd type is left
+            FullBodyCustomer *bruteCopy=new FullBodyCustomer(rhs.customersList.at(i)->getName(),rhs.customersList.at(i)->getId());
+            customersList.push_back(bruteCopy);
+        }
+        i++;
+    }
 }
 
 
@@ -74,6 +105,7 @@ void Trainer::removeCustomer(int id) {
         for (int i = 0; i < customersList.size(); i++)
             //trying to find the customer with id "id"
             if (customersList.at(i)->getId() == id) {
+                delete customersList.at(i);
                 customersList.erase(customersList.begin()+i);
                 //reduct customer's orders prices from trainer's salary
                 for (int j=0; j<orderList.size(); j++)
@@ -129,6 +161,8 @@ void Trainer::openTrainer(){
 //changes trainer's status to close. since they were open, close their lists
 void Trainer:: closeTrainer(){
     open=false;
+    while (!customersList.empty())
+        delete customersList.at(0);
     customersList.clear();
     orderList.clear();
 }

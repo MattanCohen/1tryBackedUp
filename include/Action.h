@@ -26,9 +26,7 @@ public:
 
     virtual ~BaseAction();
     virtual BaseAction& operator=(const BaseAction& rhs);
-    virtual BaseAction& operator=(BaseAction&& rhs);
     BaseAction(const BaseAction& rhs);
-    BaseAction(BaseAction&& rhs);
     void stole();
 
 protected:
@@ -53,6 +51,7 @@ public:
     OpenTrainer(const OpenTrainer& rhs);
     OpenTrainer(OpenTrainer&& rhs);
     void stole();
+    void copyCutsomers(const OpenTrainer& rhs);
 
 private:
 	const int trainerId;
@@ -68,9 +67,7 @@ public:
 
     ~Order();
     Order& operator=(const Order& rhs);
-    Order& operator=(Order&& rhs);
     Order(const Order &rhs);
-    Order(Order&& rhs);
     void stole();
 
 private:
@@ -84,12 +81,9 @@ public:
     void act(Studio &studio);
     std::string toString() const;
 
-
     ~MoveCustomer();
     MoveCustomer& operator=(const MoveCustomer& rhs);
-    MoveCustomer& operator=(MoveCustomer&& rhs);
     MoveCustomer(const MoveCustomer& rhs);
-    MoveCustomer(MoveCustomer&& rhs);
     void stole();
 
 private:
@@ -107,9 +101,7 @@ public:
 
     ~Close();
     Close& operator=(const Close& rhs);
-    Close& operator=(Close&& rhs);
     Close(const Close& rhs);
-    Close(Close&& rhs);
     void stole();
 
 private:
@@ -127,9 +119,7 @@ public:
 
     ~CloseAll();
     CloseAll& operator=(const CloseAll& rhs);
-    CloseAll& operator=(CloseAll&& rhs);
     CloseAll(const CloseAll& other);
-    CloseAll(CloseAll&& rhs);
     void stole();
 
 private:
@@ -142,12 +132,9 @@ public:
     void act(Studio &studio);
     std::string toString() const;
 
-
     ~PrintWorkoutOptions();
     PrintWorkoutOptions& operator=(const PrintWorkoutOptions& rhs);
-    PrintWorkoutOptions& operator=(PrintWorkoutOptions&& rhs);
     PrintWorkoutOptions(const PrintWorkoutOptions& rhs);
-    PrintWorkoutOptions(PrintWorkoutOptions&& rhs);
     void stole();
 
 private:
@@ -163,9 +150,7 @@ public:
 
     ~PrintTrainerStatus();
     PrintTrainerStatus& operator=(const PrintTrainerStatus& rhs);
-    PrintTrainerStatus& operator=(PrintTrainerStatus&& rhs);
     PrintTrainerStatus(const PrintTrainerStatus& rhs);
-    PrintTrainerStatus(PrintTrainerStatus&& rhs);
     void stole();
 
 private:
@@ -180,13 +165,11 @@ public:
 
     ~PrintActionsLog();
     PrintActionsLog& operator=(const PrintActionsLog& rhs);
-    PrintActionsLog& operator=(PrintActionsLog&& rhs);
     PrintActionsLog(const PrintActionsLog& other);
-    PrintActionsLog(PrintActionsLog&& other);
     void stole();
+
 private:
 };
-
 
 class BackupStudio : public BaseAction {
 public:
@@ -200,7 +183,7 @@ public:
     BackupStudio(const BackupStudio& rhs);
     BackupStudio(BackupStudio&& rhs);
     void stole();
-
+    Studio* getBackup();
 private:
 };
 
@@ -217,6 +200,7 @@ public:
     RestoreStudio(const RestoreStudio& rhs);
     RestoreStudio(RestoreStudio&& rhs);
     void stole();
+    Studio* getBackup();
 };
 
 

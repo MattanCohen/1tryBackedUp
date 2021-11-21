@@ -18,9 +18,7 @@ public:
 
     virtual ~Customer();
     virtual Customer& operator=(const Customer& rhs);
-    virtual Customer& operator=(Customer&& rhs);
     Customer(const Customer& rhs);
-    Customer(Customer&& rhs);
     virtual void stole();
 
 private:
@@ -31,10 +29,8 @@ private:
 // serial number from 0
 // as long as customer has a workout session
 // customer that can't get order: no order at all
-// when there's choice, order with smallest id
-// id is unique name isn't
-
-
+// when there's choice, take order with smallest id
+// id is unique while name isn't
 
 class SweatyCustomer : public Customer {
 public:
@@ -44,11 +40,7 @@ public:
 
     ~SweatyCustomer();
     SweatyCustomer& operator=(const SweatyCustomer& rhs);
-    SweatyCustomer& operator=(SweatyCustomer&& rhs);
     SweatyCustomer(const SweatyCustomer& other);
-    SweatyCustomer(SweatyCustomer&& rhs);
-
-
 private:
 };
 
@@ -61,9 +53,7 @@ public:
 
     ~CheapCustomer();
     CheapCustomer& operator=(const CheapCustomer& rhs);
-    CheapCustomer& operator=(CheapCustomer&& rhs);
     CheapCustomer(const CheapCustomer& rhs);
-    CheapCustomer(CheapCustomer&& rhs);
 private:
 };
 
@@ -76,11 +66,7 @@ public:
 
     ~HeavyMuscleCustomer();
     HeavyMuscleCustomer& operator=(const HeavyMuscleCustomer& rhs);
-    HeavyMuscleCustomer& operator=(HeavyMuscleCustomer&& rhs);
     HeavyMuscleCustomer(const HeavyMuscleCustomer& rhs);
-    HeavyMuscleCustomer(HeavyMuscleCustomer&& rhs);
-
-
 private:
 };
 
@@ -93,9 +79,7 @@ public:
 
     ~FullBodyCustomer();
     FullBodyCustomer& operator=(const FullBodyCustomer& rhs);
-    FullBodyCustomer& operator=(FullBodyCustomer&& rhs);
     FullBodyCustomer(const FullBodyCustomer& rhs);
-    FullBodyCustomer(FullBodyCustomer&& rhs);
 
 private:
 };

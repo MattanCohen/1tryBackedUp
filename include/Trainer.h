@@ -29,7 +29,7 @@ public:
     Trainer(const Trainer& rhs);
     Trainer(Trainer&& rhs);
     void stole();
-
+    void copyCustomersList(const Trainer& rhs);
 
     int getCurrSalary();
 private:
