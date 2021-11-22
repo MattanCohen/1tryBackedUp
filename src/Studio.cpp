@@ -89,7 +89,7 @@ void Studio::copyTrainers(const Studio &rhs) {
 
 void Studio::copyActionLogs(const Studio &rhs) {
     // for each action log create a baby and puuush
-    size_t i=0;
+    std::size_t i=0;
     while (actionsLog.size()<rhs.actionsLog.size()) {
         // extracts first word from string that contains action name
         string actionName = identifyAction(rhs.actionsLog.at(i)->toString());
