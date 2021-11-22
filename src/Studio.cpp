@@ -145,7 +145,7 @@ void Studio::AddTrainers(std::string trainersRow) {
 
     //_________________________________adding trainers:___________________
     //line contains capacities seperated by commas. ignore the commas.
-    int i=0;
+    size_t i=0;
     //while we didn't reach the new line
     while (i<trainersRow.size() && trainersRow.at(i)!='\n') {
         string trainerCapacityString="";
@@ -163,7 +163,7 @@ void Studio::AddTrainers(std::string trainersRow) {
 }
 // given workout row adds it to "workout_options"
 void Studio::AddWorkoutOption(std::string workoutRow, int workoutId) {
-    int i=0;
+    size_t i=0;
     // extract workout name from the start to the first comma
     string workoutName="";
     while(workoutRow.at(i)!=','){workoutName.push_back(workoutRow.at(i));}
@@ -209,7 +209,7 @@ Studio::Studio(const std::string &configFilePath) {
     // close file read session
     ReadConfigFile.close();
     // index to follow current configRow processed
-    int rowIndex = 0;
+    size_t rowIndex = 0;
     int ignored_char=configRows.at(0).find('\n');
     //from i=0 to the end of the line ('\n') is the number of trainers string representation
     int num_of_trainers= stoi(configRows.at(0).substr(0,ignored_char));
@@ -221,7 +221,7 @@ Studio::Studio(const std::string &configFilePath) {
         rowIndex++;
     }
     // workoutIndex used to create unique identifier for each workout
-    int workoutIndex = 0;
+    size_t workoutIndex = 0;
     while(rowIndex<configRows.size()) {
         AddWorkoutOption(configRows.at(rowIndex),workoutIndex);
         workoutIndex++;
@@ -233,7 +233,7 @@ Studio::Studio(const std::string &configFilePath) {
     //all config file rows were read and implemented
     //after everything was set, we want to create a sorted workout options for heavy muscle customers
     //we'll create a sorted workout options vector from the workout options
-    for (int i=0; i<workout_options.size(); i++)
+    for (size_t i=0; i<workout_options.size(); i++)
         sorted_workout_options.push_back(workout_options.at(i));
     // use reversed iterators in order to sort in dsc order
     std::sort(sorted_workout_options.rbegin(),sorted_workout_options.rend(),sort_by_price());
@@ -371,7 +371,7 @@ WorkoutType Studio::getType(string rhs) {
 // return the actionType
 std::string Studio::identifyAction(std::string userAction) {
     string commmandPrefix = "";
-    int i=0;
+    size_t i=0;
     while (i<userAction.size() && userAction.at(i)!=' '){
         commmandPrefix.push_back(userAction.at(i));
         i++;
@@ -394,7 +394,7 @@ void Studio::startAction(std::string actionType, std::string userAction) {
         string customersDetails = userActionAfterSpace.substr(secondSpaceIndex+1);
         vector<Customer *> customersList;
         // add customers to list based on string details
-        for(int i=0;i<customersDetails.size();i++) {
+        for(size_t i=0;i<customersDetails.size();i++) {
             string custName = "";
             // extract customer name
             while(customersDetails.at(i)!=',' and i<customersDetails.size())

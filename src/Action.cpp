@@ -108,7 +108,7 @@ std::string OpenTrainer::toString() const {
     //set "open trainerId "
     string prefix="open "+std::to_string(trainerId)+" ";
     //for every customer append to "open trainerId "-"cust1,cust1strategy "
-    for (int i=0; i<customers.size(); i++)
+    for (size_t i=0; i<customers.size(); i++)
         prefix+=customers.at(i)->getName()+","+customers.at(i)->toString()+" ";
     if (getStatus()==0)
         return prefix+"Completed";
@@ -127,8 +127,9 @@ void OpenTrainer::act(Studio &studio) {
         if (opening.isOpen())
             exists=false;
     //check if the trainer exists and open but the number of assigned customers is larger than their capacity
+    size_t cap=opening.getCapacity();
     if (exists)
-        if (customers.size()>opening.getCapacity())
+        if (customers.size()>cap)
             exists=false;
     //if for whatever reason the action isn't possible
     if (!exists){
@@ -136,7 +137,7 @@ void OpenTrainer::act(Studio &studio) {
         return;
     }
     //else, all good! add the customers and their orders to (the) trainer (we're) opening
-    for (int i=0; i<customers.size();i++) {
+    for (size_t i=0; i<customers.size();i++) {
         Customer *customer_i = customers.at(i);
         //if customer can order then add them and their orders
         if (customer_i->order(studio.getWorkoutOptions()).size() > 0){
@@ -188,13 +189,13 @@ void Order::act(Studio &studio) {
             vector < Customer * > &customersList = studio.getTrainer(trainerId)->getCustomers();
             int customer_id=-1;
             //print every order done by every customer of the trainer
-            for (int i = 0; i < orderList.size(); i++) {
+            for (size_t i = 0; i < orderList.size(); i++) {
                 if (orderList.at(i).first==customer_id){
 
                 }
                 else {
                     string customer_name;
-                    for (int j = 0; j < customersList.size(); j++)
+                    for (size_t j = 0; j < customersList.size(); j++)
                         if (customersList.at(j)->getId() == orderList.at(i).first) {
                             customer_name = customersList.at(j)->getName();
                             customer_id=j;
@@ -275,7 +276,7 @@ void MoveCustomer::act(Studio &studio) {
     if (src){
         vector<OrderPair>& src_orderList=studio.getTrainer(srcTrainer)->getOrders();
         bool owned=false;
-        int i=0;
+        size_t i=0;
         while(i<src_orderList.size() and !owned){
             if (src_orderList.at(i).first==id)
                 owned=true;
@@ -445,7 +446,7 @@ std::string PrintWorkoutOptions::getTypeAsString(WorkoutType type) const{
 
 void PrintWorkoutOptions::act(Studio &studio) {
     vector<Workout> workout_options = studio.getWorkoutOptions();
-    for(int i=0; i<workout_options.size();i++) {
+    for(size_t i=0; i<workout_options.size();i++) {
         Workout w = workout_options.at(i);
         // <workout_name>, <workout_type>, <workout_price>
         string workoutS = w.getName()+", "+getTypeAsString(w.getType())+", "+to_string(w.getPrice());
@@ -489,7 +490,7 @@ void PrintTrainerStatus::act(Studio &studio) {
     //print customers
     cout<<"Customers:"<<endl;
     vector<Customer*> customers=studio.getTrainer(trainerId)->getCustomers();
-    for (int i=0; i<customers.size(); i++){
+    for (size_t i=0; i<customers.size(); i++){
         string customer_i_id=to_string(customers.at(i)->getId());
         string customer_i_name=customers.at(i)->getName();
         cout<<customer_i_id+" "+customer_i_name<< endl;
@@ -497,7 +498,7 @@ void PrintTrainerStatus::act(Studio &studio) {
     //print orders
     cout<<"Orders:"<<endl;
     vector<OrderPair> orders=studio.getTrainer(trainerId)->getOrders();
-    for (int i=0; i<orders.size(); i++){
+    for (size_t i=0; i<orders.size(); i++){
         string workout_name=orders.at(i).second.getName();
         string workout_price=to_string(orders.at(i).second.getPrice());
         string customer_id=to_string(orders.at(i).first);
@@ -532,7 +533,7 @@ string PrintActionsLog::toString() const {
 
 void PrintActionsLog::act(Studio &studio) {
     vector<BaseAction*> actionsLog = studio.getActionsLog();
-   for (int i=0; i<actionsLog.size(); i++)
+   for (size_t i=0; i<actionsLog.size(); i++)
        cout<<actionsLog.at(i)->toString()<<endl;
     complete();
 }

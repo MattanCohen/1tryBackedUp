@@ -39,7 +39,7 @@ SweatyCustomer::SweatyCustomer(const SweatyCustomer &other): Customer(other){}
 vector<int> SweatyCustomer::order(const vector<Workout> &workout_options) {
     vector<int> workouts_list;
     // iterate over all workout options
-    for(int i=0; i<workout_options.size();i++){
+    for(size_t i=0; i<workout_options.size();i++){
         // add only cardio workouts
         if(workout_options.at(i).getType()==2) {workouts_list.push_back(i);}
     }
@@ -102,7 +102,7 @@ HeavyMuscleCustomer::HeavyMuscleCustomer(string name, int id):Customer(name,id){
 vector<int> HeavyMuscleCustomer::order(const vector<Workout> &workout_options) {
     vector<int> orders;
     // iterate over all workout options
-    for(int i=0; i<workout_options.size();i++){
+    for(size_t i=0; i<workout_options.size();i++){
         // add only anaerobic workouts
         if(workout_options.at(i).getType()==0) {orders.push_back(i);}
     }
@@ -137,7 +137,7 @@ vector<int> FullBodyCustomer::order(const vector<Workout> &workout_options) {
     int exp_mix_index = -1;
     int cheap_ana_index = -1;
     // finds optimal workout for each workout type
-    for (int i = 0; i < workout_options.size(); i++) {
+    for (size_t i = 0; i < workout_options.size(); i++) {
         // anaerobic
         if (workout_options.at(i).getType() == 0) {
             // change default value
