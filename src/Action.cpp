@@ -72,7 +72,7 @@ OpenTrainer::OpenTrainer(OpenTrainer &&rhs):BaseAction(rhs),trainerId(rhs.traine
     }
 }
 
-void OpenTrainer::copyCutsomers(const OpenTrainer &rhs) {
+void OpenTrainer::copyCustomers(const OpenTrainer &rhs) {
     int i=0;
     while (customers.size()<rhs.customers.size()){
         //if a Sweaty Customer

@@ -11,8 +11,6 @@ Studio::Studio(const std::vector<Trainer *> _trainers, const std::vector <Workou
 }
 //for debugging only
 
-
-
 //rule of 5:
 //d-tor in case Customer reference is deleted
 Studio::~Studio() {
@@ -43,15 +41,20 @@ Studio& Studio::operator=(Studio &&rhs) {
     }
     return *this;
 }
+
 //move c-tor
 Studio::Studio(Studio &&rhs):open(rhs.open),trainers(rhs.trainers),workout_options(rhs.workout_options),sorted_workout_options(rhs.sorted_workout_options),actionsLog(rhs.actionsLog),workout_number(rhs.workout_number) {
-    //copy trainers
-    //copy actionsLog
-    if(this!=&rhs)
+    if(this!=&rhs){
+        copyTrainers(rhs);
+        copyActionLogs(rhs);
         rhs.stole();
+    }
 }
 //copy c-tor:
-Studio::Studio(const Studio& rhs):open(rhs.open),/*trainers(rhs.trainers), copy inside the method scope instead*/workout_options(rhs.workout_options),sorted_workout_options(rhs.sorted_workout_options),/*actionsLog(rhs.actionsLog),copy inside the method scope instead*/workout_number(rhs.workout_number) {}
+Studio::Studio(const Studio& rhs):open(rhs.open),workout_options(rhs.workout_options),sorted_workout_options(rhs.sorted_workout_options),workout_number(rhs.workout_number) {
+    copyTrainers(rhs);
+    copyActionLogs(rhs);
+}
 
 void Studio::stole() {
     // remove elements+pointers in trainers
@@ -67,6 +70,72 @@ void Studio::stole() {
     // regular deletion process
     delete this;
 }
+
+void Studio::copyTrainers(const Studio &rhs) {
+    int i=0;
+    while (trainers.size()<rhs.trainers.size()) {
+        // create a copy for each trainer and push copy
+        //Trainer *copyTrainer = new Trainer(const rhs.trainers.at(i));
+        //Trainer(const Trainer& rhs);
+        Trainer trainerP = rhs.trainers.at(i);
+        Trainer copyTrainer = new Trainer(*trainerP);
+        trainers.push_back(copyTrainer);
+        //trainers.push_back(copyTrainer);
+        i++;
+
+        // Trainer copyTrainer = new Trainer(&rhs.trainers.at(i));
+        // Trainers.push_back(*copyTrainer);
+    }
+}
+
+void Studio::copyActionLogs(const Studio &rhs) {
+    // for each action log create a baby and puuush
+    int i=0;
+    while (actionsLog.size()<rhs.actionsLog.size()) {
+        // extracts first word from string that contains action name
+        string actionName = identifyAction(rhs.actionsLog.at(i)->toString());
+        // based on action log type create a copy and push to list
+        if (actionName == "order") {
+            Order *copy = new Order(rhs.actionsLog.at(i));
+            actionsLog.push_back(copy);
+        }
+        else if (actionName == "move") {
+            MoveCustomer *copy = new MoveCustomer(rhs.actionsLog.at(i));
+            actionsLog.push_back(copy);
+        }
+        else if  (actionName == "close") {
+            Close *copy = new Close(rhs.actionsLog.at(i));
+            actionsLog.push_back(copy);
+        }
+        else if (actionName == "closeall") {
+            CloseAll *copy = new CloseAll(rhs.actionsLog.at(i));
+            actionsLog.push_back(copy);
+        }
+        else if  (actionName == "workout_options") {
+            PrintWorkoutOptions *copy = new PrintWorkoutOptions(rhs.actionsLog.at(i));
+            actionsLog.push_back(copy);
+        }
+        else if  (actionName == "status") {
+            PrintTrainerStatus *copy = new PrintTrainerStatus(rhs.actionsLog.at(i));
+            actionsLog.push_back(copy);
+        }
+        else if  (actionName == "log") {
+            PrintActionsLog *copy = new PrintActionsLog(rhs.actionsLog.at(i));
+            actionsLog.push_back(copy);
+        }
+        else if  (actionName == "backup") {
+            BackupStudio *copy = new BackupStudio(rhs.actionsLog.at(i));
+            actionsLog.push_back(copy);
+        }
+        else if  (actionName == "restore") {
+            RestoreStudio *copy = new RestoreStudio(rhs.actionsLog.at(i));
+            actionsLog.push_back(copy);
+        }
+        i++;
+    }
+}
+
+
 
 //creating an empty Studio
 Studio::Studio():open(false){workout_number=0;}

@@ -51,7 +51,7 @@ public:
     OpenTrainer(const OpenTrainer& rhs);
     OpenTrainer(OpenTrainer&& rhs);
     void stole();
-    void copyCutsomers(const OpenTrainer& rhs);
+    void copyCustomers(const OpenTrainer& rhs);
 
 private:
 	const int trainerId;

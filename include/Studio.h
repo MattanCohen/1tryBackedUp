@@ -58,6 +58,8 @@ private:
     void AddTrainers(std::string trainersRow);//make news, delete whats not needed
     void AddWorkoutOption(std::string workoutRow, int workoutId);
     bool isEmptyLine(std::string configRow);
+    void copyTrainers(const Studio& rhs);
+    void copyActionLogs(const Studio& rhs);
 
 };
 
