@@ -5,7 +5,7 @@ using namespace std;
 
 //..................................................class:BaseAction
 //c-tor
-BaseAction::BaseAction(){}
+BaseAction::BaseAction():errorMsg(),status(){}
 
 //rule of 5:
 //d-tor
@@ -63,7 +63,7 @@ OpenTrainer& OpenTrainer::operator=(const OpenTrainer &rhs) {return *this;}
 //move ass. op. to overload
 OpenTrainer& OpenTrainer::operator=(OpenTrainer &&rhs) {return *this;}
 // copy c-tor
-OpenTrainer::OpenTrainer(const OpenTrainer &rhs):BaseAction(rhs),trainerId(rhs.trainerId){copyCustomers(rhs);}
+OpenTrainer::OpenTrainer(const OpenTrainer &rhs):BaseAction(rhs),trainerId(rhs.trainerId),customers(){copyCustomers(rhs);}
 //move c-tor
 OpenTrainer::OpenTrainer(OpenTrainer &&rhs):BaseAction(rhs),trainerId(rhs.trainerId),customers(rhs.customers){
     if (this!=&rhs){
@@ -182,7 +182,7 @@ string Order::toString() const {
 //orders trainerId's orders if possible
 void Order::act(Studio &studio) {
     //if trainer exist
-    if (trainerId<studio.getNumOfTrainers() & trainerId>=0){
+    if (trainerId<studio.getNumOfTrainers() && trainerId>=0){
         //and if trainer is open
         if (studio.getTrainer(trainerId)->isOpen()) {
             vector <OrderPair> &orderList = studio.getTrainer(trainerId)->getOrders();
@@ -305,7 +305,7 @@ void MoveCustomer::act(Studio &studio) {
 
 //..................................................class:Close
 // c-tor
-Close::Close(int id):trainerId(id){ salary=0;}
+Close::Close(int id):trainerId(id),salary(0){}
 
 
 //rule of 5:

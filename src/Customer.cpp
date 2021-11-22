@@ -70,7 +70,7 @@ std::vector<int> CheapCustomer::order(const std::vector <Workout> &workout_optio
     // save only id of cheapest workout
     int cheap_workout_id = 0;
     // iterate over all workout options
-    for(int i=0; i<workout_options.size();i++){
+    for(size_t i=0; i<workout_options.size();i++){
         // add only cardio workouts
         if(workout_options.at(i).getPrice()<workout_options.at(cheap_workout_id).getPrice()){
             cheap_workout_id = i;

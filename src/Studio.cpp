@@ -4,8 +4,7 @@ using namespace std;
 
 //for debugging only
 //recieves trainers vector, workout options vector and action log to set to new Studio
-Studio::Studio(const std::vector<Trainer *> _trainers, const std::vector <Workout> _workout_options):trainers(_trainers),
-                workout_options(_workout_options),sorted_workout_options(_workout_options){
+Studio::Studio(const std::vector<Trainer *> _trainers, const std::vector <Workout> _workout_options):open(false),trainers(_trainers),workout_options(_workout_options),sorted_workout_options(_workout_options),actionsLog(),workout_number(0){
     // use reversed iterators in order to sort in dsc order
     sort(sorted_workout_options.rbegin(),sorted_workout_options.rend(),sort_by_price());
 }
@@ -51,7 +50,7 @@ Studio::Studio(Studio &&rhs):open(rhs.open),trainers(rhs.trainers),workout_optio
     }
 }
 //copy c-tor:
-Studio::Studio(const Studio& rhs):open(rhs.open),workout_options(rhs.workout_options),sorted_workout_options(rhs.sorted_workout_options),workout_number(rhs.workout_number) {
+Studio::Studio(const Studio& rhs):open(rhs.open),trainers(rhs.trainers),workout_options(rhs.workout_options),sorted_workout_options(rhs.sorted_workout_options),actionsLog(rhs.actionsLog),workout_number(rhs.workout_number) {
     copyTrainers(rhs);
     copyActionLogs(rhs);
 }
@@ -77,8 +76,8 @@ void Studio::copyTrainers(const Studio &rhs) {
         // create a copy for each trainer and push copy
         //Trainer *copyTrainer = new Trainer(const rhs.trainers.at(i));
         //Trainer(const Trainer& rhs);
-        Trainer trainerP = rhs.trainers.at(i);
-        Trainer copyTrainer = new Trainer(*trainerP);
+        Trainer *trainerP = rhs.trainers.at(i);
+        Trainer *copyTrainer = new Trainer(*trainerP);
         trainers.push_back(copyTrainer);
         //trainers.push_back(copyTrainer);
         i++;
@@ -90,45 +89,54 @@ void Studio::copyTrainers(const Studio &rhs) {
 
 void Studio::copyActionLogs(const Studio &rhs) {
     // for each action log create a baby and puuush
-    int i=0;
+    size_t i=0;
     while (actionsLog.size()<rhs.actionsLog.size()) {
         // extracts first word from string that contains action name
         string actionName = identifyAction(rhs.actionsLog.at(i)->toString());
         // based on action log type create a copy and push to list
         if (actionName == "order") {
-            Order *copy = new Order(rhs.actionsLog.at(i));
+            Order *temp=rhs.actionsLog.at(i);
+            Order *copy = new Order(*temp);
             actionsLog.push_back(copy);
         }
         else if (actionName == "move") {
-            MoveCustomer *copy = new MoveCustomer(rhs.actionsLog.at(i));
+            MoveCustomer *temp=rhs.actionsLog.at(i);
+            MoveCustomer *copy = new MoveCustomer(*temp);
             actionsLog.push_back(copy);
         }
         else if  (actionName == "close") {
-            Close *copy = new Close(rhs.actionsLog.at(i));
+            Close *temp=rhs.actionsLog.at(i);
+            Close *copy = new Close(*temp);
             actionsLog.push_back(copy);
         }
         else if (actionName == "closeall") {
-            CloseAll *copy = new CloseAll(rhs.actionsLog.at(i));
+            CloseAll *temp=rhs.actionsLog.at(i);
+            CloseAll *copy = new CloseAll(*temp);
             actionsLog.push_back(copy);
         }
         else if  (actionName == "workout_options") {
-            PrintWorkoutOptions *copy = new PrintWorkoutOptions(rhs.actionsLog.at(i));
+            PrintWorkoutOptions *temp=rhs.actionsLog.at(i);
+            PrintWorkoutOptions *copy = new PrintWorkoutOptions(*temp);
             actionsLog.push_back(copy);
         }
         else if  (actionName == "status") {
-            PrintTrainerStatus *copy = new PrintTrainerStatus(rhs.actionsLog.at(i));
+            PrintTrainerStatus *temp=rhs.actionsLog.at(i);
+            PrintTrainerStatus *copy = new PrintTrainerStatus(*temp);
             actionsLog.push_back(copy);
         }
         else if  (actionName == "log") {
-            PrintActionsLog *copy = new PrintActionsLog(rhs.actionsLog.at(i));
+            PrintActionsLog *temp=rhs.actionsLog.at(i);
+            PrintActionsLog *copy = new PrintActionsLog(*temp);
             actionsLog.push_back(copy);
         }
         else if  (actionName == "backup") {
-            BackupStudio *copy = new BackupStudio(rhs.actionsLog.at(i));
+            BackupStudio *temp=rhs.actionsLog.at(i);
+            BackupStudio *copy = new BackupStudio(*temp);
             actionsLog.push_back(copy);
         }
         else if  (actionName == "restore") {
-            RestoreStudio *copy = new RestoreStudio(rhs.actionsLog.at(i));
+            RestoreStudio *temp=rhs.actionsLog.at(i);
+            RestoreStudio *copy = new RestoreStudio(*temp);
             actionsLog.push_back(copy);
         }
         i++;
@@ -138,7 +146,7 @@ void Studio::copyActionLogs(const Studio &rhs) {
 
 
 //creating an empty Studio
-Studio::Studio():open(false){workout_number=0;}
+Studio::Studio():open(false),trainers(),workout_options(),sorted_workout_options(),actionsLog(),workout_number(0){}
 
 // given a list of trainer capacities adds to "trainers"
 void Studio::AddTrainers(std::string trainersRow) {
@@ -195,7 +203,7 @@ bool Studio::isEmptyLine(std::string configRow) {
 }
 
 //creating a Studio by a received config file. assumes config file is legal
-Studio::Studio(const std::string &configFilePath) {
+Studio::Studio(const std::string &configFilePath):open(false),trainers(),workout_options(),sorted_workout_options(),actionsLog(),workout_number(0) {
     // read config file row by row
     ifstream ReadConfigFile(configFilePath);
     string configRow;
