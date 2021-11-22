@@ -5,10 +5,8 @@ using namespace std;
 //extern int currId; // currId defualt initialization is 0
 
 //c-tor with given capacity. the lists will remain empty
-Trainer::Trainer (int t_capacity):capacity(t_capacity),open(false),customersList(),orderList(),id(currId),accumulatedSalary(0){
-    currId++;
-}
-
+Trainer::Trainer (int t_capacity):capacity(t_capacity),open(false),customersList(),orderList(),id(),accumulatedSalary(0){}
+Trainer::Trainer (int t_capacity,int id):capacity(t_capacity),open(false),customersList(),orderList(),id(id),accumulatedSalary(0){}
 
 //rule of 5:
 //d-tor

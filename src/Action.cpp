@@ -50,7 +50,7 @@ string BaseAction::getErrorMsg() const {return errorMsg;};
 
 // Trainer *trainer = studio.getTrainer(trainerId);er
 // c-tor
-OpenTrainer::OpenTrainer(int id, std::vector<Customer *> &customersList):trainerId(id),customers(customersList){}
+OpenTrainer::OpenTrainer(int id, std::vector<Customer *> &customersList):BaseAction(),trainerId(id),customers(customersList){}
 
 //rule of 5:
 //d-tor
@@ -158,6 +158,9 @@ void OpenTrainer::act(Studio &studio) {
 
 
 //..................................................class:Order
+//c-tor
+Order::Order(int id):BaseAction(),trainerId(id) {}
+
 //rule of 5:
 //d-tor
 Order::~Order(){
@@ -217,7 +220,7 @@ void Order::act(Studio &studio) {
 
 //..................................................class:MoveCustomer
 //c-tor
-MoveCustomer::MoveCustomer(int src, int dst, int customerId):srcTrainer(src),dstTrainer(dst),id(customerId) {}
+MoveCustomer::MoveCustomer(int src, int dst, int customerId):BaseAction(),srcTrainer(src),dstTrainer(dst),id(customerId) {}
 
 //rule of 5:
 //d-tor
@@ -305,7 +308,7 @@ void MoveCustomer::act(Studio &studio) {
 
 //..................................................class:Close
 // c-tor
-Close::Close(int id):trainerId(id),salary(0){}
+Close::Close(int id):BaseAction(),trainerId(id),salary(0){}
 
 
 //rule of 5:
@@ -366,7 +369,7 @@ void Close::act(Studio &studio) {
 
 //..................................................class:CloseAll
 // c-tor
-CloseAll::CloseAll() {}
+CloseAll::CloseAll():BaseAction() {}
 
 
 //rule of 5:
@@ -410,7 +413,7 @@ void CloseAll::act(Studio &studio) {
 
 //..................................................class:PrintWorkoutOptions
 // c-tor
-PrintWorkoutOptions::PrintWorkoutOptions() {}
+PrintWorkoutOptions::PrintWorkoutOptions():BaseAction() {}
 
 
 //rule of 5:
@@ -459,7 +462,7 @@ void PrintWorkoutOptions::act(Studio &studio) {
 
 //..................................................class:PrintTrainerStatus
 //ctor
-PrintTrainerStatus::PrintTrainerStatus(int id): trainerId(id){}
+PrintTrainerStatus::PrintTrainerStatus(int id):BaseAction(), trainerId(id){}
 
 //rule of 5:
 //d-tor
@@ -511,7 +514,7 @@ void PrintTrainerStatus::act(Studio &studio) {
 //..................................................class:PrintActionsLog
 
 // c-tor
-PrintActionsLog::PrintActionsLog(){}
+PrintActionsLog::PrintActionsLog():BaseAction(){}
 
 //d-tor
 PrintActionsLog::~PrintActionsLog(){this->stole();}
@@ -544,10 +547,7 @@ void PrintActionsLog::act(Studio &studio) {
 
 //..................................................class:BackupStudio
 // c-tor
-BackupStudio::BackupStudio(){
-    backup=nullptr;
-    ever_backed=false;
-}
+BackupStudio::BackupStudio():BaseAction(){}
 
 //d-tor
 BackupStudio::~BackupStudio(){this->stole();}
@@ -575,8 +575,7 @@ BackupStudio::BackupStudio(BackupStudio &&rhs):BaseAction(rhs) {
 void BackupStudio::stole() {delete this;}
 
 void BackupStudio::act(Studio &studio) {
-    ever_backed=true;
-    backup= new Studio(studio);
+    studio.createBackup();
 }
 
 //print status for log
@@ -586,7 +585,7 @@ string BackupStudio::toString() const {
 
 //..................................................class:RestoreStudio
 // c-tor
-RestoreStudio::RestoreStudio() {}
+RestoreStudio::RestoreStudio():BaseAction(),ever_backed(false) {}
 
 RestoreStudio::~RestoreStudio(){this->stole();}
 //ass op.
@@ -603,19 +602,15 @@ RestoreStudio &RestoreStudio::operator=(RestoreStudio &&rhs) {
     return *this;
 }
 // copy c-tor
-RestoreStudio::RestoreStudio(const RestoreStudio& rhs):BaseAction(rhs){}
+RestoreStudio::RestoreStudio(const RestoreStudio& rhs):BaseAction(rhs),ever_backed(false){}
 //move c-tor
-RestoreStudio::RestoreStudio(RestoreStudio &&rhs):BaseAction(rhs) {
+RestoreStudio::RestoreStudio(RestoreStudio &&rhs):BaseAction(rhs),ever_backed(false) {
     if (this!=&rhs)
         rhs.stole();
 }
 
 
-void RestoreStudio::stole() {
-    delete backup;
-    backup= nullptr;
-    delete this;
-}
+void RestoreStudio::stole() {delete this;}
 
 //print status for log
 string RestoreStudio::toString() const {
@@ -626,8 +621,9 @@ string RestoreStudio::toString() const {
 
 
 void RestoreStudio::act(Studio &studio) {
+    ever_backed=studio.isBacked();
     if (ever_backed){
-        studio=*backup;
+        studio.restoreBackup();
         return;
     }
     error("No backup available");

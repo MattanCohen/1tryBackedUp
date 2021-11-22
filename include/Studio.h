@@ -45,6 +45,9 @@ public:
     Studio(Studio&& rhs);
     void stole();
 
+    void createBackup();
+    bool isBacked();
+    void restoreBackup();
 private:
     bool open;
     std::vector<Trainer*> trainers;

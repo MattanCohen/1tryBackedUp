@@ -7,11 +7,12 @@
 
 typedef std::pair<int, Workout> OrderPair;
 
-extern int currId; // currId defualt initialization is 0
+//extern int currId; // currId defualt initialization is 0
 
 class Trainer{
 public:
     Trainer(int t_capacity);
+    Trainer(int t_capacity,int id);
     int getCapacity() const;
     void addCustomer(Customer* customer);
     void removeCustomer(int id);

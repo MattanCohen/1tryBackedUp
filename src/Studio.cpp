@@ -2,6 +2,22 @@
 
 using namespace std;
 
+void Studio::createBackup() {
+    //******************************
+    //******************************
+}
+
+bool Studio::isBacked() {
+    //******************************
+    //******************************
+    return true;
+}
+
+void Studio::restoreBackup() {
+    //******************************
+    //******************************
+}
+
 //for debugging only
 //recieves trainers vector, workout options vector and action log to set to new Studio
 Studio::Studio(const std::vector<Trainer *> _trainers, const std::vector <Workout> _workout_options):open(false),trainers(_trainers),workout_options(_workout_options),sorted_workout_options(_workout_options),actionsLog(),workout_number(0){

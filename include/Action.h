@@ -171,8 +171,8 @@ public:
 private:
 };
 
-extern bool ever_backed;
-extern Studio* backup;
+//extern bool ever_backed;
+//extern Studio* backup;
 
 class BackupStudio : public BaseAction {
 public:
@@ -202,6 +202,9 @@ public:
     RestoreStudio(const RestoreStudio& rhs);
     RestoreStudio(RestoreStudio&& rhs);
     void stole();
+
+private:
+    bool ever_backed;
 };
 
 

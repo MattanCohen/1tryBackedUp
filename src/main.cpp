@@ -27,12 +27,14 @@ int main(int argc,char**argv) {
 //    vector<Trainer*> trainers;
 //    int numOfTrainers=3;
 //    int capacity [numOfTrainers];
+//    int id=0;
 //    for (int i=0; i<numOfTrainers; i++){
 //        int capacity_i;
 //        cout<<"Please enter trainer number "<<i<<"'s capacity: ";
 //        cin>>capacity_i;
 //        cout<<endl;
-//        Trainer trainer(capacity_i);
+//        Trainer trainer(capacity_i,id);
+//        id++
 //        Trainer* trainer_i=&trainer;
 //        capacity[i]=capacity_i;
 //        trainers.push_back(trainer_i);
