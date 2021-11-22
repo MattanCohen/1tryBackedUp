@@ -183,7 +183,6 @@ public:
     BackupStudio(const BackupStudio& rhs);
     BackupStudio(BackupStudio&& rhs);
     void stole();
-    Studio* getBackup();
 private:
 };
 
@@ -200,7 +199,6 @@ public:
     RestoreStudio(const RestoreStudio& rhs);
     RestoreStudio(RestoreStudio&& rhs);
     void stole();
-    Studio* getBackup();
 };
 
 

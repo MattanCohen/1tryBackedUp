@@ -44,6 +44,10 @@ Trainer& Trainer::operator=(Trainer&& rhs){
 Trainer::Trainer(const Trainer& rhs):capacity(rhs.capacity),open(rhs.open),id(rhs.id),orderList(rhs.orderList),accumulatedSalary(rhs.accumulatedSalary){
     copyCustomersList(rhs);
 }
+//copy c-tor for pointer:
+Trainer::Trainer(const Trainer* rhs):capacity(rhs->capacity),open(rhs->open),id(rhs->id),orderList(rhs->orderList),accumulatedSalary(rhs->accumulatedSalary){
+    copyCustomersList(rhs);
+}
 //move c-tor
 Trainer::Trainer(Trainer&& rhs):capacity(rhs.capacity),open(rhs.open),id(rhs.id),orderList(rhs.orderList),accumulatedSalary(rhs.accumulatedSalary){
     copyCustomersList(rhs);
@@ -83,7 +87,29 @@ void Trainer::copyCustomersList(const Trainer& rhs) {
 }
 
 
-
+void Trainer::copyCustomersList(const Trainer* rhs) {
+    int i=0;
+    while (customersList.size()<rhs->customersList.size()) {
+        // according to Customer type create new and push to customerList
+        if(rhs->customersList.at(i)->toString()=="swt"){
+            SweatyCustomer *bruteCopy=new SweatyCustomer(rhs->customersList.at(i)->getName(),rhs->customersList.at(i)->getId());
+            customersList.push_back(bruteCopy);
+        }
+        else if (rhs->customersList.at(i)->toString()=="chp"){
+            CheapCustomer *bruteCopy=new CheapCustomer(rhs->customersList.at(i)->getName(),rhs->customersList.at(i)->getId());
+            customersList.push_back(bruteCopy);
+        }
+        else if (rhs->customersList.at(i)->toString()=="mcl"){
+            HeavyMuscleCustomer *bruteCopy=new HeavyMuscleCustomer(rhs->customersList.at(i)->getName(),rhs->customersList.at(i)->getId());
+            customersList.push_back(bruteCopy);
+        }
+        else { // only fbd type is left
+            FullBodyCustomer *bruteCopy=new FullBodyCustomer(rhs->customersList.at(i)->getName(),rhs->customersList.at(i)->getId());
+            customersList.push_back(bruteCopy);
+        }
+        i++;
+    }
+}
 
 
 

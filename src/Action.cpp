@@ -63,11 +63,11 @@ OpenTrainer& OpenTrainer::operator=(const OpenTrainer &rhs) {return *this;}
 //move ass. op. to overload
 OpenTrainer& OpenTrainer::operator=(OpenTrainer &&rhs) {return *this;}
 // copy c-tor
-OpenTrainer::OpenTrainer(const OpenTrainer &rhs):BaseAction(rhs),trainerId(rhs.trainerId){copyCutsomers(rhs);}
+OpenTrainer::OpenTrainer(const OpenTrainer &rhs):BaseAction(rhs),trainerId(rhs.trainerId){copyCustomers(rhs);}
 //move c-tor
 OpenTrainer::OpenTrainer(OpenTrainer &&rhs):BaseAction(rhs),trainerId(rhs.trainerId),customers(rhs.customers){
     if (this!=&rhs){
-        copyCutsomers(rhs);
+        copyCustomers(rhs);
         rhs.stole();
     }
 }
@@ -546,7 +546,7 @@ extern Studio* backup;
 //..................................................class:BackupStudio
 // c-tor
 BackupStudio::BackupStudio(){
-    backup- nullptr;
+    backup=nullptr;
     ever_backed=false;
 }
 
@@ -554,7 +554,8 @@ BackupStudio::BackupStudio(){
 BackupStudio::~BackupStudio(){this->stole();}
 //ass op.
 BackupStudio &BackupStudio::operator=(const BackupStudio &rhs){
-    return operator=(rhs);
+    BaseAction::operator=(rhs);
+    return *this;
 }
 //move ass. op.
 BackupStudio &BackupStudio::operator=(BackupStudio &&rhs) {
@@ -571,13 +572,17 @@ BackupStudio::BackupStudio(BackupStudio &&rhs):BaseAction(rhs) {
         rhs.stole();
 }
 
-Studio *BackupStudio::getBackup() {return backup;}
 
 void BackupStudio::stole() {delete this;}
 
 void BackupStudio::act(Studio &studio) {
     ever_backed=true;
     backup= new Studio(studio);
+}
+
+//print status for log
+string BackupStudio::toString() const {
+    return "backup Completed";
 }
 
 //..................................................class:RestoreStudio
@@ -592,23 +597,20 @@ RestoreStudio &RestoreStudio::operator=(const RestoreStudio &rhs){
 }
 //move ass.op.
 RestoreStudio &RestoreStudio::operator=(RestoreStudio &&rhs) {
-    BaseAction::operator=(rhs);
-    if (this!=&rhs)
+    if (this!=&rhs){
         rhs.stole();
+        BaseAction::operator=(rhs);
+    }
     return *this;
 }
 // copy c-tor
 RestoreStudio::RestoreStudio(const RestoreStudio& rhs):BaseAction(rhs){}
 //move c-tor
 RestoreStudio::RestoreStudio(RestoreStudio &&rhs):BaseAction(rhs) {
-    backup=rhs.getBackup();
     if (this!=&rhs)
         rhs.stole();
 }
 
-Studio* RestoreStudio::getBackup(){
-    return backup;
-}
 
 void RestoreStudio::stole() {
     delete backup;
@@ -631,3 +633,4 @@ void RestoreStudio::act(Studio &studio) {
     }
     error("No backup available");
 }
+

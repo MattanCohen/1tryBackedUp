@@ -27,9 +27,11 @@ public:
     Trainer& operator=(const Trainer& rhs);
     Trainer& operator=(Trainer&& rhs);
     Trainer(const Trainer& rhs);
+    Trainer(const Trainer* rhs);
     Trainer(Trainer&& rhs);
     void stole();
     void copyCustomersList(const Trainer& rhs);
+    void copyCustomersList(const Trainer* rhs);
 
     int getCurrSalary();
 private:

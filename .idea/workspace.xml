@@ -15,28 +15,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d3724711-e75e-4385-901d-e6be599900f9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/bin/main.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Action.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Trainer.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main.o" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/include/Action.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Action.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/Customer.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Customer.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/Studio.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Studio.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/Workout.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Workout.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/Trainer.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Trainer.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Action.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Action.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Customer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Customer.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Customer.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Action.o" beforeDir="false" afterPath="$PROJECT_DIR$/src/Action.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Studio.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Studio.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Trainer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Trainer.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Workout.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Workout.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Trainer.o" beforeDir="false" afterPath="$PROJECT_DIR$/src/Trainer.o" afterDir="false" />
     </list>
-    <list id="f856f132-f281-462b-b889-6495336cd8bb" name="Changes by User" comment="">
+    <list id="27bc72ee-2a79-437b-b9f9-c1ae811fea11" name="Changes by Celestite" comment="">
       <change beforePath="$PROJECT_DIR$/include/Action.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Action.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/include/Studio.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Studio.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/Trainer.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Trainer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Action.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Action.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Studio.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Studio.cpp" afterDir="false" />
     </list>
+    <list id="f856f132-f281-462b-b889-6495336cd8bb" name="Changes by User" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -54,50 +49,60 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/include/Action.h">
-      <ranges>
-        <range start1="28" end1="29" start2="28" end2="28" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
-        <range start1="30" end1="31" start2="29" end2="29" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
-        <range start1="55" end1="55" start2="53" end2="54" changelist="f856f132-f281-462b-b889-6495336cd8bb" />
-        <range start1="70" end1="71" start2="69" end2="69" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
-        <range start1="72" end1="73" start2="70" end2="70" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
-        <range start1="86" end1="87" start2="83" end2="83" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
-        <range start1="89" end1="90" start2="85" end2="85" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
-        <range start1="91" end1="92" start2="86" end2="86" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
-        <range start1="109" end1="110" start2="103" end2="103" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
-        <range start1="111" end1="112" start2="104" end2="104" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
-        <range start1="129" end1="130" start2="121" end2="121" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
-        <range start1="131" end1="132" start2="122" end2="122" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
-        <range start1="144" end1="145" start2="134" end2="134" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
-        <range start1="147" end1="148" start2="136" end2="136" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
-        <range start1="149" end1="150" start2="137" end2="137" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
-        <range start1="165" end1="166" start2="152" end2="152" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
-        <range start1="167" end1="168" start2="153" end2="153" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
-        <range start1="182" end1="183" start2="167" end2="167" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
-        <range start1="184" end1="185" start2="168" end2="168" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
-        <range start1="186" end1="186" start2="169" end2="170" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
-        <range start1="189" end1="190" start2="173" end2="173" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
-        <range start1="202" end1="203" start2="185" end2="186" changelist="f856f132-f281-462b-b889-6495336cd8bb" />
-        <range start1="219" end1="219" start2="202" end2="203" changelist="f856f132-f281-462b-b889-6495336cd8bb" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/include/Studio.h">
-      <ranges>
-        <range start1="11" end1="12" start2="11" end2="11" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
-        <range start1="26" end1="28" start2="25" end2="27" changelist="f856f132-f281-462b-b889-6495336cd8bb" />
-        <range start1="29" end1="30" start2="28" end2="29" changelist="f856f132-f281-462b-b889-6495336cd8bb" />
-        <range start1="57" end1="59" start2="56" end2="58" changelist="f856f132-f281-462b-b889-6495336cd8bb" />
-      </ranges>
-    </file>
     <file path="$PROJECT_DIR$/src/Studio.cpp">
       <ranges>
-        <range start1="4" end1="5" start2="4" end2="4" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
-        <range start1="17" end1="18" start2="16" end2="17" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
-        <range start1="37" end1="38" start2="36" end2="37" changelist="f856f132-f281-462b-b889-6495336cd8bb" />
-        <range start1="40" end1="41" start2="39" end2="40" changelist="f856f132-f281-462b-b889-6495336cd8bb" />
-        <range start1="48" end1="48" start2="47" end2="49" changelist="f856f132-f281-462b-b889-6495336cd8bb" />
-        <range start1="52" end1="53" start2="53" end2="54" changelist="f856f132-f281-462b-b889-6495336cd8bb" />
-        <range start1="54" end1="55" start2="55" end2="69" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="12" end1="14" start2="12" end2="12" changelist="27bc72ee-2a79-437b-b9f9-c1ae811fea11" />
+        <range start1="24" end1="25" start2="22" end2="22" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="27" end1="28" start2="24" end2="26" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="36" end1="37" start2="34" end2="34" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="39" end1="40" start2="36" end2="36" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="41" end1="41" start2="37" end2="39" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="45" end1="45" start2="43" end2="44" changelist="27bc72ee-2a79-437b-b9f9-c1ae811fea11" />
+        <range start1="47" end1="50" start2="46" end2="49" changelist="27bc72ee-2a79-437b-b9f9-c1ae811fea11" />
+        <range start1="51" end1="51" start2="50" end2="51" changelist="27bc72ee-2a79-437b-b9f9-c1ae811fea11" />
+        <range start1="53" end1="54" start2="53" end2="57" changelist="27bc72ee-2a79-437b-b9f9-c1ae811fea11" />
+        <range start1="69" end1="69" start2="72" end2="138" changelist="27bc72ee-2a79-437b-b9f9-c1ae811fea11" />
+        <range start1="316" end1="317" start2="385" end2="386" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="340" end1="342" start2="409" end2="411" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="345" end1="347" start2="414" end2="416" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="350" end1="352" start2="419" end2="421" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="354" end1="356" start2="423" end2="425" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="361" end1="362" start2="430" end2="431" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="363" end1="365" start2="432" end2="434" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="372" end1="376" start2="441" end2="444" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="391" end1="392" start2="459" end2="460" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="393" end1="395" start2="461" end2="463" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="401" end1="402" start2="469" end2="470" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="403" end1="405" start2="471" end2="473" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="408" end1="411" start2="476" end2="479" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="414" end1="417" start2="482" end2="485" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="422" end1="425" start2="490" end2="493" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="428" end1="431" start2="496" end2="499" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="434" end1="437" start2="502" end2="505" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="440" end1="443" start2="508" end2="511" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/include/Action.h">
+      <ranges>
+        <range start1="53" end1="54" start2="53" end2="54" changelist="27bc72ee-2a79-437b-b9f9-c1ae811fea11" />
+        <range start1="185" end1="186" start2="185" end2="185" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="202" end1="203" start2="201" end2="201" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/Action.cpp">
+      <ranges>
+        <range start1="65" end1="66" start2="65" end2="66" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="69" end1="70" start2="69" end2="70" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="74" end1="75" start2="74" end2="75" changelist="27bc72ee-2a79-437b-b9f9-c1ae811fea11" />
+        <range start1="548" end1="549" start2="548" end2="549" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="556" end1="557" start2="556" end2="558" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="573" end1="574" start2="574" end2="574" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="582" end1="582" start2="582" end2="587" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="594" end1="596" start2="599" end2="600" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="597" end1="597" start2="601" end2="603" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="603" end1="604" start2="609" end2="609" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="608" end1="611" start2="613" end2="613" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="633" end1="633" start2="635" end2="637" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
       </ranges>
     </file>
   </component>
@@ -165,9 +170,9 @@
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">

@@ -22,10 +22,10 @@ Studio::~Studio() {
 Studio& Studio::operator=(const Studio &rhs) {
     if (&*this!=&rhs){
         open=rhs.open;
-        trainers=rhs.trainers;
         workout_options=rhs.workout_options;
         sorted_workout_options=rhs.sorted_workout_options;
-        actionsLog=rhs.actionsLog;
+        copyTrainers(rhs);
+        copyActionLogs(rhs);
         workout_number=rhs.workout_number;
     }
     return *this;
@@ -34,11 +34,11 @@ Studio& Studio::operator=(const Studio &rhs) {
 Studio& Studio::operator=(Studio &&rhs) {
     if (this!=&rhs){
         open=rhs.open;
-       // trainers=rhs.trainers;
         workout_options=rhs.workout_options;
         sorted_workout_options=rhs.sorted_workout_options;
-     //   actionsLog=rhs.actionsLog;
         workout_number=rhs.workout_number;
+        copyTrainers(rhs);
+        copyActionLogs(rhs);
         rhs.stole();
     }
     return *this;
@@ -314,7 +314,7 @@ std::string Studio::identifyAction(std::string userAction) {
 void Studio::startAction(std::string actionType, std::string userAction) {
     //if action is to open new trainer
     if (actionType=="open"){
-        // extract trainer id
+        //information gathering to extract trainer id
         int firstSpaceIndex = userAction.find(" ");
         // +1 so that space won't be included
         string userActionAfterSpace = userAction.substr(firstSpaceIndex+1);
@@ -338,31 +338,31 @@ void Studio::startAction(std::string actionType, std::string userAction) {
             // create customer based on customer strategy
             if(custStrategy=="swt")
             {
-                SweatyCustomer swt = SweatyCustomer(custName,workout_number);
-                customersList.push_back(&swt);
+                SweatyCustomer *swt =new SweatyCustomer(custName,workout_number);
+                customersList.push_back(swt);
             }
             else if(custStrategy=="chp")
             {
-                CheapCustomer chp(custName,workout_number);
-                customersList.push_back(&chp);
+                CheapCustomer *chp =new CheapCustomer(custName,workout_number);
+                customersList.push_back(chp);
             }
             else if(custStrategy=="mcl")
             {
-                HeavyMuscleCustomer mcl(custName,workout_number);
-                customersList.push_back(&mcl);
+                HeavyMuscleCustomer *mcl =new HeavyMuscleCustomer(custName,workout_number);
+                customersList.push_back(mcl);
             }
             else {
-                FullBodyCustomer fbc(custName,workout_number);
-                customersList.push_back(&fbc);
+                FullBodyCustomer *fbc =new FullBodyCustomer(custName,workout_number);
+                customersList.push_back(fbc);
             }
             // promote unique customer identifier
             workout_number++;
         }
         // trainer & customer validation will be made in act segment
-        OpenTrainer openTrainer(trainerId,customersList);
+        OpenTrainer *openTrainer =new OpenTrainer(trainerId,customersList);
         //*****returning a pointer of studio do we need move constructor****//
-        openTrainer.act(*this);
-        actionsLog.push_back(&openTrainer);
+        openTrainer->act(*this);
+        actionsLog.push_back(openTrainer);
 
     }
     //if action is to activate trainer's orders
@@ -370,10 +370,9 @@ void Studio::startAction(std::string actionType, std::string userAction) {
         // extract string after first space
         int trainerId = stoi(userAction.substr(userAction.find(" ")+1));
         // trainerId validity will be checked in act
-        Order order(trainerId);
-        //*****returning a pointer of studio do we need move constructor****//
-        order.act(*this);
-        actionsLog.push_back(&order);
+        Order *order =new Order(trainerId);
+        order->act(*this);
+        actionsLog.push_back(order);
     }
     //if action is to move customer from 1 trainer to another
     if (actionType=="move") {
@@ -389,58 +388,58 @@ void Studio::startAction(std::string actionType, std::string userAction) {
         //remove the string "y " from the new string
         action=action.substr(action.find(" ")+1);
         int customer_id=stoi(action);
-        MoveCustomer move(src,dst,customer_id);
+        MoveCustomer *move =new MoveCustomer(src,dst,customer_id);
         //*****returning a pointer of studio do we need move constructor****//
-        move.act(*this);
-        actionsLog.push_back(&move);
+        move->act(*this);
+        actionsLog.push_back(move);
     }
     //if action is to close a given trainer session
    if(actionType=="close"){
        // extract string after first space
        int trainerId = stoi(userAction.substr(userAction.find(" ")+1));
        // trainerId validity will be checked in act
-       Close close(trainerId);
+       Close *close=new Close(trainerId);
        //*****returning a pointer of studio do we need move constructor****//
-       close.act(*this);
-       actionsLog.push_back(&close);
+       close->act(*this);
+       actionsLog.push_back(close);
    }
     //if action is to close all trainers' sessions
     if(actionType=="closeall") {
-        CloseAll cA;
-        cA.act(*this);
-        actionsLog.push_back(&cA);
+        CloseAll *cA=new CloseAll();
+        cA->act(*this);
+        actionsLog.push_back(cA);
     }
     //if action is to print workout options for studio
     if (actionType=="workout_options") {
-        PrintWorkoutOptions pWO;
-        pWO.act(*this);
-        actionsLog.push_back(&pWO);
+        PrintWorkoutOptions *pWO=new PrintWorkoutOptions();
+        pWO->act(*this);
+        actionsLog.push_back(pWO);
         }
     //if action is to print trainer status
     if (actionType=="status") {
         // everything after "status " string and not including endline
         int trainerId = stoi(userAction.substr(7,userAction.size()-1));
-        PrintTrainerStatus pTS(trainerId);
-        pTS.act(*this);
-        actionsLog.push_back(&pTS);
+        PrintTrainerStatus *pTS=new PrintTrainerStatus(trainerId);
+        pTS->act(*this);
+        actionsLog.push_back(pTS);
         }
     //backup the current studio state
     if (actionType=="backup") {
-        BackupStudio backupS;
-        backupS.act(*this);
-        actionsLog.push_back(&backupS);
+        BackupStudio *backupS=new BackupStudio();
+        backupS->act(*this);
+        actionsLog.push_back(backupS);
         }
     //restore backed-up studio state
     if (actionType=="restore") {
-        RestoreStudio restore;
-        restore.act(*this);
-        actionsLog.push_back(&restore);
+        RestoreStudio *restore=new RestoreStudio();
+        restore->act(*this);
+        actionsLog.push_back(restore);
         }
     // print log is last action
     else {
-        PrintActionsLog printALog;
-        printALog.act(*this);
-        actionsLog.push_back(&printALog);
+        PrintActionsLog *printALog=new PrintActionsLog();
+        printALog->act(*this);
+        actionsLog.push_back(printALog);
     }
 }
 
