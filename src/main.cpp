@@ -3,7 +3,7 @@
 
 using namespace std;
 
-//Studio* backup = nullptr;
+Studio* backup = nullptr;
 
 // should create executuble called studi
 

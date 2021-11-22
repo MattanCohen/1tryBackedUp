@@ -2,7 +2,7 @@
 
 using namespace std;
 
-extern int currId; // currId defualt initialization is 0
+//extern int currId; // currId defualt initialization is 0
 
 //c-tor with given capacity. the lists will remain empty
 Trainer::Trainer (int t_capacity):capacity(t_capacity),open(false),customersList(),orderList(),id(currId),accumulatedSalary(0){

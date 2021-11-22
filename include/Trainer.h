@@ -7,6 +7,8 @@
 
 typedef std::pair<int, Workout> OrderPair;
 
+extern int currId; // currId defualt initialization is 0
+
 class Trainer{
 public:
     Trainer(int t_capacity);

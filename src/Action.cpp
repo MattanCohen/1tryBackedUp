@@ -539,8 +539,8 @@ void PrintActionsLog::act(Studio &studio) {
 }
 
 // no need to create error function because action is always successful
-extern bool ever_backed;
-extern Studio* backup;
+//extern bool ever_backed;
+//extern Studio* backup;
 
 //..................................................class:BackupStudio
 // c-tor

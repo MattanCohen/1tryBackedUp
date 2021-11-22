@@ -1,0 +1,6 @@
+# Number of trainers
+8
+# Traines
+1,2,3,4,8,10,20,1
+
+# Work Options

@@ -15,18 +15,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d3724711-e75e-4385-901d-e6be599900f9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/bin/Action.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bin/Customer.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bin/Studio.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bin/Trainer.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bin/Workout.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bin/main.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/empty_studio.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/no_workouts_studio.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Studio.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/trainer0capacity.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Action.o" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Action.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Customer.o" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Customer.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Studio.o" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Studio.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Trainer.o" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Trainer.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Workout.o" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Workout.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main.o" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/include/Action.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Action.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/include/Trainer.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Trainer.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Action.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Action.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Action.o" beforeDir="false" afterPath="$PROJECT_DIR$/src/Action.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Trainer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Trainer.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Studio.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Studio.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.cpp" afterDir="false" />
     </list>
     <list id="27bc72ee-2a79-437b-b9f9-c1ae811fea11" name="Changes by Celestite" comment="" />
     <list id="f856f132-f281-462b-b889-6495336cd8bb" name="Changes by User" comment="" />

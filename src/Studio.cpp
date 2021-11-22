@@ -84,7 +84,7 @@ void Studio::copyTrainers(const Studio &rhs) {
 
         // Trainer copyTrainer = new Trainer(&rhs.trainers.at(i));
         // Trainers.push_back(*copyTrainer);
-    }
+}
 }
 
 void Studio::copyActionLogs(const Studio &rhs) {

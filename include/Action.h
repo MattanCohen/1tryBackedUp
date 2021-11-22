@@ -171,6 +171,9 @@ public:
 private:
 };
 
+extern bool ever_backed;
+extern Studio* backup;
+
 class BackupStudio : public BaseAction {
 public:
     BackupStudio();

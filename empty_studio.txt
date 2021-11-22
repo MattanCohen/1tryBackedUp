@@ -1,0 +1,14 @@
+# Number of trainers
+0
+
+# Traines
+
+
+
+#
+#
+#
+# Work Options
+Spinning, Mixed, 120
+Zumba, Cardio, 100
+Happy, Mixed, 100
