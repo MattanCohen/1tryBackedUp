@@ -5,7 +5,7 @@ using namespace std;
 extern int currId; // currId defualt initialization is 0
 
 //c-tor with given capacity. the lists will remain empty
-Trainer::Trainer (int t_capacity):capacity(t_capacity),open(false),id(currId),accumulatedSalary(0){
+Trainer::Trainer (int t_capacity):capacity(t_capacity),open(false),customersList(),orderList(),id(currId),accumulatedSalary(0){
     currId++;
 }
 
@@ -41,15 +41,15 @@ Trainer& Trainer::operator=(Trainer&& rhs){
     return *this;
 }
 //copy c-tor:
-Trainer::Trainer(const Trainer& rhs):capacity(rhs.capacity),open(rhs.open),id(rhs.id),orderList(rhs.orderList),accumulatedSalary(rhs.accumulatedSalary){
+Trainer::Trainer(const Trainer& rhs):capacity(rhs.capacity),open(rhs.open),customersList(),orderList(rhs.orderList),id(rhs.id),accumulatedSalary(rhs.accumulatedSalary){
     copyCustomersList(rhs);
 }
 //copy c-tor for pointer:
-Trainer::Trainer(const Trainer* rhs):capacity(rhs->capacity),open(rhs->open),id(rhs->id),orderList(rhs->orderList),accumulatedSalary(rhs->accumulatedSalary){
+Trainer::Trainer(const Trainer* rhs):capacity(rhs->capacity),open(rhs->open),customersList(),orderList(rhs->orderList),id(rhs->id),accumulatedSalary(rhs->accumulatedSalary){
     copyCustomersList(rhs);
 }
 //move c-tor
-Trainer::Trainer(Trainer&& rhs):capacity(rhs.capacity),open(rhs.open),id(rhs.id),orderList(rhs.orderList),accumulatedSalary(rhs.accumulatedSalary){
+Trainer::Trainer(Trainer&& rhs):capacity(rhs.capacity),open(rhs.open),customersList(),orderList(rhs.orderList),id(rhs.id),accumulatedSalary(rhs.accumulatedSalary){
     copyCustomersList(rhs);
     rhs.stole();
 }
@@ -121,20 +121,20 @@ int Trainer::getCapacity() const{return capacity;}
 void Trainer::addCustomer(Customer* customer){
     customersList.push_back(customer);
     //add customer's orders prices to trainer's salary
-    for (int i=0; i<orderList.size(); i++)
+    for (size_t i=0; i<orderList.size(); i++)
         if (orderList.at(i).first==id)
             accumulatedSalary+= orderList.at(i).second.getPrice();
     }
 
 //remove Customer with the identifing number "id" from trainer's customers list
 void Trainer::removeCustomer(int id) {
-        for (int i = 0; i < customersList.size(); i++)
+        for (size_t i = 0; i < customersList.size(); i++)
             //trying to find the customer with id "id"
             if (customersList.at(i)->getId() == id) {
                 delete customersList.at(i);
                 customersList.erase(customersList.begin()+i);
                 //reduct customer's orders prices from trainer's salary
-                for (int j=0; j<orderList.size(); j++)
+                for (size_t j=0; j<orderList.size(); j++)
                     if (orderList.at(j).first==id)
                         accumulatedSalary-= orderList.at(j).second.getPrice();
                 return;
@@ -144,7 +144,7 @@ void Trainer::removeCustomer(int id) {
 //get the Customer with id "id" or null if doesn't exists
 Customer* Trainer::getCustomer(int id){
     Customer* ans= nullptr;
-    for (int i = 0; i < customersList.size(); i++)
+    for (size_t i = 0; i < customersList.size(); i++)
             if (customersList.at(i)->getId() == id) {
                 return customersList.at(i);
             }
@@ -172,7 +172,7 @@ vector<OrderPair>& Trainer:: getOrders(){
 //order a workout from this trainer for the customer customer_id
 //assumes customer_id belongs to this trainer and workout_ids exists in workout_options.
 void Trainer:: order(const int customer_id,const vector<int>workout_ids,const vector<Workout>& workout_options){
-    for (int i=0; i<workout_ids.size(); i++){
+    for (size_t i=0; i<workout_ids.size(); i++){
         int work_id=workout_ids.at(i);
         Workout work(workout_options.at(work_id));
         orderList.push_back(make_pair(customer_id,work));

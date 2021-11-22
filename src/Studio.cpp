@@ -95,47 +95,47 @@ void Studio::copyActionLogs(const Studio &rhs) {
         string actionName = identifyAction(rhs.actionsLog.at(i)->toString());
         // based on action log type create a copy and push to list
         if (actionName == "order") {
-            Order *temp=rhs.actionsLog.at(i);
+            Order *temp=(Order*)rhs.actionsLog.at(i);
             Order *copy = new Order(*temp);
             actionsLog.push_back(copy);
         }
         else if (actionName == "move") {
-            MoveCustomer *temp=rhs.actionsLog.at(i);
+            MoveCustomer *temp=(MoveCustomer*)rhs.actionsLog.at(i);
             MoveCustomer *copy = new MoveCustomer(*temp);
             actionsLog.push_back(copy);
         }
         else if  (actionName == "close") {
-            Close *temp=rhs.actionsLog.at(i);
+            Close *temp=(Close*)rhs.actionsLog.at(i);
             Close *copy = new Close(*temp);
             actionsLog.push_back(copy);
         }
         else if (actionName == "closeall") {
-            CloseAll *temp=rhs.actionsLog.at(i);
+            CloseAll *temp=(CloseAll*)rhs.actionsLog.at(i);
             CloseAll *copy = new CloseAll(*temp);
             actionsLog.push_back(copy);
         }
         else if  (actionName == "workout_options") {
-            PrintWorkoutOptions *temp=rhs.actionsLog.at(i);
+            PrintWorkoutOptions *temp=(PrintWorkoutOptions*)rhs.actionsLog.at(i);
             PrintWorkoutOptions *copy = new PrintWorkoutOptions(*temp);
             actionsLog.push_back(copy);
         }
         else if  (actionName == "status") {
-            PrintTrainerStatus *temp=rhs.actionsLog.at(i);
+            PrintTrainerStatus *temp=(PrintTrainerStatus*)rhs.actionsLog.at(i);
             PrintTrainerStatus *copy = new PrintTrainerStatus(*temp);
             actionsLog.push_back(copy);
         }
         else if  (actionName == "log") {
-            PrintActionsLog *temp=rhs.actionsLog.at(i);
+            PrintActionsLog *temp=(PrintActionsLog*)rhs.actionsLog.at(i);
             PrintActionsLog *copy = new PrintActionsLog(*temp);
             actionsLog.push_back(copy);
         }
         else if  (actionName == "backup") {
-            BackupStudio *temp=rhs.actionsLog.at(i);
+            BackupStudio *temp=(BackupStudio*)rhs.actionsLog.at(i);
             BackupStudio *copy = new BackupStudio(*temp);
             actionsLog.push_back(copy);
         }
         else if  (actionName == "restore") {
-            RestoreStudio *temp=rhs.actionsLog.at(i);
+            RestoreStudio *temp=(RestoreStudio*)rhs.actionsLog.at(i);
             RestoreStudio *copy = new RestoreStudio(*temp);
             actionsLog.push_back(copy);
         }

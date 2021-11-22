@@ -1,9 +1,8 @@
-all: clean compile run
+all: clean compile link
 
-run:
-	#hey
-	g++ main.cpp -o main
 
+link:
+	g++ -o bin/studio bin/main.o bin/Action.o bin/Customer.o bin/Studio.o bin/Trainer.o bin/Workout.o
 
 compile:
 	g++ -g -Wall -Weffc++ -c -o bin/main.o src/main.cpp
@@ -12,7 +11,6 @@ compile:
 	g++ -g -Wall -Weffc++ -c -o bin/Studio.o src/Studio.cpp
 	g++ -g -Wall -Weffc++ -c -o bin/Trainer.o src/Trainer.cpp
 	g++ -g -Wall -Weffc++ -c -o bin/Workout.o src/Workout.cpp
-	cout<<endl;
 
 
 clean:
