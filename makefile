@@ -1,16 +1,25 @@
-all: clean compile link
+all: link
 
-
-link:
+link: studio action customer trainer workout main
 	g++ -o bin/studio bin/main.o bin/Action.o bin/Customer.o bin/Studio.o bin/Trainer.o bin/Workout.o
 
-compile:
-	g++ -g -Wall -Weffc++ -c -o bin/main.o src/main.cpp
-	g++ -g -Wall -Weffc++ -c -o bin/Action.o src/Action.cpp
-	g++ -g -Wall -Weffc++ -c -o bin/Customer.o src/Customer.cpp
-	g++ -g -Wall -Weffc++ -c -o bin/Studio.o src/Studio.cpp
-	g++ -g -Wall -Weffc++ -c -o bin/Trainer.o src/Trainer.cpp
-	g++ -g -Wall -Weffc++ -c -o bin/Workout.o src/Workout.cpp
+studio:
+	g++ -g -Wall -Weffc++ -c -Iinclude -o bin/Studio.o src/Studio.cpp
+
+action:
+	g++ -g -Wall -Weffc++ -c -Iinclude -o bin/Action.o src/Action.cpp
+
+customer:
+	g++ -g -Wall -Weffc++ -c -Iinclude -o bin/Customer.o src/Customer.cpp
+
+trainer:
+	g++ -g -Wall -Weffc++ -c -Iinclude -o bin/Trainer.o src/Trainer.cpp
+
+workout:
+	g++ -g -Wall -Weffc++ -c -Iinclude -o bin/Workout.o src/Workout.cpp
+
+main:
+	g++ -g -Wall -Weffc++ -c -Iinclude -o bin/main.o src/main.cpp
 
 
 clean:

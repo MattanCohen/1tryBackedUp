@@ -15,10 +15,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d3724711-e75e-4385-901d-e6be599900f9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/empty_studio.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/no_workouts_studio.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Studio.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/trainer0capacity.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/makefile backup/makefile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Action.o" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Action.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Customer.o" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Customer.o" afterDir="false" />
@@ -26,10 +23,11 @@
       <change beforePath="$PROJECT_DIR$/bin/Trainer.o" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Trainer.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Workout.o" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Workout.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/main.o" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/Action.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Action.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/Trainer.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Trainer.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Studio.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Studio.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/makefile" beforeDir="false" afterPath="$PROJECT_DIR$/makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Action.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Studio.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Trainer.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.o" beforeDir="false" />
     </list>
     <list id="27bc72ee-2a79-437b-b9f9-c1ae811fea11" name="Changes by Celestite" comment="" />
     <list id="f856f132-f281-462b-b889-6495336cd8bb" name="Changes by User" comment="" />
@@ -56,6 +54,11 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
+  </component>
+  <component name="JsbtTreeLayoutManager">
+    <layout place="tools.popupGrunt">
+      <scroll-view-position x="0" y="0" />
+    </layout>
   </component>
   <component name="MakefileLocalSettings">
     <option name="availableProjects">
