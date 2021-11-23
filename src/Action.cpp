@@ -8,9 +8,7 @@ BaseAction::BaseAction():errorMsg(),status(){}
 
 //rule of 5:
 //d-tor
-BaseAction::~BaseAction(){
-    this->stole();
-}
+BaseAction::~BaseAction(){}
 //ass.op
 BaseAction& BaseAction::operator=(const BaseAction& rhs){
     if (&*this!=&rhs){
@@ -21,7 +19,6 @@ BaseAction& BaseAction::operator=(const BaseAction& rhs){
 }
 //copy c-tor
 BaseAction::BaseAction(const BaseAction &rhs):errorMsg(rhs.errorMsg),status(rhs.status){}
-void BaseAction::stole() {errorMsg= nullptr;}
 //no need for move ctor move ass. op. or dtor FOR ALL ACTION CLASSES inherited from
 //BaseAction because no variables are stored on the heap
 
@@ -53,7 +50,8 @@ OpenTrainer::OpenTrainer(int id, std::vector<Customer *> &customersList):BaseAct
 //rule of 5:
 //d-tor
 OpenTrainer::~OpenTrainer(){
-    this->stole();
+    while (customers.size()>0)
+        customers.pop_back();
 }
 //we can not implement ass.op and move ass. op. because trainerId is constant
 //ass. op. to overload in case of uses in different functions
@@ -66,7 +64,6 @@ OpenTrainer::OpenTrainer(const OpenTrainer &rhs):BaseAction(rhs),trainerId(rhs.t
 OpenTrainer::OpenTrainer(OpenTrainer &&rhs):BaseAction(rhs),trainerId(rhs.trainerId),customers(rhs.customers){
     if (this!=&rhs){
         copyCustomers(rhs);
-        rhs.stole();
     }
 }
 
@@ -94,11 +91,6 @@ void OpenTrainer::copyCustomers(const OpenTrainer &rhs) {
     }
 }
 
-void OpenTrainer::stole() {
-    while (!customers.empty())
-        delete customers.at(0);
-    delete this;
-}
 
 
 //prints status for log
@@ -156,16 +148,13 @@ Order::Order(int id):BaseAction(),trainerId(id) {}
 
 //rule of 5:
 //d-tor
-Order::~Order(){
-    this->stole();
-}
+Order::~Order(){}
 //we can not implement ass.op and move ass. op. because trainerId is constant
 //ass. op. to overload in case of uses in different functions
 Order& Order::operator=(const Order& rhs) {return *this;}
 //copy c-tor
 Order::Order(const Order &rhs):BaseAction(rhs),trainerId(rhs.trainerId) {}
 
-void Order::stole() {delete this;}
 
 //prints status for log
 string Order::toString() const {
@@ -235,16 +224,13 @@ MoveCustomer::MoveCustomer(int src, int dst, int customerId):BaseAction(),srcTra
 
 //rule of 5:
 //d-tor
-MoveCustomer::~MoveCustomer(){
-    this->stole();
-}
+MoveCustomer::~MoveCustomer(){}
 //we can not implement ass.op and move ass. op. because all variable are constant
 //ass. op. to overload in case of uses in different functions
 MoveCustomer& MoveCustomer::operator=(const MoveCustomer &rhs) {return *this;}
 //copy c-tor
 MoveCustomer::MoveCustomer(const MoveCustomer &rhs):BaseAction(rhs),srcTrainer(rhs.srcTrainer),dstTrainer(rhs.dstTrainer),id(rhs.id) {}
 
-void MoveCustomer::stole() {delete this;}
 
 //returns status for log
 std::string MoveCustomer::toString() const {
@@ -332,16 +318,13 @@ Close::Close(int id):BaseAction(),trainerId(id),salary(0){}
 
 //rule of 5:
 //d-tor
-Close::~Close(){
-    this->stole();
-}
+Close::~Close(){}
 //we can not implement ass.op and move ass. op. because trainerId is constant
 //ass. op. to overload in case of uses in different functions
 Close& Close::operator=(const Close &rhs) {return *this;}
 // copy c-tor
 Close::Close(const Close &rhs):BaseAction(rhs),trainerId(rhs.trainerId),salary(rhs.salary) {}
 
-void Close::stole() {delete this;}
 
 //prints status from log
 string Close::toString() const {
@@ -392,7 +375,7 @@ CloseAll::CloseAll():BaseAction(){};
 
 //rule of 5:
 //d-tor
-CloseAll::~CloseAll(){stole();}
+CloseAll::~CloseAll(){}
 // ass op.
 CloseAll &CloseAll::operator=(const CloseAll &rhs) {
     BaseAction::operator=(rhs);
@@ -402,7 +385,6 @@ CloseAll &CloseAll::operator=(const CloseAll &rhs) {
 // copy c-tor
 CloseAll::CloseAll(const CloseAll &other):BaseAction(other) {}
 
-void CloseAll::stole() {delete this;}
 
 //prints status for log
 std::string CloseAll::toString() const {
@@ -421,7 +403,6 @@ void CloseAll::act(Studio &studio) {
         }
     }
     complete();
-    return;
 }
 
 // no need to create error function because action is always successful
@@ -434,9 +415,7 @@ PrintWorkoutOptions::PrintWorkoutOptions():BaseAction() {}
 
 //rule of 5:
 //d-tor
-PrintWorkoutOptions::~PrintWorkoutOptions(){
-    this->stole();
-}
+PrintWorkoutOptions::~PrintWorkoutOptions(){}
 // ass op.
 PrintWorkoutOptions& PrintWorkoutOptions::operator=(const PrintWorkoutOptions &rhs) {
     BaseAction::operator=(rhs);
@@ -446,7 +425,6 @@ PrintWorkoutOptions& PrintWorkoutOptions::operator=(const PrintWorkoutOptions &r
 // copy c-tor
 PrintWorkoutOptions::PrintWorkoutOptions(const PrintWorkoutOptions& other):BaseAction(other){}
 
-void PrintWorkoutOptions::stole() {delete this;}
 
 
 //prints status for log
@@ -482,16 +460,13 @@ PrintTrainerStatus::PrintTrainerStatus(int id):BaseAction(), trainerId(id){}
 
 //rule of 5:
 //d-tor
-PrintTrainerStatus::~PrintTrainerStatus(){
-    this->stole();
-}
+PrintTrainerStatus::~PrintTrainerStatus(){}
 //we can not implement ass.op and move ass. op. because trainerId is constant
 //ass. op. to overload in case of uses in different functions
 PrintTrainerStatus& PrintTrainerStatus::operator=(const PrintTrainerStatus &rhs) {return *this;}
 //copy c-tor
 PrintTrainerStatus::PrintTrainerStatus(const PrintTrainerStatus &rhs):BaseAction(rhs),trainerId(rhs.trainerId) {}
 
-void PrintTrainerStatus::stole() {delete this;}
 
 //prints status for log
 string PrintTrainerStatus::toString() const {
@@ -534,7 +509,7 @@ void PrintTrainerStatus::act(Studio &studio) {
 PrintActionsLog::PrintActionsLog():BaseAction(){}
 
 //d-tor
-PrintActionsLog::~PrintActionsLog(){this->stole();}
+PrintActionsLog::~PrintActionsLog(){}
 //ass op.
 PrintActionsLog& PrintActionsLog::operator=(const PrintActionsLog &rhs){
     BaseAction::operator=(rhs);
@@ -544,7 +519,6 @@ PrintActionsLog& PrintActionsLog::operator=(const PrintActionsLog &rhs){
 // copy c-tor
 PrintActionsLog::PrintActionsLog(const PrintActionsLog& other):BaseAction(other){}
 
-void PrintActionsLog::stole() {delete this;}
 
 //print status for log
 string PrintActionsLog::toString() const {
@@ -567,7 +541,7 @@ void PrintActionsLog::act(Studio &studio) {
 BackupStudio::BackupStudio():BaseAction(){}
 
 //d-tor
-BackupStudio::~BackupStudio(){this->stole();}
+BackupStudio::~BackupStudio(){}
 //ass op.
 BackupStudio &BackupStudio::operator=(const BackupStudio &rhs){
     BaseAction::operator=(rhs);
@@ -576,19 +550,13 @@ BackupStudio &BackupStudio::operator=(const BackupStudio &rhs){
 //move ass. op.
 BackupStudio &BackupStudio::operator=(BackupStudio &&rhs) {
     BaseAction::operator=(rhs);
-    if (this!=&rhs)
-        rhs.stole();
     return *this;
 }
 // copy c-tor
 BackupStudio::BackupStudio(const BackupStudio& rhs):BaseAction(rhs){}
 //move c-tor
-BackupStudio::BackupStudio(BackupStudio &&rhs):BaseAction(rhs) {
-    if (this!=&rhs)
-        rhs.stole();
-}
+BackupStudio::BackupStudio(BackupStudio &&rhs):BaseAction(rhs) {}
 
-void BackupStudio::stole() {delete this;}
 
 void BackupStudio::act(Studio &studio) {
     backup= new Studio(studio);
@@ -604,7 +572,7 @@ string BackupStudio::toString() const {
 // c-tor
 RestoreStudio::RestoreStudio():BaseAction(),ever_backed(false) {}
 
-RestoreStudio::~RestoreStudio(){this->stole();}
+RestoreStudio::~RestoreStudio(){}
 //ass op.
 RestoreStudio &RestoreStudio::operator=(const RestoreStudio &rhs){
     BaseAction::operator=(rhs);
@@ -613,7 +581,7 @@ RestoreStudio &RestoreStudio::operator=(const RestoreStudio &rhs){
 //move ass.op.
 RestoreStudio &RestoreStudio::operator=(RestoreStudio &&rhs) {
     if (this!=&rhs){
-        rhs.stole();
+        rhs.ever_backed=false;
         BaseAction::operator=(rhs);
     }
     return *this;
@@ -623,11 +591,10 @@ RestoreStudio::RestoreStudio(const RestoreStudio& rhs):BaseAction(rhs),ever_back
 //move c-tor
 RestoreStudio::RestoreStudio(RestoreStudio &&rhs):BaseAction(rhs),ever_backed(false) {
     if (this!=&rhs)
-        rhs.stole();
+        rhs.ever_backed=false;
 }
 
 
-void RestoreStudio::stole() {delete this;}
 
 //print status for log
 string RestoreStudio::toString() const {

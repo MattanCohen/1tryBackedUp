@@ -27,7 +27,7 @@ public:
     WorkoutType getType(std::string rhs);
 
 
-    virtual ~Studio();
+    ~Studio();
     Studio& operator=(const Studio& rhs);
     Studio& operator=(Studio&& rhs);
     Studio(const Studio& rhs);

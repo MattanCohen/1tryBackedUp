@@ -13,7 +13,11 @@ Trainer::Trainer (int t_capacity,int id):capacity(t_capacity),open(false),custom
 //rule of 5:
 //d-tor
 Trainer::~Trainer() {
-    this->stole();
+    while (customersList.size()>0)
+        customersList.pop_back();
+    while (orderList.size()>0)
+        orderList.pop_back();
+//    this->stole();
 }
 //ass op.
 Trainer& Trainer::operator=(const Trainer& rhs){
@@ -55,28 +59,12 @@ Trainer::Trainer(Trainer&& rhs):capacity(rhs.capacity),open(rhs.open),customersL
 }
 
 
-//size_t i=0;
-//cout<<"Studio.cpp line 70"<<endl;
-//while (i<trainers.size()){
-//Trainer* point = trainers.at(i);
-//Trainer t = *point;
-//cout<<"starting stole"<<endl;
-//t.stole();
-//delete point;
-//delete trainers.at(i);
-//i++;
-//cout<<i<<" passed first loop"<<endl;
-//}
-//cout<<"i passed first loop"<<endl;
-//trainers.clear();
-
 
 void Trainer::stole() {
-    size_t i=0;
-    while (i<customersList.size()){
-        delete customersList.at(i);
-        i++;
-    }
+    while (customersList.size()>0)
+        customersList.pop_back();
+    while (orderList.size()>0)
+        orderList.pop_back();
 }
 
 void Trainer::copyCustomersList(const Trainer& rhs) {
@@ -136,14 +124,8 @@ int Trainer::getCapacity() const{return capacity;}
 
 //adds customer. assumes trainer is available
 void Trainer::addCustomer(Customer* customer){
-    customersList.push_back(customer);
-    //add customer's orders prices to trainer's salary
-    for (size_t i=0; i<orderList.size(); i++)
-        if (orderList.at(i).first==customer->getId())
-            return;
-//    for (size_t i=0; i<orderList.size(); i++)
-//        if (orderList.at(i).first==id)
-//            accumulatedSalary+= orderList.at(i).second.getPrice();
+   if (getCustomer(customer->getId())== nullptr)
+        customersList.push_back(customer);
 }
 
 //remove Customer with the identifing number "id" from trainer's customers list
@@ -166,14 +148,16 @@ void Trainer::removeCustomer(int id) {
         else
             temp.push_back(customersList.at(i));
     }
-    customersList.clear();
+    while (customersList.size()>0)
+        customersList.pop_back();
     for (size_t i=0; i<temp.size(); i++)
         customersList.push_back(temp.at(i));
-    orderList.clear();
     for (size_t i=0; i<temp_order.size(); i++)
         orderList.push_back(temp_order.at(i));
-    temp.clear();
-    temp_order.clear();
+    while (temp.size()>0)
+        temp.pop_back();
+    while (temp_order.size()>0)
+        temp_order.pop_back();
 }
 
 //get the Customer with id "id" or null if doesn't exists
@@ -223,8 +207,10 @@ void Trainer::openTrainer(){
 //changes trainer's status to close. since they were open, close their lists
 void Trainer:: closeTrainer(){
     open=false;
-    customersList.clear();
-    orderList.clear();
+    while (customersList.size()>0)
+        customersList.pop_back();
+    while (orderList.size()>0)
+        orderList.pop_back();
 }
 
 //computes and returns salary

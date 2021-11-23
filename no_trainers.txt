@@ -1,0 +1,13 @@
+# Number of trainers
+0
+# Trainers
+#1
+
+# Work Options
+# Sexy Yoga, Cardio, 1
+# Fidget Spinning, Anaerobic, 10
+# Lap Dancing, Mixed, 100
+# Pug Studies, Cardio, 1000
+# Thug Studies, Anaerobic, 10000
+# Calculus 5, Cardio, 100000
+# Cow Tipping, Anaerobic, 1000000

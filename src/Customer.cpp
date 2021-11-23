@@ -25,7 +25,7 @@ SweatyCustomer::SweatyCustomer(string name, int id):Customer(name,id){}
 
 //rule of 5:
 //d-tor in case Customer reference is deleted
-SweatyCustomer::~SweatyCustomer() {delete this;}
+SweatyCustomer::~SweatyCustomer() {}
 //we can not implement ass.op and move ass. op. because all variable are constant
 //ass.op. sole purpose is to overload any calls to the ass.op via other classes
 SweatyCustomer& SweatyCustomer::operator=(const SweatyCustomer &rhs) {return *this;}

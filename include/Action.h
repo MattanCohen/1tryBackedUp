@@ -30,7 +30,6 @@ public:
     virtual ~BaseAction();
     virtual BaseAction& operator=(const BaseAction& rhs);
     BaseAction(const BaseAction& rhs);
-    void stole();
 
 protected:
     void complete();
@@ -53,7 +52,6 @@ public:
     OpenTrainer& operator=(OpenTrainer&& rhs);
     OpenTrainer(const OpenTrainer& rhs);
     OpenTrainer(OpenTrainer&& rhs);
-    void stole();
     void copyCustomers(const OpenTrainer& rhs);
 
 private:
@@ -71,7 +69,6 @@ public:
     ~Order();
     Order& operator=(const Order& rhs);
     Order(const Order &rhs);
-    void stole();
 
 private:
     const int trainerId;
@@ -87,7 +84,6 @@ public:
     ~MoveCustomer();
     MoveCustomer& operator=(const MoveCustomer& rhs);
     MoveCustomer(const MoveCustomer& rhs);
-    void stole();
 
 private:
     const int srcTrainer;
@@ -105,7 +101,6 @@ public:
     ~Close();
     Close& operator=(const Close& rhs);
     Close(const Close& rhs);
-    void stole();
 
 private:
     // trainerId requested and salary (if command is successful)
@@ -123,7 +118,6 @@ public:
     ~CloseAll();
     CloseAll& operator=(const CloseAll& rhs);
     CloseAll(const CloseAll& other);
-    void stole();
 
 private:
 };
@@ -138,7 +132,6 @@ public:
     ~PrintWorkoutOptions();
     PrintWorkoutOptions& operator=(const PrintWorkoutOptions& rhs);
     PrintWorkoutOptions(const PrintWorkoutOptions& rhs);
-    void stole();
 
 private:
     std::string getTypeAsString(WorkoutType type) const;
@@ -154,7 +147,6 @@ public:
     ~PrintTrainerStatus();
     PrintTrainerStatus& operator=(const PrintTrainerStatus& rhs);
     PrintTrainerStatus(const PrintTrainerStatus& rhs);
-    void stole();
 
 private:
     const int trainerId;
@@ -169,7 +161,6 @@ public:
     ~PrintActionsLog();
     PrintActionsLog& operator=(const PrintActionsLog& rhs);
     PrintActionsLog(const PrintActionsLog& other);
-    void stole();
 
 private:
 };
@@ -188,7 +179,6 @@ public:
     BackupStudio& operator=(BackupStudio&& rhs);
     BackupStudio(const BackupStudio& rhs);
     BackupStudio(BackupStudio&& rhs);
-    void stole();
 private:
 };
 
@@ -204,7 +194,6 @@ public:
     RestoreStudio& operator=(RestoreStudio&& rhs);
     RestoreStudio(const RestoreStudio& rhs);
     RestoreStudio(RestoreStudio&& rhs);
-    void stole();
 
 private:
     bool ever_backed;

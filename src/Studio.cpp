@@ -66,18 +66,19 @@ Studio::Studio(const Studio& rhs):open(rhs.open),trainers(rhs.trainers),workout_
 
 void Studio::stole() {
     // remove elements+pointers in trainers
-    size_t i=0;
-    while (i<trainers.size()){
-        trainers.at(i)->stole();
-        i++;
+    while (trainers.size()>0){
+        trainers.pop_back();
     }
-    i=0;
-    // remove elements+pointers in action logs
-    while (i<actionsLog.size()){
-        actionsLog.at(i)->stole();
-        i++;
+    trainers.shrink_to_fit();
+    while (actionsLog.size()>0){
+        actionsLog.pop_back();
     }
-    delete ::backup;
+    while (workout_options.size()>0){
+        workout_options.pop_back();
+    }
+    while (sorted_workout_options.size()>0){
+        sorted_workout_options.pop_back();
+    }
 }
 
 void Studio::copyTrainers(const Studio &rhs) {
@@ -273,7 +274,8 @@ Studio::Studio(const std::string &configFilePath):open(false),trainers(),workout
         for (size_t i=0; i<temp.size(); i++)
             if (i!=iMax)
                 newtemp.push_back(temp.at(i));
-        temp.clear();
+        while (temp.size()>0)
+            temp.pop_back();
         for (size_t i=0; i<newtemp.size(); i++)
             temp.push_back(newtemp.at(i));
         iMax=0;
@@ -342,13 +344,13 @@ void Studio::startAction(std::string actionType, std::string userAction) {
                 size_t t_cap = getTrainer(trainerId)->getCapacity();
                 if (t_cap >= customersList.size() + 1) {
                     // create customer based on customer strategy
-                    if (custStrategy == "swt") {
-                        SweatyCustomer *swt = new SweatyCustomer(custName, workout_number);
-                        customersList.push_back(swt);
+                    //SweatyCustomer *swt = new SweatyCustomer(custName, workout_number)
+                    if (custStrategy == "swt"){
+                        customersList.push_back(new SweatyCustomer(custName, workout_number));
                         workout_number++;
-                    } else if (custStrategy == "chp") {
-                        CheapCustomer *chp = new CheapCustomer(custName, workout_number);
-                        customersList.push_back(chp);
+                    //CheapCustomer *chp = new CheapCustomer(custName, workout_number);
+                     }else if (custStrategy == "chp") {
+                        customersList.push_back(new CheapCustomer(custName, workout_number));
                         workout_number++;
                     } else if (custStrategy == "mcl") {
                         HeavyMuscleCustomer *mcl = new HeavyMuscleCustomer(custName, workout_number);
@@ -409,9 +411,7 @@ void Studio::startAction(std::string actionType, std::string userAction) {
    }
     //if action is to close all trainers' sessions
     else if(actionType=="closeall" ) {
-        cout<<"studio line 412"<<endl;
         CloseAll().act(*this);
-        cout<<"studio line 414"<<endl;
     }
     //if action is to print workout options for studio
     else if (actionType=="workout_options") {
@@ -452,21 +452,20 @@ void Studio::startAction(std::string actionType, std::string userAction) {
 //open the Studio
 void Studio::start(){
     open=true;
+    for (size_t i=0; i<trainers.size(); i++)
+        cout<<trainers.at(i)->getCapacity()<<endl;
     cout<<"Studio is now open!"<<endl;
     string userAction;
     //loop for actions
     while(userAction!="closeall") {
         // wait command from terminal
-        cout<<"while entered"<<endl;
         getline(cin,userAction);
         // no need to perform input checks
         string actionType = identifyAction(userAction);
         // create action based on type, act and document action
         startAction(actionType, userAction);
     }
-    cout<<"while ended"<<endl;
     stole();
-    cout<<"program finished correctly"<<endl;
 }
 
 
