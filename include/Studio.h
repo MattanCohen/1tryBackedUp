@@ -6,16 +6,7 @@
 #include "Workout.h"
 #include "Trainer.h"
 #include "Action.h"
-#include <algorithm>
 #include <fstream>
-
-struct sort_by_price
-{
-    inline bool operator() (const Workout& w1, const Workout& w2)
-    {
-        return (w1.getPrice() < w2.getPrice());
-    }
-};
 
 class BaseAction;
 

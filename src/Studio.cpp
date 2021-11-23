@@ -158,10 +158,10 @@ Studio::Studio():open(false),trainers(),workout_options(),sorted_workout_options
 
 // given a list of trainer capacities adds to "trainers"
 void Studio::AddTrainers(std::string trainersRow) {
-
     //_________________________________adding trainers:___________________
     //line contains capacities seperated by commas. ignore the commas.
-    size_t i=0;
+    size_t j=0;
+    int id=0;
     //while we didn't reach the new line
     while (j<trainersRow.size() && trainersRow.at(j)!='\n') {
         string trainerCapacityString="";
@@ -204,13 +204,15 @@ void Studio::AddWorkoutOption(std::string workoutRow, int workoutId) {
 // checks if a row is an empty line and needs to be ignored
 bool Studio::isEmptyLine(std::string configRow) {
     // sanity check
-    if(configRow.size()==0) {return true;}
+    bool temp;
+    if(configRow.size()==0) {temp= true;}
     else {
         // empty line or starts with a comment
-        if(configRow.at(0)=='\n' or configRow.at(0)=='#') {return true;}
+        if(configRow.at(0)=='\n' or configRow.at(0)=='\r' or configRow.at(0)==' '  or configRow.at(0)=='#') {temp= true;}
             // line is not empty and contains relevant information
-        else {return false;}
+        else {temp= false;}
     }
+    return temp;
 }
 
 //creating a Studio by a received config file. assumes config file is legal
@@ -276,123 +278,6 @@ Studio::Studio(const std::string &configFilePath):open(false),trainers(),workout
     }
 }
 
-
-/*
-//creating a Studio by a received config file. assumes config file is legal
-Studio::Studio(const string &configFilePath){
-    // read config path and insert row by row to string
-    ifstream ReadConfigFile(configFilePath);
-    string configRow;
-    string configFile="";
-    while(getline(ReadConfigFile,configRow)) {
-        configFile.append(configRow);
-    }
-    int i=0;
-    int ignored_char=configFile.find('\n');
-     //_________________________________adding trainers:___________________
-    //from i=0 to the end of the line ('\n') is the number of trainers string representation
-    int num_of_trainers= stoi(configFile.substr(0,ignored_char));
-    //remove from the string the first line and the \n char
-    configFile=configFile.substr(ignored_char+1);
-    //next line contains capacities seperated by commas. ignore the commas.
-    int ignore_comma=configFile.find(',');
-    ignored_char=configFile.find('\n');
-    i=0;
-    //while we didn't reach the new line
-    while (i<configFile.size() && configFile.at(i)!='\n'){
-        //if there's workout options in the config file, ignore_comma > i = previous_ignore_comma+1
-        //if there's no workout options, ignore_comma = 0 < i so we have 1 more trainer to add and that's it
-        if (ignore_comma<i){
-            Trainer trainer=Trainer(stoi(configFile.substr(i,configFile.size())));
-            trainers.push_back(trainer);
-            return;
-        }
-        else{
-
-        }
-        for (int j=i; j<ignore_comma-i; j++)
-        //each trainer_i id is the int represented by indexes i to appearance of ',' so add to trainers
-        Trainer trainer=Trainer(stoi(configFile.substr(i,ignore_comma-i)));
-        //push the trainer to the trainers list
-        trainers.push_back(trainer);
-        //use i as index of next new argument
-        i=ignore_comma+1;
-        ignore_comma=configFile.substr(i).find(',');
-        ignored_char=configFile.substr(i).find('\n');
-        //meaning there's only trainers and no workout options
-        //the function should add the last trainer and finish
-        if (configFile.size()>ignore_comma+1){
-            Trainer trainer_i(stoi(configFile.substr(0,configFile.size())));
-            trainers.push_back(trainer_i);
-        }
-            configFile=configFile.substr(ignore_comma+1);
-        //point at next comma
-     }
-    //configFile's size is 0 if no workout options were provided
-    if (configFile.size()==0)
-        return;
-    //else it now starts with \n
-    configFile=configFile.substr(ignore_comma+1);
-    //_________________________________adding workouts:___________________
-    //current i points at the first appearance of workout name in tuples given.
-    //each tuple holds workout_name,workout_type,workout_price (devided by commas)
-    //the tuples are designated by a new line '\n', and the config file ends
-    //with the last tuple. each line holds at most 2 commas.
-    int workout_id=0;
-    string workout_name;
-    string curr_type;
-    int price;
-    string price_in_string;
-    WorkoutType workout_type;
-    int num_of_commas=0;
-    while (i<configFile.size()){
-        //no commas yet means we are getting a new name of a new workout.
-        if (num_of_commas==0){
-            workout_name.erase();
-            while (configFile.at(i)!=','){
-                workout_name.push_back(configFile.at(i));
-                i++;
-            }
-            num_of_commas++;
-        }
-        //once num_of_commas has been increased, we are getting the type of the new workout
-        else if (num_of_commas==1){
-            curr_type.erase();
-            while (configFile.at(i)!=','){
-                curr_type.push_back(configFile.at(i));
-                i++;
-            }
-            workout_type=getType(curr_type);
-            num_of_commas++;
-        }
-        //now we are getting the price of the new workout
-        else if (num_of_commas==2){
-            price_in_string.erase();
-            //we need to watch it because the last price might be the last price thus i will get out of range
-            while (i+1<configFile.size() && configFile.at(i)!='\n'){
-                price_in_string.push_back(configFile.at(i));
-                i++;
-            }
-            num_of_commas++;
-            price= stoi(price_in_string);
-        }
-        //there's not really 3 commas ever but it signifies that we finished receiving the new workout
-        else if(num_of_commas==3){
-            Workout work(workout_id,workout_name,price,workout_type);;
-            workout_options.push_back(work);
-            //reset num_of_commas to signify a new workout is ready to come
-            num_of_commas=0;
-            //now i either points to the last char in config file or to '\n' so either way we append i
-            i++;
-        }
-    }
-    //now i is out of config file range meaning config file was read thoroughly
-    //after everything was set, we want to create a sorted workout options for heavy muscle customers
-
-    // set identifier used to create unique Customer Id's
-    workout_number=0;
-}
-*/
 WorkoutType Studio::getType(string rhs) {
     if (rhs=="Anaerobic")
         return WorkoutType(0);
@@ -407,13 +292,13 @@ WorkoutType Studio::getType(string rhs) {
 
 // return the actionType
 std::string Studio::identifyAction(std::string userAction) {
-    string commmandPrefix = "";
+    string commandPrefix = "";
     size_t i=0;
     while (i<userAction.size() && userAction.at(i)!=' '){
-        commmandPrefix.push_back(userAction.at(i));
+        commandPrefix.push_back(userAction.at(i));
         i++;
     }
-    return commmandPrefix;
+    return commandPrefix;
 }
 
 // creates action based on type and user action
@@ -521,9 +406,11 @@ void Studio::startAction(std::string actionType, std::string userAction) {
         actionsLog.push_back(pWO);
         }
     //if action is to print trainer status
-    if (actionType=="status") {
-        // everything after "status " string and not including endline
-        int trainerId = stoi(userAction.substr(7,userAction.size()-1));
+    else if (actionType=="status") {
+        int space=userAction.find(' ');
+        while (userAction.at(space)==' '){
+            space++;}
+        int trainerId = stoi(userAction.substr(space));
         PrintTrainerStatus *pTS=new PrintTrainerStatus(trainerId);
         pTS->act(*this);
         actionsLog.push_back(pTS);
@@ -552,11 +439,11 @@ void Studio::startAction(std::string actionType, std::string userAction) {
 void Studio::start(){
     open=true;
     cout<<"Studio is now open!"<<endl;
-    string userAction="";
+    string userAction;
     //loop for actions
     while(userAction!="closeall") {
         // wait command from terminal
-        cin>>userAction;
+        getline(cin,userAction);
         // no need to perform input checks
         string actionType = identifyAction(userAction);
         // create action based on type, act and document action

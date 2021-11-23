@@ -574,7 +574,6 @@ BackupStudio::BackupStudio(BackupStudio &&rhs):BaseAction(rhs) {
         rhs.stole();
 }
 
-
 void BackupStudio::stole() {delete this;}
 
 void BackupStudio::act(Studio &studio) {
