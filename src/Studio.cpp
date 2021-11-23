@@ -174,11 +174,11 @@ void Studio::AddTrainers(std::string trainersRow) {
             j++;
         }
         // create fitting trainer object
-        Trainer *trainer = new Trainer(stoi(trainerCapacityString),id);
-        id++;
+        Trainer* trainer = new Trainer(stoi(trainerCapacityString),id);
         trainers.push_back(trainer);
         // skip comma/endline
         j++;
+        id++;
     }
 }
 // given workout row adds it to "workout_options"
@@ -353,12 +353,14 @@ void Studio::startAction(std::string actionType, std::string userAction) {
                         customersList.push_back(new CheapCustomer(custName, workout_number));
                         workout_number++;
                     } else if (custStrategy == "mcl") {
-                        HeavyMuscleCustomer *mcl = new HeavyMuscleCustomer(custName, workout_number);
-                        customersList.push_back(mcl);
+                        // trying to delete pointer of mcl
+                        Customer* cust = new HeavyMuscleCustomer(custName, workout_number);
+                        customersList.push_back(cust);
+                        cust = nullptr;
+                        delete cust;
                         workout_number++;
-                    } else if (custStrategy == "fbd") {
-                        FullBodyCustomer *fbc = new FullBodyCustomer(custName, workout_number);
-                        customersList.push_back(fbc);
+                    } else if (custStrategy == "fbd"){
+                        customersList.push_back(new FullBodyCustomer(custName, workout_number));
                         workout_number++;
                     }
                     // promote unique customer identifier
