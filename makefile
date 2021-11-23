@@ -1,7 +1,7 @@
 all: clean link
 
 link: studio action customer trainer workout main
-	g++ -o bin/studio bin/main.o bin/Action.o bin/Customer.o bin/Studio.o bin/Trainer.o bin/Workout.o
+	g++ -o bin/main bin/main.o bin/Action.o bin/Customer.o bin/Studio.o bin/Trainer.o bin/Workout.o
 
 studio:
 	g++ -g -Wall -Weffc++ -c -Iinclude -o bin/Studio.o src/Studio.cpp

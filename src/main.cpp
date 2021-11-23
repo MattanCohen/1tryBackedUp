@@ -12,12 +12,12 @@ Studio* backup = nullptr;
 
 
 
-int main(int argc,char**argv) {
+//int main(int argc,char**argv) {
 //    Studio *studio = new Studio();
 //    studio->start();
-    cout<<"hey";
-    return 0;
-}
+//    cout<<"hey";
+//    return 0;
+//}
 
 
 
@@ -53,20 +53,20 @@ int main(int argc,char**argv) {
 //**************GIVEN MAIN******************************
 //GIVEN MAIN********************************************
 //
-//int main(int argc, char** argv){
-//    if(argc!=2){
-//        std::cout << "usage: studio <config_path>" << std::endl;
-//        return 0;
-//    }
-//    // get config from user
-//    string configurationFile = argv[1];
-//    // create object lists from configuration file
-//    Studio studio(configurationFile);
-//    // loop that ends with command "closeall"
-//    studio.start();
-//    if(backup!=nullptr){
-//    	delete backup;
-//    	backup = nullptr;
-//    }
-//    return 0;
-//}
+int main(int argc, char** argv){
+    if(argc!=2){
+        std::cout << "usage: studio <config_path>" << std::endl;
+        return 0;
+    }
+    // get config from user
+    string configurationFile = argv[1];
+    // create object lists from configuration file
+    Studio studio(configurationFile);
+    // loop that ends with command "closeall"
+    studio.start();
+    if(backup!=nullptr){
+    	delete backup;
+    	backup = nullptr;
+    }
+    return 0;
+}

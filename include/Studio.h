@@ -30,10 +30,6 @@ public:
     const std::vector<BaseAction*>& getActionsLog() const; // Return a reference to the history of actions
     std::vector<Workout>& getWorkoutOptions();
 
-    //for debugging only
-    Studio(const std::vector<Trainer*> _trainers,const std::vector<Workout> _workout_options);
-    //for debugging only
-
     std::vector<Workout>& getSortedWorkoutOptions();
     WorkoutType getType(std::string rhs);
 
@@ -63,7 +59,8 @@ private:
     bool isEmptyLine(std::string configRow);
     void copyTrainers(const Studio& rhs);
     void copyActionLogs(const Studio& rhs);
-
+    Studio* backup;
+    bool backed;
 };
 
 #endif

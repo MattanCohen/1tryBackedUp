@@ -1,6 +1,13 @@
 # Number of trainers
 8
-# Traines
+# Trainers
 1,2,3,4,8,10,20,1
 
 # Work Options
+Pilates, Anaerobic, 110
+Spinning, Mixed, 120
+Rope Jumps, Cardio, 70
+CrossFit, Mixed, 140
+Dick Pulling, Cardio, 69
+Joint Rolling 101,Anaerobic, 420420
+Cum Swallow, Mixed,         12321

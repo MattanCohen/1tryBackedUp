@@ -121,13 +121,14 @@ void OpenTrainer::act(Studio &studio) {
     if (trainerId<0 || trainerId>=studio.getNumOfTrainers())
         exists=false;
     // access pointer value
-    Trainer opening=*studio.getTrainer(trainerId);
+    Trainer* opening=studio.getTrainer(trainerId);
     //check if the trainer exists but is already open
     if (exists)
-        if (opening.isOpen())
+        if (opening->isOpen())
             exists=false;
+    opening->openTrainer();
     //check if the trainer exists and open but the number of assigned customers is larger than their capacity
-    size_t cap=opening.getCapacity();
+    size_t cap=opening->getCapacity();
     if (exists)
         if (customers.size()>cap)
             exists=false;
@@ -139,17 +140,18 @@ void OpenTrainer::act(Studio &studio) {
     //else, all good! add the customers and their orders to (the) trainer (we're) opening
     for (size_t i=0; i<customers.size();i++) {
         Customer *customer_i = customers.at(i);
+        vector<int> orderrr=customer_i->order(studio.getWorkoutOptions());
         //if customer can order then add them and their orders
         if (customer_i->order(studio.getWorkoutOptions()).size() > 0){
             //if they are heavy muscle use sorted workout_options
             if (customer_i->toString()=="mcl"){
-            opening.order(customer_i->getId(), customer_i->order(studio.getSortedWorkoutOptions()), studio.getWorkoutOptions());
-            opening.addCustomer(customer_i);
+            opening->order(customer_i->getId(), customer_i->order(studio.getSortedWorkoutOptions()), studio.getWorkoutOptions());
+            opening->addCustomer(customer_i);
             }
             //else use default workout_options
             else{
-            opening.order(customer_i->getId(), customer_i->order(studio.getWorkoutOptions()), studio.getWorkoutOptions());
-            opening.addCustomer(customer_i);
+            opening->order(customer_i->getId(), customer_i->order(studio.getWorkoutOptions()), studio.getWorkoutOptions());
+            opening->addCustomer(customer_i);
             }
         }
     }
@@ -484,13 +486,14 @@ string PrintTrainerStatus::toString() const {
 
 //prints trainer's status, customers, their orders and salary
 void PrintTrainerStatus::act(Studio &studio) {
-    string open;
-    if (studio.getTrainer(trainerId)->isOpen())
-        open="open";
+    bool open=studio.getTrainer(trainerId)->isOpen();
+    if (!open){
+        cout<<"Trainer "<<to_string(trainerId)<<" status: closed"<< endl;
+        return;
+    }
     else
-        open="closed";
-    cout<<"Trainer "+to_string(trainerId)+" status: "+open<< endl;
-    //print customers
+        cout<<"Trainer "<<to_string(trainerId)<<" status: open"<< endl;
+//print customers
     cout<<"Customers:"<<endl;
     vector<Customer*> customers=studio.getTrainer(trainerId)->getCustomers();
     for (size_t i=0; i<customers.size(); i++){

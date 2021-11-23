@@ -3,28 +3,20 @@
 using namespace std;
 
 void Studio::createBackup() {
-    //******************************
-    //******************************
+    backed=true;
+    backup=new Studio(*this);
 }
 
 bool Studio::isBacked() {
-    //******************************
-    //******************************
-    return true;
+    return backed;
 }
 
 void Studio::restoreBackup() {
-    //******************************
-    //******************************
+    Studio* backupCopy=new Studio(*backup);
+    *this=*backup;
+    backup=backupCopy;
 }
 
-//for debugging only
-//recieves trainers vector, workout options vector and action log to set to new Studio
-Studio::Studio(const std::vector<Trainer *> _trainers, const std::vector <Workout> _workout_options):open(false),trainers(_trainers),workout_options(_workout_options),sorted_workout_options(_workout_options),actionsLog(),workout_number(0){
-    // use reversed iterators in order to sort in dsc order
-    sort(sorted_workout_options.rbegin(),sorted_workout_options.rend(),sort_by_price());
-}
-//for debugging only
 
 //rule of 5:
 //d-tor in case Customer reference is deleted
@@ -58,7 +50,7 @@ Studio& Studio::operator=(Studio &&rhs) {
 }
 
 //move c-tor
-Studio::Studio(Studio &&rhs):open(rhs.open),trainers(rhs.trainers),workout_options(rhs.workout_options),sorted_workout_options(rhs.sorted_workout_options),actionsLog(rhs.actionsLog),workout_number(rhs.workout_number) {
+Studio::Studio(Studio &&rhs):open(rhs.open),trainers(rhs.trainers),workout_options(rhs.workout_options),sorted_workout_options(rhs.sorted_workout_options),actionsLog(rhs.actionsLog),workout_number(rhs.workout_number),backup(rhs.backup),backed(rhs.backed) {
     if(this!=&rhs){
         copyTrainers(rhs);
         copyActionLogs(rhs);
@@ -66,7 +58,7 @@ Studio::Studio(Studio &&rhs):open(rhs.open),trainers(rhs.trainers),workout_optio
     }
 }
 //copy c-tor:
-Studio::Studio(const Studio& rhs):open(rhs.open),trainers(rhs.trainers),workout_options(rhs.workout_options),sorted_workout_options(rhs.sorted_workout_options),actionsLog(rhs.actionsLog),workout_number(rhs.workout_number) {
+Studio::Studio(const Studio& rhs):open(rhs.open),trainers(rhs.trainers),workout_options(rhs.workout_options),sorted_workout_options(rhs.sorted_workout_options),actionsLog(rhs.actionsLog),workout_number(rhs.workout_number),backup(rhs.backup),backed(rhs.backed) {
     copyTrainers(rhs);
     copyActionLogs(rhs);
 }
@@ -162,7 +154,7 @@ void Studio::copyActionLogs(const Studio &rhs) {
 
 
 //creating an empty Studio
-Studio::Studio():open(false),trainers(),workout_options(),sorted_workout_options(),actionsLog(),workout_number(0){}
+Studio::Studio():open(false),trainers(),workout_options(),sorted_workout_options(),actionsLog(),workout_number(0),backup(),backed(false){}
 
 // given a list of trainer capacities adds to "trainers"
 void Studio::AddTrainers(std::string trainersRow) {
@@ -171,18 +163,19 @@ void Studio::AddTrainers(std::string trainersRow) {
     //line contains capacities seperated by commas. ignore the commas.
     size_t i=0;
     //while we didn't reach the new line
-    while (i<trainersRow.size() && trainersRow.at(i)!='\n') {
+    while (j<trainersRow.size() && trainersRow.at(j)!='\n') {
         string trainerCapacityString="";
         // create string that contains capacity
-        while(trainersRow.at(i)!='\n' or trainersRow.at(i)!=','){
-            trainerCapacityString.push_back(trainersRow.at(i));
-            i++;
+        while(j<trainersRow.size() and trainersRow.at(j)!='\n' and trainersRow.at(j)!=','){
+            trainerCapacityString = trainerCapacityString+trainersRow.at(j);
+            j++;
         }
         // create fitting trainer object
-        Trainer *trainer = new Trainer(stoi(trainerCapacityString));
+        Trainer *trainer = new Trainer(stoi(trainerCapacityString),id);
+        id++;
         trainers.push_back(trainer);
         // skip comma/endline
-        i++;
+        j++;
     }
 }
 // given workout row adds it to "workout_options"
@@ -190,17 +183,19 @@ void Studio::AddWorkoutOption(std::string workoutRow, int workoutId) {
     size_t i=0;
     // extract workout name from the start to the first comma
     string workoutName="";
-    while(workoutRow.at(i)!=','){workoutName.push_back(workoutRow.at(i));}
-    // skip comma
-    i++;
+    while(workoutRow.at(i)!=','){workoutName.push_back(workoutRow.at(i)); i++;}
+    // skip comma and spaces
+    while(workoutRow.at(i)==',' or workoutRow.at(i)==' ') i++;
     // extract workout type from after the first comma to the second comma
     string workoutType="";
-    while(workoutRow.at(i)!=','){workoutType.push_back(workoutRow.at(i));}
-    //skip comma
-    i++;
+    while(workoutRow.at(i)!=','){workoutType.push_back(workoutRow.at(i)); i++;}
+
+
+    //skip comma and spaces
+    while(workoutRow.at(i)==',' or workoutRow.at(i)==' ') i++;
     // extract workout price from after the second comma to the first endLine
     string workoutPriceStr = "";
-    while (i<workoutRow.size() && workoutRow.at(i)!='\n') {workoutPriceStr.push_back(workoutRow.at(i));}
+    while (i<workoutRow.size() && workoutRow.at(i)!='\n') {workoutPriceStr.push_back(workoutRow.at(i)); i++;}
     Workout work(workoutId,workoutName,stoi(workoutPriceStr),getType(workoutType));;
     workout_options.push_back(work);
 }
@@ -219,16 +214,19 @@ bool Studio::isEmptyLine(std::string configRow) {
 }
 
 //creating a Studio by a received config file. assumes config file is legal
-Studio::Studio(const std::string &configFilePath):open(false),trainers(),workout_options(),sorted_workout_options(),actionsLog(),workout_number(0) {
+
+Studio::Studio(const std::string &configFilePath):open(false),trainers(),workout_options(vector<Workout>()),sorted_workout_options(),actionsLog(),workout_number(0),backup(),backed(false) {
     // read config file row by row
     ifstream ReadConfigFile(configFilePath);
     string configRow;
     vector<string> configRows;
     // add only non empty rows to a vector of strings
     while(getline(ReadConfigFile,configRow)) {
+
         // ignore empty lines and comments
-        if(!isEmptyLine(configRow))
+        if(!isEmptyLine(configRow)){
             configRows.push_back(configRow);
+        }
     }
     // close file read session
     ReadConfigFile.close();
@@ -257,10 +255,25 @@ Studio::Studio(const std::string &configFilePath):open(false),trainers(),workout
     //all config file rows were read and implemented
     //after everything was set, we want to create a sorted workout options for heavy muscle customers
     //we'll create a sorted workout options vector from the workout options
+
+    size_t iMax=0;
+    vector<Workout> temp;
     for (size_t i=0; i<workout_options.size(); i++)
-        sorted_workout_options.push_back(workout_options.at(i));
-    // use reversed iterators in order to sort in dsc order
-    std::sort(sorted_workout_options.rbegin(),sorted_workout_options.rend(),sort_by_price());
+        temp.push_back(workout_options.at(i));
+    while (temp.size()>0){
+        for (size_t j=0; j<temp.size(); j++)
+            if (temp.at(j).getPrice()>temp.at(iMax).getPrice())
+                iMax=j;
+        sorted_workout_options.push_back(temp.at(iMax));
+        vector<Workout> newtemp;
+        for (size_t i=0; i<temp.size(); i++)
+            if (i!=iMax)
+                newtemp.push_back(temp.at(i));
+        temp.clear();
+        for (size_t i=0; i<newtemp.size(); i++)
+            temp.push_back(newtemp.at(i));
+        iMax=0;
+    }
 }
 
 
@@ -453,13 +466,12 @@ void Studio::startAction(std::string actionType, std::string userAction) {
         }
         // trainer & customer validation will be made in act segment
         OpenTrainer *openTrainer =new OpenTrainer(trainerId,customersList);
-        //*****returning a pointer of studio do we need move constructor****//
+
         openTrainer->act(*this);
         actionsLog.push_back(openTrainer);
-
     }
     //if action is to activate trainer's orders
-    if (actionType=="order") {
+    else if (actionType=="order") {
         // extract string after first space
         int trainerId = stoi(userAction.substr(userAction.find(" ")+1));
         // trainerId validity will be checked in act
@@ -468,7 +480,7 @@ void Studio::startAction(std::string actionType, std::string userAction) {
         actionsLog.push_back(order);
     }
     //if action is to move customer from 1 trainer to another
-    if (actionType=="move") {
+    else if (actionType=="move") {
         //make a new string by removing the string "move " from the input string
         string action=userAction.substr(5);
         //the remaning string is: x_y_z such as x=source_trainer_id, y=destination_trainer_id and z=customer_id
@@ -487,7 +499,7 @@ void Studio::startAction(std::string actionType, std::string userAction) {
         actionsLog.push_back(move);
     }
     //if action is to close a given trainer session
-   if(actionType=="close"){
+   else if(actionType=="close"){
        // extract string after first space
        int trainerId = stoi(userAction.substr(userAction.find(" ")+1));
        // trainerId validity will be checked in act
@@ -497,13 +509,13 @@ void Studio::startAction(std::string actionType, std::string userAction) {
        actionsLog.push_back(close);
    }
     //if action is to close all trainers' sessions
-    if(actionType=="closeall") {
+    else if(actionType=="closeall") {
         CloseAll *cA=new CloseAll();
         cA->act(*this);
         actionsLog.push_back(cA);
     }
     //if action is to print workout options for studio
-    if (actionType=="workout_options") {
+    else if (actionType=="workout_options") {
         PrintWorkoutOptions *pWO=new PrintWorkoutOptions();
         pWO->act(*this);
         actionsLog.push_back(pWO);
@@ -517,13 +529,13 @@ void Studio::startAction(std::string actionType, std::string userAction) {
         actionsLog.push_back(pTS);
         }
     //backup the current studio state
-    if (actionType=="backup") {
+    else if (actionType=="backup") {
         BackupStudio *backupS=new BackupStudio();
         backupS->act(*this);
         actionsLog.push_back(backupS);
         }
     //restore backed-up studio state
-    if (actionType=="restore") {
+    else if (actionType=="restore") {
         RestoreStudio *restore=new RestoreStudio();
         restore->act(*this);
         actionsLog.push_back(restore);
@@ -560,7 +572,8 @@ int Studio::getNumOfTrainers() const{
 
 //receives a trainer id and returns that trainer if exists assume the trainer exists
 Trainer* Studio::getTrainer(int tid){
-    return trainers.at(tid);
+    size_t trainId=tid;
+    return trainers.at(trainId);
 }
 
 //returns the studio's action log

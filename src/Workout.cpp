@@ -3,9 +3,7 @@ using namespace std;
 
 //rule of 5:
 //d-tor in case Workout reference is deleted
-Workout::~Workout() {
-    this->stole();
-}
+Workout::~Workout() {}
 //we can not implement move c-tor ass.op and move ass. op. because all variable are constant
 //ass.op. sole purpose is to overload any calls to the ass.op via other classes
 Workout& Workout::operator=(const Workout& rhs){return *this;}

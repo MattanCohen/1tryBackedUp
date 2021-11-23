@@ -6,8 +6,13 @@
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
     <generated>
       <config projectName="1tryBackedUp" targetName="all" />
-      <config projectName="1tryBackedUp" targetName="compile" />
+      <config projectName="1tryBackedUp" targetName="trainer" />
+      <config projectName="1tryBackedUp" targetName="customer" />
+      <config projectName="1tryBackedUp" targetName="main" />
       <config projectName="1tryBackedUp" targetName="link" />
+      <config projectName="1tryBackedUp" targetName="studio" />
+      <config projectName="1tryBackedUp" targetName="action" />
+      <config projectName="1tryBackedUp" targetName="workout" />
     </generated>
   </component>
   <component name="CMakeSettings">
@@ -15,21 +20,34 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d3724711-e75e-4385-901d-e6be599900f9" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/bin/main" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Action.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Customer.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Studio.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Trainer.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Workout.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Action.o" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Action.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Studio.o" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Studio.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Trainer.o" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Trainer.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Workout.o" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Workout.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/main.o" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/Action.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Action.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/include/Studio.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Studio.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/include/Trainer.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Trainer.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/makefile" beforeDir="false" afterPath="$PROJECT_DIR$/makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/no_workouts_studio.txt" beforeDir="false" afterPath="$PROJECT_DIR$/no_workouts_studio.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Action.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Action.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Studio.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Studio.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Trainer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Trainer.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Workout.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Workout.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.cpp" afterDir="false" />
     </list>
-    <list id="27bc72ee-2a79-437b-b9f9-c1ae811fea11" name="Changes by Celestite" comment="" />
+    <list id="27bc72ee-2a79-437b-b9f9-c1ae811fea11" name="Changes by Celestite" comment="">
+      <change beforePath="$PROJECT_DIR$/include/Studio.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Studio.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Action.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Action.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Studio.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Studio.cpp" afterDir="false" />
+    </list>
     <list id="f856f132-f281-462b-b889-6495336cd8bb" name="Changes by User" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,6 +77,77 @@
     <layout place="tools.popupGrunt">
       <scroll-view-position x="0" y="0" />
     </layout>
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/Action.cpp">
+      <ranges>
+        <range start1="123" end1="124" start2="123" end2="124" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="126" end1="127" start2="126" end2="127" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="128" end1="128" start2="128" end2="129" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="129" end1="130" start2="130" end2="131" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="141" end1="141" start2="142" end2="143" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="145" end1="147" start2="147" end2="149" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="150" end1="152" start2="152" end2="154" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="486" end1="489" start2="488" end2="493" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="490" end1="493" start2="494" end2="496" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="572" end1="573" start2="575" end2="575" changelist="27bc72ee-2a79-437b-b9f9-c1ae811fea11" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/include/Studio.h">
+      <ranges>
+        <range start1="8" end1="9" start2="8" end2="8" changelist="27bc72ee-2a79-437b-b9f9-c1ae811fea11" />
+        <range start1="10" end1="18" start2="9" end2="9" changelist="27bc72ee-2a79-437b-b9f9-c1ae811fea11" />
+        <range start1="32" end1="36" start2="23" end2="23" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="65" end1="66" start2="52" end2="54" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/Studio.cpp">
+      <ranges>
+        <range start1="5" end1="7" start2="5" end2="7" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="10" end1="13" start2="10" end2="11" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="16" end1="18" start2="14" end2="17" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="20" end1="27" start2="19" end2="19" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="60" end1="61" start2="52" end2="53" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="68" end1="69" start2="60" end2="61" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="164" end1="165" start2="156" end2="157" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="168" end1="169" start2="160" end2="160" changelist="27bc72ee-2a79-437b-b9f9-c1ae811fea11" />
+        <range start1="171" end1="172" start2="162" end2="164" changelist="27bc72ee-2a79-437b-b9f9-c1ae811fea11" />
+        <range start1="173" end1="174" start2="165" end2="166" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="176" end1="179" start2="168" end2="171" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="181" end1="182" start2="173" end2="175" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="184" end1="185" start2="177" end2="178" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="192" end1="195" start2="185" end2="188" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="197" end1="200" start2="190" end2="195" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="202" end1="203" start2="197" end2="198" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="211" end1="212" start2="206" end2="208" changelist="27bc72ee-2a79-437b-b9f9-c1ae811fea11" />
+        <range start1="214" end1="215" start2="210" end2="211" changelist="27bc72ee-2a79-437b-b9f9-c1ae811fea11" />
+        <range start1="216" end1="217" start2="212" end2="213" changelist="27bc72ee-2a79-437b-b9f9-c1ae811fea11" />
+        <range start1="218" end1="218" start2="214" end2="215" changelist="27bc72ee-2a79-437b-b9f9-c1ae811fea11" />
+        <range start1="221" end1="222" start2="218" end2="220" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="228" end1="228" start2="226" end2="227" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="229" end1="230" start2="228" end2="229" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="231" end1="231" start2="230" end2="231" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="259" end1="259" start2="259" end2="262" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="260" end1="263" start2="263" end2="278" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="265" end1="382" start2="280" end2="280" changelist="27bc72ee-2a79-437b-b9f9-c1ae811fea11" />
+        <range start1="396" end1="397" start2="294" end2="295" changelist="27bc72ee-2a79-437b-b9f9-c1ae811fea11" />
+        <range start1="399" end1="400" start2="297" end2="298" changelist="27bc72ee-2a79-437b-b9f9-c1ae811fea11" />
+        <range start1="402" end1="403" start2="300" end2="301" changelist="27bc72ee-2a79-437b-b9f9-c1ae811fea11" />
+        <range start1="455" end1="456" start2="353" end2="354" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="458" end1="459" start2="356" end2="356" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="461" end1="462" start2="358" end2="359" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="470" end1="471" start2="367" end2="368" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="489" end1="490" start2="386" end2="387" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="499" end1="500" start2="396" end2="397" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="505" end1="506" start2="402" end2="403" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="511" end1="514" start2="408" end2="413" changelist="27bc72ee-2a79-437b-b9f9-c1ae811fea11" />
+        <range start1="519" end1="520" start2="418" end2="419" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="525" end1="526" start2="424" end2="425" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="542" end1="543" start2="441" end2="442" changelist="27bc72ee-2a79-437b-b9f9-c1ae811fea11" />
+        <range start1="546" end1="547" start2="445" end2="446" changelist="27bc72ee-2a79-437b-b9f9-c1ae811fea11" />
+        <range start1="562" end1="563" start2="461" end2="463" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+      </ranges>
+    </file>
   </component>
   <component name="MakefileLocalSettings">
     <option name="availableProjects">
@@ -109,9 +198,9 @@
     <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
   </component>
   <component name="RunManager" selected="Makefile Application.all">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+    <configuration name="action" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="1tryBackedUp" TARGET_NAME="action" CONFIG_NAME="action" version="1">
       <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
       </method>
     </configuration>
     <configuration name="all" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="1tryBackedUp" TARGET_NAME="all" CONFIG_NAME="all" version="1">
@@ -119,7 +208,7 @@
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
       </method>
     </configuration>
-    <configuration name="compile" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="1tryBackedUp" TARGET_NAME="compile" CONFIG_NAME="compile" version="1">
+    <configuration name="customer" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="1tryBackedUp" TARGET_NAME="customer" CONFIG_NAME="customer" version="1">
       <method v="2">
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
       </method>
@@ -129,9 +218,34 @@
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
       </method>
     </configuration>
+    <configuration name="main" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="1tryBackedUp" TARGET_NAME="main" CONFIG_NAME="main" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="studio" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="1tryBackedUp" TARGET_NAME="studio" CONFIG_NAME="studio" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="trainer" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="1tryBackedUp" TARGET_NAME="trainer" CONFIG_NAME="trainer" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="workout" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="1tryBackedUp" TARGET_NAME="workout" CONFIG_NAME="workout" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
@@ -258,8 +372,13 @@
     </configuration>
     <list>
       <item itemvalue="Makefile Application.all" />
-      <item itemvalue="Makefile Application.compile" />
+      <item itemvalue="Makefile Application.action" />
+      <item itemvalue="Makefile Application.customer" />
       <item itemvalue="Makefile Application.link" />
+      <item itemvalue="Makefile Application.main" />
+      <item itemvalue="Makefile Application.studio" />
+      <item itemvalue="Makefile Application.trainer" />
+      <item itemvalue="Makefile Application.workout" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -273,6 +392,7 @@
       <workItem from="1637525002514" duration="8442000" />
       <workItem from="1637534632772" duration="1000" />
       <workItem from="1637597676771" duration="298000" />
+      <workItem from="1637615442468" duration="13792000" />
     </task>
     <task id="LOCAL-00001" summary="ds">
       <created>1637541676860</created>
@@ -295,7 +415,14 @@
       <option name="project" value="LOCAL" />
       <updated>1637605007305</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="wow such compile">
+      <created>1637611686379</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1637611686379</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

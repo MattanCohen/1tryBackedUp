@@ -36,7 +36,6 @@ public:
     void copyCustomersList(const Trainer& rhs);
     void copyCustomersList(const Trainer* rhs);
 
-    int getCurrSalary();
 private:
     int capacity;
     bool open;

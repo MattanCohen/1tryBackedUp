@@ -1,4 +1,6 @@
 #include "../include/Trainer.h"
+#include <ostream>
+#include <iostream>
 
 using namespace std;
 
@@ -122,7 +124,7 @@ void Trainer::addCustomer(Customer* customer){
     for (size_t i=0; i<orderList.size(); i++)
         if (orderList.at(i).first==id)
             accumulatedSalary+= orderList.at(i).second.getPrice();
-    }
+}
 
 //remove Customer with the identifing number "id" from trainer's customers list
 void Trainer::removeCustomer(int id) {
@@ -174,7 +176,8 @@ void Trainer:: order(const int customer_id,const vector<int>workout_ids,const ve
         int work_id=workout_ids.at(i);
         Workout work(workout_options.at(work_id));
         orderList.push_back(make_pair(customer_id,work));
-        }
+        accumulatedSalary+=work.getPrice();
+    }
     }
 
 //changes trainer's status to open. since they were closed, their lists will be empty
