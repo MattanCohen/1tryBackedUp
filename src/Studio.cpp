@@ -439,7 +439,7 @@ void Studio::startAction(std::string actionType, std::string userAction) {
                     custName.push_back(customersDetails.at(i));
                     i++;
                 }
-            string custStrategy = customersDetails.substr(i,i+3);
+            string custStrategy = customersDetails.substr(i+1,i+3);
             i+=3;
             // create customer based on customer strategy
             if(custStrategy=="swt")
@@ -457,7 +457,7 @@ void Studio::startAction(std::string actionType, std::string userAction) {
                 HeavyMuscleCustomer *mcl =new HeavyMuscleCustomer(custName,workout_number);
                 customersList.push_back(mcl);
             }
-            else {
+            else if (custStrategy=="fbd"){
                 FullBodyCustomer *fbc =new FullBodyCustomer(custName,workout_number);
                 customersList.push_back(fbc);
             }
@@ -486,10 +486,10 @@ void Studio::startAction(std::string actionType, std::string userAction) {
         //the remaning string is: x_y_z such as x=source_trainer_id, y=destination_trainer_id and z=customer_id
         //so x's indexes are 0 to first appearance of space, y's index is 2 to second appearance of sapce
         //and z's 4 to the end of the string (because each id can contain more than one digit)
-        int dst=stoi(action.substr(0,action.find(" ")));
+        int src=stoi(action.substr(0,action.find(" ")));
         //remove the string "x " from the new string
         action=action.substr(action.find(" ")+1);
-        int src=stoi(action.substr(0,action.find(" ")));
+        int dst=stoi(action.substr(0,action.find(" ")));
         //remove the string "y " from the new string
         action=action.substr(action.find(" ")+1);
         int customer_id=stoi(action);
@@ -541,7 +541,7 @@ void Studio::startAction(std::string actionType, std::string userAction) {
         actionsLog.push_back(restore);
         }
     // print log is last action
-    else {
+    else if (actionType=="log") {
         PrintActionsLog *printALog=new PrintActionsLog();
         printALog->act(*this);
         actionsLog.push_back(printALog);

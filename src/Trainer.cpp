@@ -131,7 +131,6 @@ void Trainer::removeCustomer(int id) {
         for (size_t i = 0; i < customersList.size(); i++)
             //trying to find the customer with id "id"
             if (customersList.at(i)->getId() == id) {
-                delete customersList.at(i);
                 customersList.erase(customersList.begin()+i);
                 //reduct customer's orders prices from trainer's salary
                 for (size_t j=0; j<orderList.size(); j++)
@@ -178,7 +177,7 @@ void Trainer:: order(const int customer_id,const vector<int>workout_ids,const ve
         orderList.push_back(make_pair(customer_id,work));
         accumulatedSalary+=work.getPrice();
     }
-    }
+}
 
 //changes trainer's status to open. since they were closed, their lists will be empty
 void Trainer::openTrainer(){

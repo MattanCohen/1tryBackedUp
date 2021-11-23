@@ -19,7 +19,6 @@ public:
     virtual ~Customer();
     virtual Customer& operator=(const Customer& rhs);
     Customer(const Customer& rhs);
-    virtual void stole();
 
 private:
     const std::string name;

@@ -4,16 +4,13 @@ using namespace std;
 
 //rule of 5:
 //d-tor in case Customer reference is deleted
-Customer::~Customer() {
-    this->stole();
-}
+Customer::~Customer() {}
 //we can not implement ass.op and move ass. op. because all variable are constant
 //ass.op. sole purpose is to overload any calls to the ass.op via other classes
 Customer& Customer::operator=(const Customer &rhs) {return *this;}
 //copy c-tor:
 Customer::Customer(const Customer& rhs):name(rhs.name),id(rhs.id){}
 
-void Customer::stole() {delete this;}
 
 // Requested functions
 Customer::Customer(string c_name, int c_id):name(c_name),id(c_id){};

@@ -256,11 +256,11 @@ void MoveCustomer::act(Studio &studio) {
     if (dst)
         if (!studio.getTrainer(dstTrainer)->isOpen())
             dst=false;
-    //if destination trainer exists and open but doesn't have available spots
+//if destination trainer exists and open but doesn't have available spots
     if (dst){
         int curr_numof_cust=studio.getTrainer(dstTrainer)->getCustomers().size();
         int dst_capacity=studio.getTrainer(dstTrainer)->getCapacity();
-        if (curr_numof_cust+1>=dst_capacity)
+        if (curr_numof_cust+1>dst_capacity)
             dst=false;
     }
     //if destination trainer isn't available for whatever reason, change status to error, print error and stop the program
@@ -283,26 +283,26 @@ void MoveCustomer::act(Studio &studio) {
         bool owned=false;
         size_t i=0;
         while(i<src_orderList.size() and !owned){
-            if (src_orderList.at(i).first==id)
-                owned=true;
+            owned=src_orderList.at(i).first==id;
             i++;
         }
         if (!owned)
             src=false;
     }
-    //if source trainer isn't available for whatever reason, change status to error, print error and stop the program
+//if source trainer isn't available for whatever reason, change status to error, print error and stop the program
     if (!src){
         error("Cannot move Customer");
         return;
     }
-    Trainer source=*studio.getTrainer(srcTrainer);
+    Trainer* source=studio.getTrainer(srcTrainer);
     //add customer id from source to dstTrainer
-    studio.getTrainer(dstTrainer)->addCustomer(source.getCustomer(id));
+    studio.getTrainer(dstTrainer)->addCustomer(source->getCustomer(id));
+    studio.getTrainer(dstTrainer)->order(id,source->getCustomer(id)->order(studio.getWorkoutOptions()),studio.getWorkoutOptions());
     //remove customer id from source
-    source.removeCustomer(id);
+    source->removeCustomer(id);
     //close trainer source if customer id was his last customer
-    if (source.getCustomers().size()==0){
-        source.closeTrainer();
+    if (source->getCustomers().size()==0){
+        source->closeTrainer();
     }
     complete();
 }
