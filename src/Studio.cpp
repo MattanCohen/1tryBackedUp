@@ -3,6 +3,7 @@
 using namespace std;
 
 void Studio::createBackup() {
+//    cout<<"hey"<<endl;
     backed=true;
     backup=new Studio(*this);
 }
@@ -309,45 +310,55 @@ void Studio::startAction(std::string actionType, std::string userAction) {
         int firstSpaceIndex = userAction.find(" ");
         // +1 so that space won't be included
         string userActionAfterSpace = userAction.substr(firstSpaceIndex+1);
+
+
         int secondSpaceIndex = userActionAfterSpace.find(" ");
         // extract trainerId
+
         int trainerId = stoi(userActionAfterSpace.substr(0,secondSpaceIndex));
         // +1 so that space won't be included
         string customersDetails = userActionAfterSpace.substr(secondSpaceIndex+1);
+
         vector<Customer *> customersList;
         // add customers to list based on string details
         for(size_t i=0;i<customersDetails.size();i++) {
-            string custName = "";
+            string custName;
             // extract customer name
             while(customersDetails.at(i)!=',' and i<customersDetails.size())
                 {
-                    custName.push_back(customersDetails.at(i));
+                    custName= custName+(customersDetails.at(i));
                     i++;
                 }
-            string custStrategy = customersDetails.substr(i+1,i+3);
+            string custStrategy = customersDetails.substr(i+1,3);
             i+=3;
-            // create customer based on customer strategy
-            if(custStrategy=="swt")
-            {
-                SweatyCustomer *swt =new SweatyCustomer(custName,workout_number);
-                customersList.push_back(swt);
+            size_t t_cap = getTrainer(trainerId)->getCapacity();
+            if(t_cap>=customersList.size()+1){
+                // create customer based on customer strategy
+                if(custStrategy=="swt")
+                {
+                    SweatyCustomer *swt =new SweatyCustomer(custName,workout_number);
+                    customersList.push_back(swt);
+                    workout_number++;
+                }
+                else if(custStrategy=="chp")
+                {
+                    CheapCustomer *chp =new CheapCustomer(custName,workout_number);
+                    customersList.push_back(chp);
+                    workout_number++;
+                }
+                else if(custStrategy=="mcl")
+                {
+                    HeavyMuscleCustomer *mcl =new HeavyMuscleCustomer(custName,workout_number);
+                    customersList.push_back(mcl);
+                    workout_number++;
+                }
+                else if (custStrategy=="fbd"){
+                    FullBodyCustomer *fbc =new FullBodyCustomer(custName,workout_number);
+                    customersList.push_back(fbc);
+                    workout_number++;
+                }
+                // promote unique customer identifier
             }
-            else if(custStrategy=="chp")
-            {
-                CheapCustomer *chp =new CheapCustomer(custName,workout_number);
-                customersList.push_back(chp);
-            }
-            else if(custStrategy=="mcl")
-            {
-                HeavyMuscleCustomer *mcl =new HeavyMuscleCustomer(custName,workout_number);
-                customersList.push_back(mcl);
-            }
-            else if (custStrategy=="fbd"){
-                FullBodyCustomer *fbc =new FullBodyCustomer(custName,workout_number);
-                customersList.push_back(fbc);
-            }
-            // promote unique customer identifier
-            workout_number++;
         }
         // trainer & customer validation will be made in act segment
         OpenTrainer *openTrainer =new OpenTrainer(trainerId,customersList);
@@ -445,6 +456,7 @@ void Studio::start(){
         // no need to perform input checks
         string actionType = identifyAction(userAction);
         // create action based on type, act and document action
+
         startAction(actionType, userAction);
         // wait command from terminal
         getline(cin,userAction);
@@ -460,7 +472,9 @@ int Studio::getNumOfTrainers() const{
 //receives a trainer id and returns that trainer if exists assume the trainer exists
 Trainer* Studio::getTrainer(int tid){
     size_t trainId=tid;
-    return trainers.at(trainId);
+    if (tid>=0 and trainId<trainers.size())
+        return trainers.at(trainId);
+    return nullptr;
 }
 
 //returns the studio's action log

@@ -122,23 +122,42 @@ void Trainer::addCustomer(Customer* customer){
     customersList.push_back(customer);
     //add customer's orders prices to trainer's salary
     for (size_t i=0; i<orderList.size(); i++)
+        if (orderList.at(i).first==customer->getId())
+            return;
+    for (size_t i=0; i<orderList.size(); i++)
         if (orderList.at(i).first==id)
             accumulatedSalary+= orderList.at(i).second.getPrice();
 }
 
 //remove Customer with the identifing number "id" from trainer's customers list
 void Trainer::removeCustomer(int id) {
-        for (size_t i = 0; i < customersList.size(); i++)
-            //trying to find the customer with id "id"
-            if (customersList.at(i)->getId() == id) {
-                customersList.erase(customersList.begin()+i);
-                //reduct customer's orders prices from trainer's salary
-                for (size_t j=0; j<orderList.size(); j++)
-                    if (orderList.at(j).first==id)
-                        accumulatedSalary-= orderList.at(j).second.getPrice();
-                return;
+    vector<Customer *> temp;
+    vector<OrderPair> temp_order;
+    for (size_t i = 0; i < customersList.size(); i++){
+        //trying to find the customer with id "id"
+        if (customersList.at(i)->getId() == id) {
+            //reduct customer's orders prices from trainer's salary
+            for (size_t j = 0; j < orderList.size(); j++){
+                //if found customer's order, deduct from salary
+                if (orderList.at(j).first == id)
+                    accumulatedSalary -= orderList.at(j).second.getPrice();
+                //if order isn't customer's order add it to new orderList
+                else
+                    temp_order.push_back(orderList.at(j));
             }
+        }
+        else
+            temp.push_back(customersList.at(i));
     }
+    customersList.clear();
+    for (size_t i=0; i<temp.size(); i++)
+        customersList.push_back(temp.at(i));
+    orderList.clear();
+    for (size_t i=0; i<temp_order.size(); i++)
+        orderList.push_back(temp_order.at(i));
+    temp.clear();
+    temp_order.clear();
+}
 
 //get the Customer with id "id" or null if doesn't exists
 Customer* Trainer::getCustomer(int id){
@@ -187,8 +206,6 @@ void Trainer::openTrainer(){
 //changes trainer's status to close. since they were open, close their lists
 void Trainer:: closeTrainer(){
     open=false;
-    while (!customersList.empty())
-        delete customersList.at(0);
     customersList.clear();
     orderList.clear();
 }

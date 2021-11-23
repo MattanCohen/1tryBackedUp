@@ -5,6 +5,7 @@
 #include <iostream>
 #include "Customer.h"
 #include "Studio.h"
+#include <fstream>
 
 //**nir:what is this???*//
 //Mattan: that was the backup studio for backup/restore functions

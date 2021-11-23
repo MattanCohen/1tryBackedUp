@@ -101,7 +101,7 @@ vector<int> HeavyMuscleCustomer::order(const vector<Workout> &workout_options) {
     // iterate over all workout options
     for(size_t i=0; i<workout_options.size();i++){
         // add only anaerobic workouts
-        if(workout_options.at(i).getType()==0) {orders.push_back(i);}
+        if(workout_options.at(i).getType()==0) {orders.push_back(workout_options.at(i).getId());}
     }
     /*
     under the assumption the workout options is sorted by price dsc,

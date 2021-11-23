@@ -1,5 +1,4 @@
 #include "../include/Action.h"
-#include "../include/Workout.h"
 
 using namespace std;
 
@@ -117,32 +116,33 @@ std::string OpenTrainer::toString() const {
 
 void OpenTrainer::act(Studio &studio) {
     bool exists=true;
-    //check if there's a trainer with id trainerId
-    if (trainerId<0 || trainerId>=studio.getNumOfTrainers())
-        exists=false;
+    //check bad trainer id
+    if (studio.getTrainer(trainerId)== nullptr)
+        return;
     // access pointer value
     Trainer* opening=studio.getTrainer(trainerId);
-    //check if the trainer exists but is already open
+//check if the trainer exists but is already open
     if (exists)
         if (opening->isOpen())
             exists=false;
+
     opening->openTrainer();
-    //check if the trainer exists and open but the number of assigned customers is larger than their capacity
+    //save trainers capacity
     size_t cap=opening->getCapacity();
-    if (exists)
-        if (customers.size()>cap)
-            exists=false;
-    //if for whatever reason the action isn't possible
     if (!exists){
         error("Workout session does not exist or is already open"); // or trainer's capacity too low
         return;
     }
+//if trainer doesn't have capacity
+    if (opening->getCustomers().size()+1>cap)
+        return;
     //else, all good! add the customers and their orders to (the) trainer (we're) opening
     for (size_t i=0; i<customers.size();i++) {
         Customer *customer_i = customers.at(i);
-        vector<int> orderrr=customer_i->order(studio.getWorkoutOptions());
         //if customer can order then add them and their orders
-        if (customer_i->order(studio.getWorkoutOptions()).size() > 0){
+        size_t customers_size=opening->getCustomers().size();
+        // can we add another customer
+        if (customer_i->order(studio.getWorkoutOptions()).size() > 0 and customers_size+1<=cap){
             //if they are heavy muscle use sorted workout_options
             if (customer_i->toString()=="mcl"){
             opening->order(customer_i->getId(), customer_i->order(studio.getSortedWorkoutOptions()), studio.getWorkoutOptions());
@@ -256,13 +256,20 @@ void MoveCustomer::act(Studio &studio) {
     if (dst)
         if (!studio.getTrainer(dstTrainer)->isOpen())
             dst=false;
-//if destination trainer exists and open but doesn't have available spots
+    //if destination trainer exists and open but doesn't have available spots
     if (dst){
         int curr_numof_cust=studio.getTrainer(dstTrainer)->getCustomers().size();
         int dst_capacity=studio.getTrainer(dstTrainer)->getCapacity();
         if (curr_numof_cust+1>dst_capacity)
             dst=false;
     }
+    //check if source trainer is the destination trainer
+    if (srcTrainer==dstTrainer)
+        dst=false;
+    //if customer is already at destination trainer
+    if (dst)
+        if (studio.getTrainer(dstTrainer)->getCustomer(id)!= nullptr)
+            dst=false;
     //if destination trainer isn't available for whatever reason, change status to error, print error and stop the program
     if (!dst){
         error("Cannot move Customer");
@@ -289,7 +296,8 @@ void MoveCustomer::act(Studio &studio) {
         if (!owned)
             src=false;
     }
-//if source trainer isn't available for whatever reason, change status to error, print error and stop the program
+
+    //if source trainer isn't available for whatever reason, change status to error, print error and stop the program
     if (!src){
         error("Cannot move Customer");
         return;
@@ -355,7 +363,6 @@ void Close::act(Studio &studio) {
     if (isError) {
         error("Trainer does not exist or is not open");
     }
-
     else {
         Trainer *trainer = studio.getTrainer(trainerId);
         // close action, clears customer/order lists

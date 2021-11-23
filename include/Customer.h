@@ -4,6 +4,9 @@
 #include <vector>
 #include <string>
 #include "Workout.h"
+#include <fstream>
+#include <iostream>
+
 
 class Customer{
 public:
