@@ -54,12 +54,29 @@ Trainer::Trainer(Trainer&& rhs):capacity(rhs.capacity),open(rhs.open),customersL
     rhs.stole();
 }
 
+
+//size_t i=0;
+//cout<<"Studio.cpp line 70"<<endl;
+//while (i<trainers.size()){
+//Trainer* point = trainers.at(i);
+//Trainer t = *point;
+//cout<<"starting stole"<<endl;
+//t.stole();
+//delete point;
+//delete trainers.at(i);
+//i++;
+//cout<<i<<" passed first loop"<<endl;
+//}
+//cout<<"i passed first loop"<<endl;
+//trainers.clear();
+
+
 void Trainer::stole() {
-    while (!customersList.empty()){
-        delete customersList.at(0);
-        customersList.erase(customersList.begin());
+    size_t i=0;
+    while (i<customersList.size()){
+        delete customersList.at(i);
+        i++;
     }
-    delete this;
 }
 
 void Trainer::copyCustomersList(const Trainer& rhs) {
@@ -124,9 +141,9 @@ void Trainer::addCustomer(Customer* customer){
     for (size_t i=0; i<orderList.size(); i++)
         if (orderList.at(i).first==customer->getId())
             return;
-    for (size_t i=0; i<orderList.size(); i++)
-        if (orderList.at(i).first==id)
-            accumulatedSalary+= orderList.at(i).second.getPrice();
+//    for (size_t i=0; i<orderList.size(); i++)
+//        if (orderList.at(i).first==id)
+//            accumulatedSalary+= orderList.at(i).second.getPrice();
 }
 
 //remove Customer with the identifing number "id" from trainer's customers list

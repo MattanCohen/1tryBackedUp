@@ -7,6 +7,10 @@
 #include "Studio.h"
 #include <fstream>
 
+//Forward declaration
+class Studio;
+extern Studio* backup;
+
 //**nir:what is this???*//
 //Mattan: that was the backup studio for backup/restore functions
 //        I moved it to the cpp file doopsi poopsi i made an oopsi..
@@ -15,8 +19,6 @@ enum ActionStatus{
     COMPLETED, ERROR
 };
 
-//Forward declaration
-class Studio;
 
 class BaseAction{
 public:
@@ -121,6 +123,7 @@ public:
     ~CloseAll();
     CloseAll& operator=(const CloseAll& rhs);
     CloseAll(const CloseAll& other);
+    void stole();
 
 private:
 };

@@ -63,16 +63,23 @@ int main(int argc, char** argv){
     // create object lists from configuration file
     Studio studio(configurationFile);
     // loop that ends with command "closeall"
+    cout<<"zeroth main"<<endl;
     studio.start();
+    cout<<"first main"<<endl;
     if(backup!=nullptr){
         delete backup;
     	backup = nullptr;
     }
+    cout<<"second main"<<endl;
     Studio* studio1=new Studio(studio);
+    cout<<"third main"<<endl;
     backup->stole();
+    cout<<"fourth main"<<endl;
     backup=nullptr;
-cout<<"backup stole"<<endl;
+    cout<<"fifth main"<<endl;
     studio1->stole();
+    cout<<"sixth main"<<endl;
     cout<<"studio stole"<<endl;
+    cout<<"seventh main"<<endl;
     return 0;
 }

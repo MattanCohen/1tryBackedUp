@@ -20,28 +20,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d3724711-e75e-4385-901d-e6be599900f9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/bin/studio" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Action.o" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Action.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Customer.o" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Customer.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Studio.o" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Studio.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Trainer.o" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Trainer.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Workout.o" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Workout.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/main.o" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/empty_studio.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/studio" beforeDir="false" afterPath="$PROJECT_DIR$/bin/studio" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/include/Action.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Action.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/Customer.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Customer.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/makefile" beforeDir="false" afterPath="$PROJECT_DIR$/makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/no_workouts_studio.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/no_workouts_studio.txt" beforeDir="false" afterPath="$PROJECT_DIR$/studio_config.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/Studio.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Studio.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Action.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Action.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Customer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Customer.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Action.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Customer.o" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Studio.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Studio.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Trainer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Trainer.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/trainer0capacity.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Studio.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Trainer.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Workout.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.o" beforeDir="false" />
     </list>
     <list id="27bc72ee-2a79-437b-b9f9-c1ae811fea11" name="Changes by Celestite" comment="" />
+    <list id="7361fc2a-a6b5-4703-954f-abec8e47130e" name="Changes by mattanc@wincs.cs.bgu.ac.il" comment="">
+      <change beforePath="$PROJECT_DIR$/src/Action.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Action.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Studio.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Studio.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Trainer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Trainer.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.cpp" afterDir="false" />
+    </list>
     <list id="f856f132-f281-462b-b889-6495336cd8bb" name="Changes by User" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,6 +74,57 @@
     <layout place="tools.popupGrunt">
       <scroll-view-position x="0" y="0" />
     </layout>
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/Action.cpp">
+      <ranges>
+        <range start1="23" end1="25" start2="23" end2="24" changelist="7361fc2a-a6b5-4703-954f-abec8e47130e" />
+        <range start1="144" end1="145" start2="143" end2="144" changelist="7361fc2a-a6b5-4703-954f-abec8e47130e" />
+        <range start1="146" end1="153" start2="145" end2="145" changelist="7361fc2a-a6b5-4703-954f-abec8e47130e" />
+        <range start1="154" end1="156" start2="146" end2="147" changelist="7361fc2a-a6b5-4703-954f-abec8e47130e" />
+        <range start1="191" end1="191" start2="182" end2="183" changelist="7361fc2a-a6b5-4703-954f-abec8e47130e" />
+        <range start1="192" end1="193" start2="184" end2="184" changelist="7361fc2a-a6b5-4703-954f-abec8e47130e" />
+        <range start1="194" end1="194" start2="185" end2="201" changelist="7361fc2a-a6b5-4703-954f-abec8e47130e" />
+        <range start1="214" end1="214" start2="221" end2="223" changelist="7361fc2a-a6b5-4703-954f-abec8e47130e" />
+        <range start1="380" end1="381" start2="389" end2="390" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="385" end1="386" start2="394" end2="395" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="395" end1="397" start2="404" end2="405" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="404" end1="404" start2="412" end2="413" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="405" end1="406" start2="414" end2="415" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="413" end1="414" start2="422" end2="424" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="583" end1="583" start2="593" end2="594" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/main.cpp">
+      <ranges>
+        <range start1="65" end1="65" start2="65" end2="66" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="66" end1="66" start2="67" end2="68" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="70" end1="70" start2="72" end2="73" changelist="7361fc2a-a6b5-4703-954f-abec8e47130e" />
+        <range start1="71" end1="71" start2="74" end2="75" changelist="7361fc2a-a6b5-4703-954f-abec8e47130e" />
+        <range start1="72" end1="72" start2="76" end2="77" changelist="7361fc2a-a6b5-4703-954f-abec8e47130e" />
+        <range start1="73" end1="74" start2="78" end2="79" changelist="7361fc2a-a6b5-4703-954f-abec8e47130e" />
+        <range start1="75" end1="75" start2="80" end2="81" changelist="7361fc2a-a6b5-4703-954f-abec8e47130e" />
+        <range start1="76" end1="76" start2="82" end2="83" changelist="7361fc2a-a6b5-4703-954f-abec8e47130e" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/Studio.cpp">
+      <ranges>
+        <range start1="68" end1="71" start2="68" end2="72" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="72" end1="72" start2="73" end2="74" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="73" end1="76" start2="75" end2="78" changelist="7361fc2a-a6b5-4703-954f-abec8e47130e" />
+        <range start1="77" end1="79" start2="79" end2="80" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="313" end1="314" start2="314" end2="314" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="320" end1="321" start2="320" end2="320" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="322" end1="329" start2="321" end2="337" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="331" end1="360" start2="339" end2="363" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="408" end1="410" start2="411" end2="414" changelist="7361fc2a-a6b5-4703-954f-abec8e47130e" />
+        <range start1="453" end1="454" start2="457" end2="457" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="455" end1="455" start2="458" end2="461" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="458" end1="459" start2="464" end2="464" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="460" end1="462" start2="465" end2="465" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="463" end1="463" start2="466" end2="469" changelist="7361fc2a-a6b5-4703-954f-abec8e47130e" />
+      </ranges>
+    </file>
   </component>
   <component name="MakefileLocalSettings">
     <option name="availableProjects">
@@ -318,7 +372,7 @@
       <workItem from="1637615442468" duration="16186000" />
       <workItem from="1637654900503" duration="2407000" />
       <workItem from="1637670379919" duration="899000" />
-      <workItem from="1637671959403" duration="12453000" />
+      <workItem from="1637671959403" duration="22347000" />
     </task>
     <task id="LOCAL-00001" summary="ds">
       <created>1637541676860</created>
@@ -386,5 +440,16 @@
     <MESSAGE value="wow such compile" />
     <MESSAGE value="AMOAMOFAM" />
     <option name="LAST_COMMIT_MESSAGE" value="AMOAMOFAM" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/Trainer.cpp</url>
+          <line>143</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

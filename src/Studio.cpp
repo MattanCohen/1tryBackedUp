@@ -66,17 +66,18 @@ Studio::Studio(const Studio& rhs):open(rhs.open),trainers(rhs.trainers),workout_
 
 void Studio::stole() {
     // remove elements+pointers in trainers
-    while (!trainers.empty()){
-        delete trainers.at(0);
-        trainers.erase(trainers.begin());
+    size_t i=0;
+    while (i<trainers.size()){
+        trainers.at(i)->stole();
+        i++;
     }
+    i=0;
     // remove elements+pointers in action logs
-    while (!actionsLog.empty()){
-        delete actionsLog.at(0);
-        actionsLog.erase(actionsLog.begin());
+    while (i<actionsLog.size()){
+        actionsLog.at(i)->stole();
+        i++;
     }
-    // regular deletion process
-    delete this;
+    delete ::backup;
 }
 
 void Studio::copyTrainers(const Studio &rhs) {
@@ -311,53 +312,55 @@ void Studio::startAction(std::string actionType, std::string userAction) {
         // +1 so that space won't be included
         string userActionAfterSpace = userAction.substr(firstSpaceIndex+1);
 
-
         int secondSpaceIndex = userActionAfterSpace.find(" ");
         // extract trainerId
 
         int trainerId = stoi(userActionAfterSpace.substr(0,secondSpaceIndex));
         // +1 so that space won't be included
         string customersDetails = userActionAfterSpace.substr(secondSpaceIndex+1);
-
         vector<Customer *> customersList;
-        // add customers to list based on string details
-        for(size_t i=0;i<customersDetails.size();i++) {
-            string custName;
-            // extract customer name
-            while(customersDetails.at(i)!=',' and i<customersDetails.size())
-                {
-                    custName= custName+(customersDetails.at(i));
+        // true as long as customerDetails is empty
+        bool noCustDetails = true;
+        // look for a character different from space
+        size_t j=1;
+        while(j<customersDetails.size() and noCustDetails){
+            if(customersDetails.at(j)!=' ') {noCustDetails=false;}
+            j++;
+        }
+        // char different from space == customer details exist and need to be added
+        if(!noCustDetails) {
+            // add customers to list based on string details
+            for (size_t i = 0; i < customersDetails.size(); i++) {
+                string custName;
+                // extract customer name
+                while (customersDetails.at(i) != ',' and i < customersDetails.size()) {
+                    custName = custName + (customersDetails.at(i));
                     i++;
                 }
-            string custStrategy = customersDetails.substr(i+1,3);
-            i+=3;
-            size_t t_cap = getTrainer(trainerId)->getCapacity();
-            if(t_cap>=customersList.size()+1){
-                // create customer based on customer strategy
-                if(custStrategy=="swt")
-                {
-                    SweatyCustomer *swt =new SweatyCustomer(custName,workout_number);
-                    customersList.push_back(swt);
-                    workout_number++;
+                string custStrategy = customersDetails.substr(i + 1, 3);
+                i += 3;
+                size_t t_cap = getTrainer(trainerId)->getCapacity();
+                if (t_cap >= customersList.size() + 1) {
+                    // create customer based on customer strategy
+                    if (custStrategy == "swt") {
+                        SweatyCustomer *swt = new SweatyCustomer(custName, workout_number);
+                        customersList.push_back(swt);
+                        workout_number++;
+                    } else if (custStrategy == "chp") {
+                        CheapCustomer *chp = new CheapCustomer(custName, workout_number);
+                        customersList.push_back(chp);
+                        workout_number++;
+                    } else if (custStrategy == "mcl") {
+                        HeavyMuscleCustomer *mcl = new HeavyMuscleCustomer(custName, workout_number);
+                        customersList.push_back(mcl);
+                        workout_number++;
+                    } else if (custStrategy == "fbd") {
+                        FullBodyCustomer *fbc = new FullBodyCustomer(custName, workout_number);
+                        customersList.push_back(fbc);
+                        workout_number++;
+                    }
+                    // promote unique customer identifier
                 }
-                else if(custStrategy=="chp")
-                {
-                    CheapCustomer *chp =new CheapCustomer(custName,workout_number);
-                    customersList.push_back(chp);
-                    workout_number++;
-                }
-                else if(custStrategy=="mcl")
-                {
-                    HeavyMuscleCustomer *mcl =new HeavyMuscleCustomer(custName,workout_number);
-                    customersList.push_back(mcl);
-                    workout_number++;
-                }
-                else if (custStrategy=="fbd"){
-                    FullBodyCustomer *fbc =new FullBodyCustomer(custName,workout_number);
-                    customersList.push_back(fbc);
-                    workout_number++;
-                }
-                // promote unique customer identifier
             }
         }
         // trainer & customer validation will be made in act segment
@@ -406,8 +409,9 @@ void Studio::startAction(std::string actionType, std::string userAction) {
    }
     //if action is to close all trainers' sessions
     else if(actionType=="closeall" ) {
-        CloseAll *cA=new CloseAll();
-        cA->act(*this);
+        cout<<"studio line 412"<<endl;
+        CloseAll().act(*this);
+        cout<<"studio line 414"<<endl;
     }
     //if action is to print workout options for studio
     else if (actionType=="workout_options") {
@@ -451,16 +455,18 @@ void Studio::start(){
     cout<<"Studio is now open!"<<endl;
     string userAction;
     //loop for actions
-    getline(cin,userAction);
     while(userAction!="closeall") {
+        // wait command from terminal
+        cout<<"while entered"<<endl;
+        getline(cin,userAction);
         // no need to perform input checks
         string actionType = identifyAction(userAction);
         // create action based on type, act and document action
-
         startAction(actionType, userAction);
-        // wait command from terminal
-        getline(cin,userAction);
     }
+    cout<<"while ended"<<endl;
+    stole();
+    cout<<"program finished correctly"<<endl;
 }
 
 

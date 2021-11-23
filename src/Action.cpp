@@ -21,8 +21,7 @@ BaseAction& BaseAction::operator=(const BaseAction& rhs){
 }
 //copy c-tor
 BaseAction::BaseAction(const BaseAction &rhs):errorMsg(rhs.errorMsg),status(rhs.status){}
-
-void BaseAction::stole() {delete this;}
+void BaseAction::stole() {errorMsg= nullptr;}
 //no need for move ctor move ass. op. or dtor FOR ALL ACTION CLASSES inherited from
 //BaseAction because no variables are stored on the heap
 
@@ -142,18 +141,10 @@ void OpenTrainer::act(Studio &studio) {
         //if customer can order then add them and their orders
         size_t customers_size=opening->getCustomers().size();
         // can we add another customer
-        if (customer_i->order(studio.getWorkoutOptions()).size() > 0 and customers_size+1<=cap){
+        if (customer_i->order(studio.getWorkoutOptions()).size() > 0 and customers_size+1<=cap)
             //if they are heavy muscle use sorted workout_options
-            if (customer_i->toString()=="mcl"){
-            opening->order(customer_i->getId(), customer_i->order(studio.getSortedWorkoutOptions()), studio.getWorkoutOptions());
             opening->addCustomer(customer_i);
-            }
-            //else use default workout_options
-            else{
-            opening->order(customer_i->getId(), customer_i->order(studio.getWorkoutOptions()), studio.getWorkoutOptions());
-            opening->addCustomer(customer_i);
-            }
-        }
+
     }
     complete();
 }
@@ -189,9 +180,25 @@ void Order::act(Studio &studio) {
     //if trainer exist
     if (trainerId<studio.getNumOfTrainers() && trainerId>=0){
         //and if trainer is open
+        Trainer* opening=studio.getTrainer(trainerId);
         if (studio.getTrainer(trainerId)->isOpen()) {
-            vector <OrderPair> &orderList = studio.getTrainer(trainerId)->getOrders();
             vector < Customer * > &customersList = studio.getTrainer(trainerId)->getCustomers();
+            //create the orders
+            for (size_t i=0; i<customersList.size(); i++){
+                Customer* customer_i=customersList.at(i);
+                //if customer is muscler use sorted workout options
+                if (customer_i->toString()=="mcl") {
+                    opening->order(customer_i->getId(), customer_i->order(studio.getSortedWorkoutOptions()),
+                                   studio.getWorkoutOptions());
+                }
+                //else use default workout_options
+                else{
+                    opening->order(customer_i->getId(), customer_i->order(studio.getWorkoutOptions()), studio.getWorkoutOptions());
+                }
+            }
+
+            //print the orders
+            vector <OrderPair> &orderList = studio.getTrainer(trainerId)->getOrders();
             int customer_id=-1;
             //print every order done by every customer of the trainer
             for (size_t i = 0; i < orderList.size(); i++) {
@@ -212,6 +219,8 @@ void Order::act(Studio &studio) {
             }
         }
         complete();
+
+        return;
     }
     //if trainer doesn't exist or is close
     error("Trainer does not exist or is not open");
@@ -378,12 +387,12 @@ void Close::act(Studio &studio) {
 
 //..................................................class:CloseAll
 // c-tor
-CloseAll::CloseAll():BaseAction() {}
+CloseAll::CloseAll():BaseAction(){};
 
 
 //rule of 5:
 //d-tor
-CloseAll::~CloseAll(){}
+CloseAll::~CloseAll(){stole();}
 // ass op.
 CloseAll &CloseAll::operator=(const CloseAll &rhs) {
     BaseAction::operator=(rhs);
@@ -393,8 +402,7 @@ CloseAll &CloseAll::operator=(const CloseAll &rhs) {
 // copy c-tor
 CloseAll::CloseAll(const CloseAll &other):BaseAction(other) {}
 
-
-
+void CloseAll::stole() {delete this;}
 
 //prints status for log
 std::string CloseAll::toString() const {
@@ -402,8 +410,9 @@ std::string CloseAll::toString() const {
 }
 
 void CloseAll::act(Studio &studio) {
+    int numOfTrainers = studio.getNumOfTrainers();
     // go over all trainers
-    for(int i=0;i<(studio.getNumOfTrainers());i++) {
+    for(int i=0;i<numOfTrainers;i++) {
         // if session is open close trainer
         if(studio.getTrainer(i)->isOpen()) {
             Close close_trainer = Close(i);
@@ -411,7 +420,8 @@ void CloseAll::act(Studio &studio) {
             close_trainer.act(studio);
         }
     }
-    this->complete();
+    complete();
+    return;
 }
 
 // no need to create error function because action is always successful
@@ -581,6 +591,7 @@ BackupStudio::BackupStudio(BackupStudio &&rhs):BaseAction(rhs) {
 void BackupStudio::stole() {delete this;}
 
 void BackupStudio::act(Studio &studio) {
+    backup= new Studio(studio);
     studio.createBackup();
 }
 
