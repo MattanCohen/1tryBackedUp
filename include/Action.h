@@ -120,7 +120,6 @@ public:
     ~CloseAll();
     CloseAll& operator=(const CloseAll& rhs);
     CloseAll(const CloseAll& other);
-    void stole();
 
 private:
 };

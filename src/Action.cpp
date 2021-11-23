@@ -376,9 +376,7 @@ CloseAll::CloseAll():BaseAction() {}
 
 //rule of 5:
 //d-tor
-CloseAll::~CloseAll(){
-    this->stole();
-}
+CloseAll::~CloseAll(){}
 // ass op.
 CloseAll &CloseAll::operator=(const CloseAll &rhs) {
     BaseAction::operator=(rhs);
@@ -389,12 +387,11 @@ CloseAll &CloseAll::operator=(const CloseAll &rhs) {
 CloseAll::CloseAll(const CloseAll &other):BaseAction(other) {}
 
 
-void CloseAll::stole() {delete this;}
 
 
 //prints status for log
 std::string CloseAll::toString() const {
-    return "closeall";
+    return "closeall Completed";
 }
 
 void CloseAll::act(Studio &studio) {

@@ -65,8 +65,14 @@ int main(int argc, char** argv){
     // loop that ends with command "closeall"
     studio.start();
     if(backup!=nullptr){
-    	delete backup;
+        delete backup;
     	backup = nullptr;
     }
+    Studio* studio1=new Studio(studio);
+    backup->stole();
+    backup=nullptr;
+cout<<"backup stole"<<endl;
+    studio1->stole();
+    cout<<"studio stole"<<endl;
     return 0;
 }

@@ -394,10 +394,9 @@ void Studio::startAction(std::string actionType, std::string userAction) {
        actionsLog.push_back(close);
    }
     //if action is to close all trainers' sessions
-    else if(actionType=="closeall") {
+    else if(actionType=="closeall" ) {
         CloseAll *cA=new CloseAll();
         cA->act(*this);
-        actionsLog.push_back(cA);
     }
     //if action is to print workout options for studio
     else if (actionType=="workout_options") {
@@ -441,13 +440,14 @@ void Studio::start(){
     cout<<"Studio is now open!"<<endl;
     string userAction;
     //loop for actions
+    getline(cin,userAction);
     while(userAction!="closeall") {
-        // wait command from terminal
-        getline(cin,userAction);
         // no need to perform input checks
         string actionType = identifyAction(userAction);
         // create action based on type, act and document action
         startAction(actionType, userAction);
+        // wait command from terminal
+        getline(cin,userAction);
     }
 }
 

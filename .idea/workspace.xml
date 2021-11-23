@@ -20,23 +20,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d3724711-e75e-4385-901d-e6be599900f9" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/no_workouts_studio.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Action.o" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Action.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Customer.o" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Customer.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Studio.o" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Studio.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Trainer.o" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Trainer.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/main" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/Customer.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Customer.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Action.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Action.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Customer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Customer.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Studio.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Studio.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Trainer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Trainer.cpp" afterDir="false" />
-    </list>
-    <list id="27bc72ee-2a79-437b-b9f9-c1ae811fea11" name="Changes by Celestite" comment="">
-      <change beforePath="$PROJECT_DIR$/include/Studio.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Studio.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main.o" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/Action.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Action.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/no_workouts_studio.txt" beforeDir="false" afterPath="$PROJECT_DIR$/no_workouts_studio.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Action.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Action.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Studio.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Studio.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.cpp" afterDir="false" />
     </list>
+    <list id="27bc72ee-2a79-437b-b9f9-c1ae811fea11" name="Changes by Celestite" comment="" />
     <list id="f856f132-f281-462b-b889-6495336cd8bb" name="Changes by User" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,43 +62,6 @@
     <layout place="tools.popupGrunt">
       <scroll-view-position x="0" y="0" />
     </layout>
-  </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/Action.cpp">
-      <ranges>
-        <range start1="258" end1="259" start2="258" end2="259" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
-        <range start1="262" end1="263" start2="262" end2="263" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
-        <range start1="285" end1="287" start2="285" end2="286" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
-        <range start1="292" end1="293" start2="291" end2="292" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
-        <range start1="297" end1="298" start2="296" end2="297" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
-        <range start1="299" end1="300" start2="298" end2="300" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
-        <range start1="301" end1="302" start2="301" end2="302" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
-        <range start1="303" end1="305" start2="303" end2="305" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
-        <range start1="575" end1="576" start2="575" end2="575" changelist="27bc72ee-2a79-437b-b9f9-c1ae811fea11" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/Studio.cpp">
-      <ranges>
-        <range start1="160" end1="161" start2="160" end2="160" changelist="27bc72ee-2a79-437b-b9f9-c1ae811fea11" />
-        <range start1="163" end1="164" start2="162" end2="164" changelist="27bc72ee-2a79-437b-b9f9-c1ae811fea11" />
-        <range start1="206" end1="207" start2="206" end2="208" changelist="27bc72ee-2a79-437b-b9f9-c1ae811fea11" />
-        <range start1="209" end1="210" start2="210" end2="211" changelist="27bc72ee-2a79-437b-b9f9-c1ae811fea11" />
-        <range start1="211" end1="212" start2="212" end2="213" changelist="27bc72ee-2a79-437b-b9f9-c1ae811fea11" />
-        <range start1="213" end1="213" start2="214" end2="215" changelist="27bc72ee-2a79-437b-b9f9-c1ae811fea11" />
-        <range start1="278" end1="395" start2="280" end2="280" changelist="27bc72ee-2a79-437b-b9f9-c1ae811fea11" />
-        <range start1="409" end1="410" start2="294" end2="295" changelist="27bc72ee-2a79-437b-b9f9-c1ae811fea11" />
-        <range start1="412" end1="413" start2="297" end2="298" changelist="27bc72ee-2a79-437b-b9f9-c1ae811fea11" />
-        <range start1="415" end1="416" start2="300" end2="301" changelist="27bc72ee-2a79-437b-b9f9-c1ae811fea11" />
-        <range start1="441" end1="442" start2="326" end2="327" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
-        <range start1="459" end1="460" start2="344" end2="345" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
-        <range start1="488" end1="489" start2="373" end2="374" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
-        <range start1="491" end1="492" start2="376" end2="377" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
-        <range start1="523" end1="526" start2="408" end2="413" changelist="27bc72ee-2a79-437b-b9f9-c1ae811fea11" />
-        <range start1="543" end1="544" start2="430" end2="431" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
-        <range start1="554" end1="555" start2="441" end2="442" changelist="27bc72ee-2a79-437b-b9f9-c1ae811fea11" />
-        <range start1="558" end1="559" start2="445" end2="446" changelist="27bc72ee-2a79-437b-b9f9-c1ae811fea11" />
-      </ranges>
-    </file>
   </component>
   <component name="MakefileLocalSettings">
     <option name="availableProjects">
@@ -150,7 +109,7 @@
     <property name="codeWithMe.voiceChat.enabledByDefault" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
+    <property name="settings.editor.selected.configurable" value="CPPToolchains" />
   </component>
   <component name="RunManager" selected="Makefile Application.all">
     <configuration name="action" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="1tryBackedUp" TARGET_NAME="action" CONFIG_NAME="action" version="1">
@@ -196,11 +155,6 @@
     <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
@@ -347,7 +301,9 @@
       <workItem from="1637525002514" duration="8442000" />
       <workItem from="1637534632772" duration="1000" />
       <workItem from="1637597676771" duration="298000" />
-      <workItem from="1637615442468" duration="16139000" />
+      <workItem from="1637615442468" duration="16186000" />
+      <workItem from="1637654900503" duration="2407000" />
+      <workItem from="1637670379919" duration="899000" />
     </task>
     <task id="LOCAL-00001" summary="ds">
       <created>1637541676860</created>
@@ -384,7 +340,14 @@
       <option name="project" value="LOCAL" />
       <updated>1637629386238</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="AMOAMOFAM">
+      <created>1637631752580</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1637631752580</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
