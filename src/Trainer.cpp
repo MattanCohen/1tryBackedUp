@@ -61,11 +61,16 @@ Trainer::Trainer(Trainer&& rhs):capacity(rhs.capacity),open(rhs.open),customersL
 
 
 void Trainer::stole() {
-    while (customersList.size()>0)
-        customersList.pop_back();
-    while (orderList.size()>0)
-        orderList.pop_back();
+    size_t i=0;
+    while (i<customersList.size()){
+        Customer* customer_to_delete= customersList.at(i);
+        delete customer_to_delete;
+        i++;
+    }
+    customersList.clear();
+    orderList.clear();
 }
+
 
 void Trainer::copyCustomersList(const Trainer& rhs) {
     int i=0;

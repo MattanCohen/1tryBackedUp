@@ -20,26 +20,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d3724711-e75e-4385-901d-e6be599900f9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/no_trainers.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Action.o" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Action.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Customer.o" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Customer.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Studio.o" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Studio.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Trainer.o" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Trainer.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Workout.o" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Workout.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main.o" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/studio" beforeDir="false" afterPath="$PROJECT_DIR$/bin/studio" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/Action.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Action.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/Studio.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Studio.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/no_trainers.txt" beforeDir="false" afterPath="$PROJECT_DIR$/no_trainers.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Action.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Action.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Customer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Customer.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Studio.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Studio.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Trainer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Trainer.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.cpp" afterDir="false" />
     </list>
-    <list id="27bc72ee-2a79-437b-b9f9-c1ae811fea11" name="Changes by Celestite" comment="">
-      <change beforePath="$PROJECT_DIR$/src/Studio.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Studio.cpp" afterDir="false" />
-    </list>
+    <list id="27bc72ee-2a79-437b-b9f9-c1ae811fea11" name="Changes by Celestite" comment="" />
     <list id="f856f132-f281-462b-b889-6495336cd8bb" name="Changes by User" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,28 +60,6 @@
     <layout place="tools.popupGrunt">
       <scroll-view-position x="0" y="0" />
     </layout>
-  </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/Studio.cpp">
-      <ranges>
-        <range start1="68" end1="72" start2="68" end2="70" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
-        <range start1="73" end1="78" start2="71" end2="74" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
-        <range start1="79" end1="80" start2="75" end2="81" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
-        <range start1="175" end1="177" start2="176" end2="177" changelist="27bc72ee-2a79-437b-b9f9-c1ae811fea11" />
-        <range start1="180" end1="180" start2="180" end2="181" changelist="27bc72ee-2a79-437b-b9f9-c1ae811fea11" />
-        <range start1="275" end1="276" start2="276" end2="278" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
-        <range start1="344" end1="347" start2="346" end2="349" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
-        <range start1="348" end1="351" start2="350" end2="353" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
-        <range start1="353" end1="355" start2="355" end2="360" changelist="27bc72ee-2a79-437b-b9f9-c1ae811fea11" />
-        <range start1="356" end1="359" start2="361" end2="363" changelist="27bc72ee-2a79-437b-b9f9-c1ae811fea11" />
-        <range start1="411" end1="412" start2="415" end2="415" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
-        <range start1="413" end1="414" start2="416" end2="416" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
-        <range start1="454" end1="454" start2="456" end2="458" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
-        <range start1="459" end1="460" start2="463" end2="463" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
-        <range start1="466" end1="467" start2="469" end2="469" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
-        <range start1="468" end1="469" start2="470" end2="470" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
-      </ranges>
-    </file>
   </component>
   <component name="MakefileLocalSettings">
     <option name="availableProjects">
@@ -146,11 +115,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Makefile Application.all">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="action" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="1tryBackedUp" TARGET_NAME="action" CONFIG_NAME="action" version="1">
       <method v="2">
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
@@ -194,6 +158,11 @@
     <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
@@ -344,6 +313,7 @@
       <workItem from="1637654900503" duration="2407000" />
       <workItem from="1637670379919" duration="899000" />
       <workItem from="1637671959403" duration="22347000" />
+      <workItem from="1637751988949" duration="1215000" />
     </task>
     <task id="LOCAL-00001" summary="ds">
       <created>1637541676860</created>
@@ -387,7 +357,14 @@
       <option name="project" value="LOCAL" />
       <updated>1637631752580</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="AMOAMOFAM">
+      <created>1637705476707</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1637705476707</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

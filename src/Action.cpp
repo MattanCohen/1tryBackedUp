@@ -50,8 +50,13 @@ OpenTrainer::OpenTrainer(int id, std::vector<Customer *> &customersList):BaseAct
 //rule of 5:
 //d-tor
 OpenTrainer::~OpenTrainer(){
-    while (customers.size()>0)
-        customers.pop_back();
+    size_t i=0;
+    while (i<customers.size()) {
+        Customer *customer = customers.at(i);
+        delete customer;
+        i++;
+    }
+    customers.clear();
 }
 //we can not implement ass.op and move ass. op. because trainerId is constant
 //ass. op. to overload in case of uses in different functions

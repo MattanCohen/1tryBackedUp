@@ -66,19 +66,32 @@ Studio::Studio(const Studio& rhs):open(rhs.open),trainers(rhs.trainers),workout_
 
 void Studio::stole() {
     // remove elements+pointers in trainers
-    while (trainers.size()>0){
-        trainers.pop_back();
+    size_t i=0;
+    while (i<trainers.size()){
+        Trainer* trainer=trainers.at(i);
+        delete trainer;
+        i++;
     }
-    trainers.shrink_to_fit();
+    trainers.clear();
+    i=0;
     while (actionsLog.size()>0){
-        actionsLog.pop_back();
+        BaseAction* action=actionsLog.at(i);
+        delete action;
+        i++;
     }
-    while (workout_options.size()>0){
-        workout_options.pop_back();
-    }
-    while (sorted_workout_options.size()>0){
-        sorted_workout_options.pop_back();
-    }
+    actionsLog.clear();
+    workout_options.clear();
+    sorted_workout_options.clear();
+
+
+    //    while (workout_options.size()>0){
+//        workout_options.pop_back();
+//    }
+//    while (sorted_workout_options.size()>0){
+//        sorted_workout_options.pop_back();
+//    }
+
+
 }
 
 void Studio::copyTrainers(const Studio &rhs) {
@@ -308,6 +321,7 @@ std::string Studio::identifyAction(std::string userAction) {
 // creates action based on type and user action
 void Studio::startAction(std::string actionType, std::string userAction) {
     //if action is to open new trainer
+
     if (actionType=="open"){
         //information gathering to extract trainer id
         int firstSpaceIndex = userAction.find(" ");
@@ -454,8 +468,6 @@ void Studio::startAction(std::string actionType, std::string userAction) {
 //open the Studio
 void Studio::start(){
     open=true;
-    for (size_t i=0; i<trainers.size(); i++)
-        cout<<trainers.at(i)->getCapacity()<<endl;
     cout<<"Studio is now open!"<<endl;
     string userAction;
     //loop for actions
