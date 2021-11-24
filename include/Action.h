@@ -105,7 +105,6 @@ public:
 private:
     // trainerId requested and salary (if command is successful)
     const int trainerId;
-    int salary;
 };
 
 

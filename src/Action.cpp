@@ -50,7 +50,7 @@ OpenTrainer::OpenTrainer(int id, std::vector<Customer *> &customersList):BaseAct
 //rule of 5:
 //d-tor
 OpenTrainer::~OpenTrainer(){
-    size_t i=0;
+    size_t i=1;
     while (i<customers.size()) {
         Customer *customer = customers.at(i);
         delete customer;
@@ -177,38 +177,44 @@ void Order::act(Studio &studio) {
         Trainer* opening=studio.getTrainer(trainerId);
         if (studio.getTrainer(trainerId)->isOpen()) {
             vector < Customer * > &customersList = studio.getTrainer(trainerId)->getCustomers();
-            //create the orders
-            for (size_t i=0; i<customersList.size(); i++){
-                Customer* customer_i=customersList.at(i);
-                //if customer is muscler use sorted workout options
-                if (customer_i->toString()=="mcl") {
-                    opening->order(customer_i->getId(), customer_i->order(studio.getSortedWorkoutOptions()),
-                                   studio.getWorkoutOptions());
+            //if there's at least 1 customers ordering:
+            if (customersList.size()>0){
+                //create the orders
+                for (size_t i=0; i<customersList.size(); i++){
+                    Customer* customer_i=customersList.at(i);
+                    //if customer is muscler use sorted workout options
+                    if (customer_i->toString()=="mcl") {
+                        opening->order(customer_i->getId(), customer_i->order(studio.getSortedWorkoutOptions()),
+                                       studio.getWorkoutOptions());
+                    }
+                        //else use default workout_options
+                    else{
+                        opening->order(customer_i->getId(), customer_i->order(studio.getWorkoutOptions()), studio.getWorkoutOptions());
+                    }
                 }
-                //else use default workout_options
-                else{
-                    opening->order(customer_i->getId(), customer_i->order(studio.getWorkoutOptions()), studio.getWorkoutOptions());
-                }
-            }
-
-            //print the orders
-            vector <OrderPair> &orderList = studio.getTrainer(trainerId)->getOrders();
-            int customer_id=-1;
-            //print every order done by every customer of the trainer
-            for (size_t i = 0; i < orderList.size(); i++) {
-                if (orderList.at(i).first==customer_id){
-
-                }
-                else {
-                    string customer_name;
-                    for (size_t j = 0; j < customersList.size(); j++)
-                        if (customersList.at(j)->getId() == orderList.at(i).first) {
-                            customer_name = customersList.at(j)->getName();
-                            customer_id=j;
-                            j = customersList.size();
+                //print the orders
+                vector <OrderPair> &orderList = studio.getTrainer(trainerId)->getOrders();
+                //print every order done by every customer of the trainer
+                for (size_t i = 0; i < orderList.size(); i++) {
+                    for (size_t j=0; j<customersList.size(); j++)
+                        //for every order find the customer who ordered it
+                        if (orderList.at(i).first==customersList.at(j)->getId()){
+                            string customer_name =customersList.at(j)->getName();
+                            cout<<customer_name<<" Is Doing "<<orderList.at(i).second.getName()<<endl;
                         }
-                    string workout_name = orderList.at(i).second.getName();
-                    cout << customer_name + " Is Doing " + workout_name << endl;
+
+//                    if (orderList.at(i).first==customer_id){
+//                        string customer_name;
+//                        for (size_t j = 0; j < customersList.size(); j++)
+//                            if (customersList.at(j)->getId() == orderList.at(i).first) {
+//                                customer_name =
+//                                customer_id=j;
+//                                j = customersList.size();
+//                            }
+//                        string workout_name = orderList.at(i).second.getName();
+//                        cout << customer_name + " Is Doing " + workout_name << endl;
+//                    }
+
                 }
             }
         }
@@ -249,9 +255,14 @@ std::string MoveCustomer::toString() const {
 void MoveCustomer::act(Studio &studio) {
     bool dst=true;
     bool src=true;
-    //if destination trainer doesn't exist
-    if (dstTrainer<0 || dstTrainer>=studio.getNumOfTrainers())
-        dst= false;
+    //first check and reject dummy customers
+    if (id==-1)
+        dst=false;
+    //if the customer isn't dummy customer:
+    //check if destination trainer doesn't exist
+    if (dst)
+        if (dstTrainer<0 || dstTrainer>=studio.getNumOfTrainers())
+            dst= false;
     //if destination trainer exists but isn't open
     if (dst)
         if (!studio.getTrainer(dstTrainer)->isOpen())
@@ -286,11 +297,11 @@ void MoveCustomer::act(Studio &studio) {
     }
     //if source trainer exist and open but isn't responsible for the customer
     if (src){
-        vector<OrderPair>& src_orderList=studio.getTrainer(srcTrainer)->getOrders();
+        vector<Customer*>& src_customerList=studio.getTrainer(srcTrainer)->getCustomers();
         bool owned=false;
-        size_t i=0;
-        while(i<src_orderList.size() and !owned){
-            owned=src_orderList.at(i).first==id;
+        size_t i=1;
+        while(i<src_customerList.size() and !owned){
+            owned=(src_customerList.at(i)->getId()==id);
             i++;
         }
         if (!owned)
@@ -318,7 +329,7 @@ void MoveCustomer::act(Studio &studio) {
 
 //..................................................class:Close
 // c-tor
-Close::Close(int id):BaseAction(),trainerId(id),salary(0){}
+Close::Close(int id):BaseAction(),trainerId(id){}
 
 
 //rule of 5:
@@ -328,7 +339,7 @@ Close::~Close(){}
 //ass. op. to overload in case of uses in different functions
 Close& Close::operator=(const Close &rhs) {return *this;}
 // copy c-tor
-Close::Close(const Close &rhs):BaseAction(rhs),trainerId(rhs.trainerId),salary(rhs.salary) {}
+Close::Close(const Close &rhs):BaseAction(rhs),trainerId(rhs.trainerId) {}
 
 
 //prints status from log
@@ -365,7 +376,7 @@ void Close::act(Studio &studio) {
         // close action, clears customer/order lists
         trainer->closeTrainer();
         // salary for closed trainer
-        salary = trainer->getSalary();
+        int salary = trainer->getSalary();
         complete();
         // action log is printed after salary has been updated
         cout<<"Trainer "+to_string(trainerId)+" closed. Salary "+ to_string(salary)+"NIS"<< endl;
@@ -403,9 +414,15 @@ void CloseAll::act(Studio &studio) {
         // if session is open close trainer
         if(studio.getTrainer(i)->isOpen()) {
             Close close_trainer = Close(i);
-            // use close action to shutdown each trainer
             close_trainer.act(studio);
         }
+        //else, trainer is closed but is part of studio's trainers list. Make sure to delete it
+        else {
+            Trainer *trainer = studio.getTrainer(i);
+            // close action, clears customer/order lists
+            trainer->closeTrainer();
+        }
+
     }
     complete();
 }
@@ -490,10 +507,13 @@ void PrintTrainerStatus::act(Studio &studio) {
 //print customers
     cout<<"Customers:"<<endl;
     vector<Customer*> customers=studio.getTrainer(trainerId)->getCustomers();
-    for (size_t i=0; i<customers.size(); i++){
-        string customer_i_id=to_string(customers.at(i)->getId());
-        string customer_i_name=customers.at(i)->getName();
-        cout<<customer_i_id+" "+customer_i_name<< endl;
+    for (size_t i=0; i<customers.size(); i++) {
+        //for every none-dummy customer
+        if (customers.at(i)->getId() != -1) {
+            string customer_i_id = to_string(customers.at(i)->getId());
+            string customer_i_name = customers.at(i)->getName();
+            cout << customer_i_id + " " + customer_i_name << endl;
+        }
     }
     //print orders
     cout<<"Orders:"<<endl;
@@ -502,7 +522,9 @@ void PrintTrainerStatus::act(Studio &studio) {
         string workout_name=orders.at(i).second.getName();
         string workout_price=to_string(orders.at(i).second.getPrice());
         string customer_id=to_string(orders.at(i).first);
-        cout<<workout_name+" "+workout_price+" "+customer_id<< endl;
+        //for every none-dummy customer
+        if (customer_id!="-1")
+            cout<<workout_name+" "+workout_price+" "+customer_id<< endl;
     }
     cout<<"Current Trainer's Salary: "+to_string(studio.getTrainer(trainerId)->getSalary())+"NIS"<< endl;
     complete();

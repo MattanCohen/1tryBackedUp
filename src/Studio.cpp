@@ -66,23 +66,25 @@ Studio::Studio(const Studio& rhs):open(rhs.open),trainers(rhs.trainers),workout_
 
 void Studio::stole() {
     // remove elements+pointers in trainers
-    size_t i=0;
+    size_t i=1;
     while (i<trainers.size()){
         Trainer* trainer=trainers.at(i);
         delete trainer;
         i++;
     }
-    trainers.clear();
-    i=0;
-    while (actionsLog.size()>0){
+    if (trainers.size()>0)
+        trainers.clear();
+    i=1;
+    while (actionsLog.size()>i){
         BaseAction* action=actionsLog.at(i);
         delete action;
         i++;
     }
     actionsLog.clear();
-    workout_options.clear();
-    sorted_workout_options.clear();
-
+    if (workout_options.size()>0)
+        workout_options.clear();
+    if (sorted_workout_options.size()>0)
+        sorted_workout_options.clear();
 
     //    while (workout_options.size()>0){
 //        workout_options.pop_back();
@@ -90,7 +92,6 @@ void Studio::stole() {
 //    while (sorted_workout_options.size()>0){
 //        sorted_workout_options.pop_back();
 //    }
-
 
 }
 
@@ -370,8 +371,6 @@ void Studio::startAction(std::string actionType, std::string userAction) {
                         // trying to delete pointer of mcl
                         Customer* cust = new HeavyMuscleCustomer(custName, workout_number);
                         customersList.push_back(cust);
-                        cust = nullptr;
-                        delete cust;
                         workout_number++;
                     } else if (custStrategy == "fbd"){
                         customersList.push_back(new FullBodyCustomer(custName, workout_number));
@@ -383,7 +382,6 @@ void Studio::startAction(std::string actionType, std::string userAction) {
         }
         // trainer & customer validation will be made in act segment
         OpenTrainer *openTrainer =new OpenTrainer(trainerId,customersList);
-
         openTrainer->act(*this);
         actionsLog.push_back(openTrainer);
     }
