@@ -1,0 +1,24 @@
+makefile: make
+use test.txt: bin/studio no_trainers.txt test.txt
+use valgrind with test.txt: valgrind --leak-check=full --show-reachable=yes bin/studio no_trainers.txt test.txt
+use normal start after changing main: bin/studio no_trainers.txt
+use valgrind with normal start after changing main: valgrind --leak-check=full --show-reachable=yes bin/studio no_trainers.txt
+
+open 1 fbd,fbd mcl,mcl Beyonce,chp
+open 2 Nirro,swt Noa,swt
+move 1 2 2
+status 2
+order 1
+order 2
+status 2
+close 3
+log
+workout_options
+closeall
+
+
+backup
+status 1
+restore
+log
+closeall

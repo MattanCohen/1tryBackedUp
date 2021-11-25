@@ -3,8 +3,8 @@
 
 using namespace std;
 
-Studio* backup = nullptr;
-
+Studio* backup= new Studio();
+bool ever_backed=false;
 // should create executuble called studi
 
 // different scenarios and different inputs

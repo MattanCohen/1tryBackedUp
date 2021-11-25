@@ -26,6 +26,7 @@ public:
     bool isOpen();
     int getId ();
 
+    int getOriginalCapacity() const;
     virtual ~Trainer();
     Trainer& operator=(const Trainer& rhs);
     Trainer& operator=(Trainer&& rhs);
@@ -38,6 +39,7 @@ public:
 
 private:
     int capacity;
+    int originalCapacity;
     bool open;
     std::vector<Customer*> customersList;
     std::vector<OrderPair> orderList; //A list of pairs for each order for the trainer - (customer_id, Workout)

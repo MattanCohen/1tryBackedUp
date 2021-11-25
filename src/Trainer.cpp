@@ -7,8 +7,8 @@ using namespace std;
 //extern int currId; // currId defualt initialization is 0
 
 //c-tor with given capacity. the lists will remain empty
-Trainer::Trainer (int t_capacity):capacity(t_capacity),open(false),customersList(),orderList(),id(),accumulatedSalary(0){}
-Trainer::Trainer (int t_capacity,int id):capacity(t_capacity),open(false),customersList(),orderList(),id(id),accumulatedSalary(0){}
+Trainer::Trainer (int t_capacity):capacity(t_capacity),originalCapacity(t_capacity),open(false),customersList(),orderList(),id(),accumulatedSalary(0){}
+Trainer::Trainer (int t_capacity,int id):capacity(t_capacity),originalCapacity(t_capacity),open(false),customersList(),orderList(),id(id),accumulatedSalary(0){}
 
 //rule of 5:
 //d-tor
@@ -60,15 +60,14 @@ void Trainer::stole() {
     size_t i=1;
     while (i<customersList.size()){
         Customer* customer_to_delete= customersList.at(i);
-        cout<<"line 63 trainer cpp"<<endl;
         delete customer_to_delete;
-        cout<<"line 65 trainer cpp"<<endl;
         i++;
     }
     if (customersList.size()>0)
         customersList.clear();
     if (orderList.size()>0)
         orderList.clear();
+    capacity=originalCapacity;
 }
 
 
@@ -102,6 +101,8 @@ void Trainer::copyCustomersList(const Trainer& rhs) {
 //returns trainer's capacity
 int Trainer::getCapacity() const{return capacity;}
 
+int Trainer::getOriginalCapacity() const {return originalCapacity;}
+
 //adds customer. assumes trainer is available
 void Trainer::addCustomer(Customer* customer){
     //if the customer isn't already in trainer's customerslist
@@ -112,48 +113,23 @@ void Trainer::addCustomer(Customer* customer){
 //remove Customer with the identifing number "id" from trainer's customers list
 void Trainer::removeCustomer(int id) {
     //create a copy of orders vector to set without id's orders
-    vector<OrderPair> temp_order;
     //make sure we're not removing dummy customer
     if (id==-1)
         return;
-
-
-//    //check to find customer "id"
-//    size_t i=0;
-//    while (i < customersList.size() ){
-//        //when we find the customer with id "id"
-//        if (customersList.at(i)->getId() == id) {
-//            //check trainer's orders to deduct id's
-//            for (size_t j = 0; j < orderList.size(); j++){
-//                //if order isn't customer's order add it to new orderList
-//                if (orderList.at(j).first == id)
-//                //if order isn't customer's order add it to new orderList
-//                else
-//                    temp_order.push_back(orderList.at(j));
-//            }
-//        }
-//        //else keep looking
-//        i++;
-//    }
-
-    //delete customer in customersList and set instead dummy cheap customer at its place.
-    size_t count=0;
-    while (count<customersList.size()){
-        if (customersList.at(count)->getId()==id) {
-            Customer *todelete = customersList.at(count);
-            delete todelete;
-            CheapCustomer *toadd=new CheapCustomer("XXX",-1);
-            customersList.push_back(toadd);
-            count=customersList.size();
+    for (size_t i=0; i<customersList.size(); i++){
+        if (customersList.at(i)->getId()==id) {
+            Customer* customer_to_delete= customersList.at(i);
+            delete customer_to_delete;
+            customersList.at(i) = new CheapCustomer("XXX",-1);
+            //if a dummy customer was added, compensate by raising capacity by 1
+            capacity++;
+            i=customersList.size();
         }
-        count++;
     }
-//    //pass the new order list without Customer "id".
-//    orderList.clear();
-//    for (size_t i=0; i<temp_order.size(); i++)
-//        orderList.push_back(temp_order.at(i));
-//    count=0;
-//    temp_order.clear();
+    // if we removed all customers close the trainer
+    int size=customersList.size();
+    if (capacity-size==originalCapacity)
+        closeTrainer();
 }
 
 //get the Customer with id "id" or null if doesn't exists or dummy

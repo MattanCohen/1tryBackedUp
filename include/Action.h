@@ -164,7 +164,7 @@ public:
 private:
 };
 
-//extern bool ever_backed;
+extern bool ever_backed;
 //extern Studio* backup;
 
 class BackupStudio : public BaseAction {
@@ -195,7 +195,6 @@ public:
     RestoreStudio(RestoreStudio&& rhs);
 
 private:
-    bool ever_backed;
 };
 
 

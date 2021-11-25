@@ -3,6 +3,24 @@
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
     <generated>
       <config projectName="1tryBackedUp" targetName="all" />
@@ -20,17 +38,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d3724711-e75e-4385-901d-e6be599900f9" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/test.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests pallettes.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Action.o" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Action.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Customer.o" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Customer.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Studio.o" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Studio.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Trainer.o" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Trainer.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main.o" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/studio" beforeDir="false" afterPath="$PROJECT_DIR$/bin/studio" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/include/Action.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Action.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/Studio.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Studio.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/Trainer.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Trainer.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Action.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Action.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Customer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Customer.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Studio.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Studio.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Trainer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Trainer.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.cpp" afterDir="false" />
     </list>
-    <list id="27bc72ee-2a79-437b-b9f9-c1ae811fea11" name="Changes by Celestite" comment="" />
+    <list id="27bc72ee-2a79-437b-b9f9-c1ae811fea11" name="Changes by Celestite" comment="">
+      <change beforePath="$PROJECT_DIR$/include/Studio.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Studio.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/Trainer.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Trainer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Studio.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Studio.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Trainer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Trainer.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.cpp" afterDir="false" />
+    </list>
     <list id="f856f132-f281-462b-b889-6495336cd8bb" name="Changes by User" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,6 +92,86 @@
     <layout place="tools.popupGrunt">
       <scroll-view-position x="0" y="0" />
     </layout>
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/main.cpp">
+      <ranges>
+        <range start1="5" end1="7" start2="5" end2="7" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="74" end1="74" start2="74" end2="95" changelist="27bc72ee-2a79-437b-b9f9-c1ae811fea11" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/include/Studio.h">
+      <ranges>
+        <range start1="35" end1="35" start2="35" end2="39" changelist="27bc72ee-2a79-437b-b9f9-c1ae811fea11" />
+        <range start1="36" end1="39" start2="40" end2="44" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="53" end1="53" start2="58" end2="59" changelist="27bc72ee-2a79-437b-b9f9-c1ae811fea11" />
+        <range start1="54" end1="56" start2="60" end2="63" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/include/Trainer.h">
+      <ranges>
+        <range start1="28" end1="28" start2="28" end2="29" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="36" end1="36" start2="37" end2="38" changelist="27bc72ee-2a79-437b-b9f9-c1ae811fea11" />
+        <range start1="40" end1="40" start2="42" end2="43" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/Trainer.cpp">
+      <ranges>
+        <range start1="9" end1="11" start2="9" end2="11" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="21" end1="21" start2="21" end2="22" changelist="27bc72ee-2a79-437b-b9f9-c1ae811fea11" />
+        <range start1="33" end1="33" start2="34" end2="35" changelist="27bc72ee-2a79-437b-b9f9-c1ae811fea11" />
+        <range start1="43" end1="44" start2="45" end2="46" changelist="27bc72ee-2a79-437b-b9f9-c1ae811fea11" />
+        <range start1="51" end1="52" start2="53" end2="54" changelist="27bc72ee-2a79-437b-b9f9-c1ae811fea11" />
+        <range start1="62" end1="63" start2="64" end2="64" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="64" end1="65" start2="65" end2="65" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="71" end1="71" start2="71" end2="72" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="103" end1="103" start2="104" end2="106" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="114" end1="115" start2="117" end2="117" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="118" end1="147" start2="120" end2="128" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="148" end1="149" start2="129" end2="129" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="150" end1="156" start2="130" end2="134" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/Studio.cpp">
+      <ranges>
+        <range start1="3" end1="5" start2="3" end2="5" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="6" end1="19" start2="6" end2="27" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="28" end1="28" start2="36" end2="37" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="29" end1="29" start2="38" end2="43" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="30" end1="30" start2="44" end2="45" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="31" end1="31" start2="46" end2="47" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="32" end1="32" start2="48" end2="49" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="33" end1="33" start2="50" end2="51" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="34" end1="34" start2="52" end2="53" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="35" end1="35" start2="54" end2="55" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="40" end1="40" start2="60" end2="61" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="41" end1="41" start2="62" end2="64" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="47" end1="47" start2="70" end2="71" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="53" end1="54" start2="77" end2="79" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="61" end1="62" start2="86" end2="87" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="65" end1="65" start2="90" end2="127" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="78" end1="80" start2="140" end2="144" changelist="27bc72ee-2a79-437b-b9f9-c1ae811fea11" />
+        <range start1="81" end1="81" start2="145" end2="146" changelist="27bc72ee-2a79-437b-b9f9-c1ae811fea11" />
+        <range start1="82" end1="82" start2="147" end2="148" changelist="27bc72ee-2a79-437b-b9f9-c1ae811fea11" />
+        <range start1="83" end1="83" start2="149" end2="150" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="85" end1="85" start2="152" end2="153" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="87" end1="87" start2="155" end2="156" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="94" end1="94" start2="163" end2="165" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="95" end1="95" start2="166" end2="182" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="97" end1="97" start2="184" end2="185" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="111" end1="112" start2="199" end2="200" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="114" end1="114" start2="202" end2="263" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="162" end1="162" start2="311" end2="312" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="163" end1="163" start2="313" end2="315" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="164" end1="164" start2="316" end2="317" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="173" end1="174" start2="326" end2="327" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="236" end1="237" start2="389" end2="390" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="371" end1="373" start2="524" end2="525" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="448" end1="448" start2="600" end2="601" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="449" end1="449" start2="602" end2="603" changelist="d3724711-e75e-4385-901d-e6be599900f9" />
+        <range start1="482" end1="482" start2="636" end2="672" changelist="27bc72ee-2a79-437b-b9f9-c1ae811fea11" />
+      </ranges>
+    </file>
   </component>
   <component name="MakefileLocalSettings">
     <option name="availableProjects">
@@ -153,6 +265,11 @@
     <configuration name="workout" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="1tryBackedUp" TARGET_NAME="workout" CONFIG_NAME="workout" version="1">
       <method v="2">
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
@@ -306,7 +423,7 @@
       <workItem from="1637751988949" duration="1215000" />
       <workItem from="1637756376969" duration="7143000" />
       <workItem from="1637767031848" duration="4000" />
-      <workItem from="1637789556850" duration="1000" />
+      <workItem from="1637789556850" duration="17204000" />
     </task>
     <task id="LOCAL-00001" summary="ds">
       <created>1637541676860</created>
@@ -357,7 +474,14 @@
       <option name="project" value="LOCAL" />
       <updated>1637705476707</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="AMOAMOFAM">
+      <created>1637789568475</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1637789568475</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

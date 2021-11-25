@@ -56,7 +56,8 @@ OpenTrainer::~OpenTrainer(){
         delete customer;
         i++;
     }
-    customers.clear();
+    if (customers.size()>0)
+        customers.clear();
 }
 //we can not implement ass.op and move ass. op. because trainerId is constant
 //ass. op. to overload in case of uses in different functions
@@ -299,7 +300,7 @@ void MoveCustomer::act(Studio &studio) {
     if (src){
         vector<Customer*>& src_customerList=studio.getTrainer(srcTrainer)->getCustomers();
         bool owned=false;
-        size_t i=1;
+        size_t i=0;
         while(i<src_customerList.size() and !owned){
             owned=(src_customerList.at(i)->getId()==id);
             i++;
@@ -315,15 +316,26 @@ void MoveCustomer::act(Studio &studio) {
     }
     Trainer* source=studio.getTrainer(srcTrainer);
     //add customer id from source to dstTrainer
-    studio.getTrainer(dstTrainer)->addCustomer(source->getCustomer(id));
+    string name=source->getCustomer(id)->getName();
+    string type=source->getCustomer(id)->toString();
+    if (type=="swt"){
+        studio.getTrainer(dstTrainer)->addCustomer(new SweatyCustomer(name,id));}
+    if (type=="chp"){
+        studio.getTrainer(dstTrainer)->addCustomer(new CheapCustomer(name,id));}
+    if (type=="mcl"){
+        studio.getTrainer(dstTrainer)->addCustomer(new HeavyMuscleCustomer(name,id));}
+    if (type=="fbd"){
+        studio.getTrainer(dstTrainer)->addCustomer(new FullBodyCustomer(name,id));}
     studio.getTrainer(dstTrainer)->order(id,source->getCustomer(id)->order(studio.getWorkoutOptions()),studio.getWorkoutOptions());
     //remove customer id from source
     source->removeCustomer(id);
-    //close trainer source if customer id was his last customer
+//close trainer source if customer id was his last customer
     if (source->getCustomers().size()==0){
         source->closeTrainer();
     }
+
     complete();
+
 }
 
 
@@ -586,8 +598,12 @@ BackupStudio::BackupStudio(BackupStudio &&rhs):BaseAction(rhs) {}
 
 
 void BackupStudio::act(Studio &studio) {
-    backup= new Studio(studio);
-    studio.createBackup();
+    if(ever_backed)
+        backup->stole();
+    backup=new Studio(studio);
+    cout<<backup->getActionsLog().at(0)->toString()<<"                        Action cpp line 603"<<endl;
+    ever_backed=true;
+    complete();
 }
 
 //print status for log
@@ -597,7 +613,7 @@ string BackupStudio::toString() const {
 
 //..................................................class:RestoreStudio
 // c-tor
-RestoreStudio::RestoreStudio():BaseAction(),ever_backed(false) {}
+RestoreStudio::RestoreStudio():BaseAction(){}
 
 RestoreStudio::~RestoreStudio(){}
 //ass op.
@@ -608,18 +624,14 @@ RestoreStudio &RestoreStudio::operator=(const RestoreStudio &rhs){
 //move ass.op.
 RestoreStudio &RestoreStudio::operator=(RestoreStudio &&rhs) {
     if (this!=&rhs){
-        rhs.ever_backed=false;
         BaseAction::operator=(rhs);
     }
     return *this;
 }
 // copy c-tor
-RestoreStudio::RestoreStudio(const RestoreStudio& rhs):BaseAction(rhs),ever_backed(false){}
+RestoreStudio::RestoreStudio(const RestoreStudio& rhs):BaseAction(rhs){}
 //move c-tor
-RestoreStudio::RestoreStudio(RestoreStudio &&rhs):BaseAction(rhs),ever_backed(false) {
-    if (this!=&rhs)
-        rhs.ever_backed=false;
-}
+RestoreStudio::RestoreStudio(RestoreStudio &&rhs):BaseAction(rhs){}
 
 
 
@@ -632,9 +644,17 @@ string RestoreStudio::toString() const {
 
 
 void RestoreStudio::act(Studio &studio) {
-    ever_backed=studio.isBacked();
     if (ever_backed){
-        studio.restoreBackup();
+        cout<<"action cpp   line 647"<<endl;
+        Studio* tempBackup = new Studio(backup);
+        cout<<"action cpp   line 649"<<endl;
+        studio.stole();
+        cout<<"action cpp   line 651"<<endl;
+        studio.operator=(tempBackup);
+        cout<<"action cpp   line 653"<<endl;
+        backup->stole();
+        cout<<"action cpp   line 655"<<endl;
+        backup->operator=(tempBackup);
         return;
     }
     error("No backup available");

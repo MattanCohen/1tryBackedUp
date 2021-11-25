@@ -51,7 +51,7 @@ string SweatyCustomer::toString() const {return "swt";}
 //......................................class: CheapCustomer
 //rule of 5:
 //d-tor in case Workout reference is deleted
-CheapCustomer::~CheapCustomer() {delete this;}
+CheapCustomer::~CheapCustomer() {}
 //we can not implement ass.op and move ass. op. because all variable are constant
 //ass.op. sole purpose is to overload any calls to the ass.op via other classes
 CheapCustomer& CheapCustomer::operator=(const CheapCustomer& rhs){return *this;}
@@ -85,7 +85,7 @@ string CheapCustomer::toString() const {return"chp";};
 //......................................class: HeavyMuscleCustomer
 //rule of 5:
 //d-tor
-HeavyMuscleCustomer::~HeavyMuscleCustomer() {delete this;}
+HeavyMuscleCustomer::~HeavyMuscleCustomer() {}
 //we can not implement ass.op and move ass. op. because all variable are constant
 //ass.op. sole purpose is to overload any calls to the ass.op via other classes
 HeavyMuscleCustomer& HeavyMuscleCustomer::operator=(const HeavyMuscleCustomer& rhs){return *this;}
@@ -117,7 +117,7 @@ string HeavyMuscleCustomer::toString() const {return "mcl";}
 //......................................class: FullBodyCustomer
 //rule of 5:
 //d-tor
-FullBodyCustomer::~FullBodyCustomer() {delete this;}
+FullBodyCustomer::~FullBodyCustomer() {}
 //we can not implement ass.op and move ass. op. because all variable are constant
 //ass.op. sole purpose is to overload any calls to the ass.op via other classes
 FullBodyCustomer& FullBodyCustomer::operator=(const FullBodyCustomer& rhs){return *this;}

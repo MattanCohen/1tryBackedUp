@@ -34,9 +34,10 @@ public:
     Studio(Studio&& rhs);
     void stole();
 
-    void createBackup();
-    bool isBacked();
-    void restoreBackup();
+//    void createBackup();
+//    bool isBacked();
+//    void restoreBackup();
+    void bulkStart(const std::string &commandPath);
 private:
     bool open;
     std::vector<Trainer*> trainers;
@@ -52,8 +53,9 @@ private:
     bool isEmptyLine(std::string configRow);
     void copyTrainers(const Studio& rhs);
     void copyActionLogs(const Studio& rhs);
-    Studio* backup;
-    bool backed;
+    void copyActionLogs(const Studio* rhs);
+//    Studio* backup;
+//    bool backed;
 };
 
 #endif

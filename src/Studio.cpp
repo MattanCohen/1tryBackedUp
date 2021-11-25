@@ -1,22 +1,30 @@
 #include "../include/Studio.h"
 
 using namespace std;
-
-void Studio::createBackup() {
+//
+//void Studio::createBackup() {
 //    cout<<"hey"<<endl;
-    backed=true;
-    backup=new Studio(*this);
-}
-
-bool Studio::isBacked() {
-    return backed;
-}
-
-void Studio::restoreBackup() {
-    Studio* backupCopy=new Studio(*backup);
-    *this=*backup;
-    backup=backupCopy;
-}
+//    backed=true;
+//    cout<<"line 8    Studio.cpp"<<endl;
+//    delete backup;
+//    cout<<"line 10    Studio.cpp"<<endl;
+//    backup= new Studio(*this);
+//    cout<<"line 12    Studio.cpp"<<endl;
+//}
+//bool Studio::isBacked() {
+//    return backed;
+//}
+//void Studio::restoreBackup() {
+//    cout<<"line 18    Studio.cpp"<<endl;
+//    Studio* backupCopy=new Studio(*backup);
+//    cout<<"line 20    Studio.cpp"<<endl;
+//    stole();
+//    cout<<"line 22    Studio.cpp"<<endl;
+//    *this=*backupCopy;
+//    cout<<"line 24    Studio.cpp"<<endl;
+//    backup= new Studio(*backupCopy);
+//    cout<<"line 26    Studio.cpp"<<endl;
+//}
 
 
 //rule of 5:
@@ -26,32 +34,49 @@ Studio::~Studio() {
 }
 //ass. op.
 Studio& Studio::operator=(const Studio &rhs) {
+    cout<<"line 37    Studio.cpp   &*this!=&rhs  ? "<<(&*this!=&rhs)<<endl;
     if (&*this!=&rhs){
+        delete this;
+        *this=new Studio();
+        cout<<"line 41 studio.cpp"<<endl;
+        cout<<rhs.open<<endl;
+        cout<<open<<endl;
         open=rhs.open;
+        cout<<"line 45 studio.cpp"<<endl;
         workout_options=rhs.workout_options;
+        cout<<"line 47 studio.cpp"<<endl;
         sorted_workout_options=rhs.sorted_workout_options;
+        cout<<"line 49 studio.cpp"<<endl;
         copyTrainers(rhs);
+        cout<<"line 51 studio.cpp"<<endl;
         copyActionLogs(rhs);
+        cout<<"line 53 studio.cpp"<<endl;
         workout_number=rhs.workout_number;
+//        Studio::backup=new Studio(*rhs.backup);
     }
     return *this;
 }
 //move ass.op.
 Studio& Studio::operator=(Studio &&rhs) {
+    cout<<"line 61    Studio.cpp"<<endl;
     if (this!=&rhs){
+        delete this;
+        *this=new Studio();
         open=rhs.open;
         workout_options=rhs.workout_options;
         sorted_workout_options=rhs.sorted_workout_options;
         workout_number=rhs.workout_number;
         copyTrainers(rhs);
         copyActionLogs(rhs);
+//        Studio::backup=new Studio(*rhs.backup);
         rhs.stole();
     }
     return *this;
 }
 
 //move c-tor
-Studio::Studio(Studio &&rhs):open(rhs.open),trainers(rhs.trainers),workout_options(rhs.workout_options),sorted_workout_options(rhs.sorted_workout_options),actionsLog(rhs.actionsLog),workout_number(rhs.workout_number),backup(rhs.backup),backed(rhs.backed) {
+Studio::Studio(Studio &&rhs):open(rhs.open),trainers(rhs.trainers),workout_options(rhs.workout_options),sorted_workout_options(rhs.sorted_workout_options),actionsLog(rhs.actionsLog),workout_number(rhs.workout_number) {
+    cout<<"line 79    Studio.cpp"<<endl;
     if(this!=&rhs){
         copyTrainers(rhs);
         copyActionLogs(rhs);
@@ -59,10 +84,47 @@ Studio::Studio(Studio &&rhs):open(rhs.open),trainers(rhs.trainers),workout_optio
     }
 }
 //copy c-tor:
-Studio::Studio(const Studio& rhs):open(rhs.open),trainers(rhs.trainers),workout_options(rhs.workout_options),sorted_workout_options(rhs.sorted_workout_options),actionsLog(rhs.actionsLog),workout_number(rhs.workout_number),backup(rhs.backup),backed(rhs.backed) {
+Studio::Studio(const Studio& rhs):open(rhs.open),trainers(rhs.trainers),workout_options(rhs.workout_options),sorted_workout_options(rhs.sorted_workout_options),actionsLog(rhs.actionsLog),workout_number(rhs.workout_number){
     copyTrainers(rhs);
     copyActionLogs(rhs);
 }
+
+// pointer copy c-tor
+Studio::Studio(const Studio *rhs):open(rhs->open),trainers(),workout_options(rhs->workout_options),sorted_workout_options(rhs->sorted_workout_options),actionsLog(),workout_number(rhs->workout_number){
+    cout<<"line 94    Studio.cpp"<<endl;
+    copyTrainers(rhs);
+    cout<<"line 94    Studio.cpp"<<endl;
+    copyActionLogs(rhs);
+    cout<<"line 95    Studio.cpp"<<endl;
+}
+
+// ass pointer operator
+Studio &Studio::operator=(const Studio *rhs) {
+    cout<<"line 100    Studio.cpp"<<endl;
+    if (this!=rhs){
+        cout<<"line 100  1  Studio.cpp"<<endl;
+        this->stole();
+        cout<<"line 100  2  Studio.cpp"<<endl;
+//        *this=new Studio();
+        cout<<"line 100  3  Studio.cpp"<<endl;
+        open=rhs->open;
+        cout<<"line 100  4  Studio.cpp"<<endl;
+        workout_options=rhs->workout_options;
+        cout<<"line 100  5  Studio.cpp"<<endl;
+        sorted_workout_options=rhs->sorted_workout_options;
+        cout<<"line 100  6  Studio.cpp"<<endl;
+        workout_number=rhs->workout_number;
+        cout<<"line 100  7  Studio.cpp"<<endl;
+        copyTrainers(rhs);
+        cout<<"line 100  8  Studio.cpp"<<endl;
+        copyActionLogs(rhs);
+        cout<<"line 100  9  Studio.cpp"<<endl;
+//        Studio::backup=new Studio(*rhs.backup);
+    }
+    return *this;
+}
+
+
 
 void Studio::stole() {
     // remove elements+pointers in trainers
@@ -81,10 +143,13 @@ void Studio::stole() {
         i++;
     }
     actionsLog.clear();
+    cout<<"stole cpp 150"<<endl;
     if (workout_options.size()>0)
         workout_options.clear();
+    cout<<"stole cpp 153"<<endl;
     if (sorted_workout_options.size()>0)
         sorted_workout_options.clear();
+    cout<<"stole cpp 156"<<endl;
 
     //    while (workout_options.size()>0){
 //        workout_options.pop_back();
@@ -92,9 +157,28 @@ void Studio::stole() {
 //    while (sorted_workout_options.size()>0){
 //        sorted_workout_options.pop_back();
 //    }
-
+//    backup->stole();
 }
 
+//copy trainers for pointer
+void Studio::copyTrainers(const Studio *rhs) {
+    int i=0;
+    while (trainers.size()<rhs->trainers.size()) {
+        // create a copy for each trainer and push copy
+        //Trainer *copyTrainer = new Trainer(const rhs.trainers.at(i));
+        //Trainer(const Trainer& rhs);
+        Trainer *trainerP = rhs->trainers.at(i);
+        Trainer *copyTrainer = new Trainer(*trainerP);
+        trainers.push_back(copyTrainer);
+        //trainers.push_back(copyTrainer);
+        i++;
+
+        // Trainer copyTrainer = new Trainer(&rhs.trainers.at(i));
+        // Trainers.push_back(*copyTrainer);
+    }
+}
+
+//copy trainers for refrence
 void Studio::copyTrainers(const Studio &rhs) {
     int i=0;
     while (trainers.size()<rhs.trainers.size()) {
@@ -109,9 +193,70 @@ void Studio::copyTrainers(const Studio &rhs) {
 
         // Trainer copyTrainer = new Trainer(&rhs.trainers.at(i));
         // Trainers.push_back(*copyTrainer);
-}
+     }
 }
 
+//copy actionsloag for pointer
+void Studio::copyActionLogs(const Studio *rhs) {
+    // for each action log create a baby and puuush
+    std::size_t i=0;
+    while (actionsLog.size()<rhs->actionsLog.size()) {
+        // extracts first word from string that contains action name
+        string actionName = identifyAction(rhs->actionsLog.at(i)->toString());
+        // based on action log type create a copy and push to list
+        if (actionName == "order") {
+            Order *temp=(Order*)rhs->actionsLog.at(i);
+            Order *copy = new Order(*temp);
+            actionsLog.push_back(copy);
+        }
+        else if (actionName == "move") {
+            MoveCustomer *temp=(MoveCustomer*)rhs->actionsLog.at(i);
+            MoveCustomer *copy = new MoveCustomer(*temp);
+            actionsLog.push_back(copy);
+        }
+        else if  (actionName == "close") {
+            Close *temp=(Close*)rhs->actionsLog.at(i);
+            Close *copy = new Close(*temp);
+            actionsLog.push_back(copy);
+        }
+        else if (actionName == "closeall") {
+            CloseAll *temp=(CloseAll*)rhs->actionsLog.at(i);
+            CloseAll *copy = new CloseAll(*temp);
+            actionsLog.push_back(copy);
+        }
+        else if  (actionName == "workout_options") {
+            PrintWorkoutOptions *temp=(PrintWorkoutOptions*)rhs->actionsLog.at(i);
+            PrintWorkoutOptions *copy = new PrintWorkoutOptions(*temp);
+            actionsLog.push_back(copy);
+        }
+        else if  (actionName == "status") {
+            PrintTrainerStatus *temp=(PrintTrainerStatus*)rhs->actionsLog.at(i);
+            PrintTrainerStatus *copy = new PrintTrainerStatus(*temp);
+            actionsLog.push_back(copy);
+        }
+        else if  (actionName == "log") {
+            PrintActionsLog *temp=(PrintActionsLog*)rhs->actionsLog.at(i);
+            PrintActionsLog *copy = new PrintActionsLog(*temp);
+            actionsLog.push_back(copy);
+        }
+        else if  (actionName == "backup") {
+            BackupStudio *temp=(BackupStudio*)rhs->actionsLog.at(i);
+            BackupStudio *copy = new BackupStudio(*temp);
+            actionsLog.push_back(copy);
+        }
+        else if  (actionName == "restore") {
+            RestoreStudio *temp=(RestoreStudio*)rhs->actionsLog.at(i);
+            cout<<"pointer one "<<temp->toString()<<endl;
+            RestoreStudio *copy = new RestoreStudio(*temp);
+            cout<<copy->toString()<<endl;
+            actionsLog.push_back(copy);
+            cout<<"pushed to actions log"<<endl;
+        }
+        i++;
+    }
+}
+
+//copy actionslog for refrence
 void Studio::copyActionLogs(const Studio &rhs) {
     // for each action log create a baby and puuush
     std::size_t i=0;
@@ -160,8 +305,12 @@ void Studio::copyActionLogs(const Studio &rhs) {
             actionsLog.push_back(copy);
         }
         else if  (actionName == "restore") {
+            cout<<"rhs action log size"<<rhs.actionsLog.size()<<endl;
             RestoreStudio *temp=(RestoreStudio*)rhs.actionsLog.at(i);
+            cout<<"rhs one: "<<rhs.actionsLog.at(i)->toString()<<endl;
+            cout<<"reference one "<<temp->toString()<<endl;
             RestoreStudio *copy = new RestoreStudio(*temp);
+            cout<<copy->toString()<<endl;
             actionsLog.push_back(copy);
         }
         i++;
@@ -171,7 +320,7 @@ void Studio::copyActionLogs(const Studio &rhs) {
 
 
 //creating an empty Studio
-Studio::Studio():open(false),trainers(),workout_options(),sorted_workout_options(),actionsLog(),workout_number(0),backup(),backed(false){}
+Studio::Studio():open(false),trainers(),workout_options(),sorted_workout_options(),actionsLog(),workout_number(0){}
 
 // given a list of trainer capacities adds to "trainers"
 void Studio::AddTrainers(std::string trainersRow) {
@@ -234,7 +383,7 @@ bool Studio::isEmptyLine(std::string configRow) {
 
 //creating a Studio by a received config file. assumes config file is legal
 
-Studio::Studio(const std::string &configFilePath):open(false),trainers(),workout_options(vector<Workout>()),sorted_workout_options(),actionsLog(),workout_number(0),backup(),backed(false) {
+Studio::Studio(const std::string &configFilePath):open(false),trainers(),workout_options(vector<Workout>()),sorted_workout_options(),actionsLog(),workout_number(0){
     // read config file row by row
     ifstream ReadConfigFile(configFilePath);
     string configRow;
@@ -369,8 +518,7 @@ void Studio::startAction(std::string actionType, std::string userAction) {
                         workout_number++;
                     } else if (custStrategy == "mcl") {
                         // trying to delete pointer of mcl
-                        Customer* cust = new HeavyMuscleCustomer(custName, workout_number);
-                        customersList.push_back(cust);
+                        customersList.push_back(new HeavyMuscleCustomer(custName, workout_number));
                         workout_number++;
                     } else if (custStrategy == "fbd"){
                         customersList.push_back(new FullBodyCustomer(custName, workout_number));
@@ -446,7 +594,9 @@ void Studio::startAction(std::string actionType, std::string userAction) {
     //backup the current studio state
     else if (actionType=="backup") {
         BackupStudio *backupS=new BackupStudio();
+        cout<<"line 452    Studio.cpp"<<endl;
         backupS->act(*this);
+        cout<<"line 452    Studio.cpp"<<endl;
         actionsLog.push_back(backupS);
         }
     //restore backed-up studio state
