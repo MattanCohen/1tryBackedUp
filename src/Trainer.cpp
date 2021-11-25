@@ -19,6 +19,7 @@ Trainer::~Trainer() {
 Trainer& Trainer::operator=(const Trainer& rhs){
     if (&*this!=&rhs){
         capacity=rhs.capacity;
+        originalCapacity = rhs.originalCapacity;
         open=rhs.open;
         orderList=rhs.orderList;
         id=rhs.id;
@@ -31,6 +32,7 @@ Trainer& Trainer::operator=(const Trainer& rhs){
 Trainer& Trainer::operator=(Trainer&& rhs){
     if (this!=&rhs){
         capacity=rhs.capacity;
+        originalCapacity = rhs.originalCapacity;
         open=rhs.open;
         orderList=rhs.orderList;
         id=rhs.id;
@@ -41,7 +43,7 @@ Trainer& Trainer::operator=(Trainer&& rhs){
     return *this;
 }
 //copy c-tor:
-Trainer::Trainer(const Trainer& rhs):capacity(rhs.capacity),open(rhs.open),customersList(),orderList(rhs.orderList),id(rhs.id),accumulatedSalary(rhs.accumulatedSalary){
+Trainer::Trainer(const Trainer& rhs):capacity(rhs.capacity),originalCapacity(rhs.originalCapacity),open(rhs.open),customersList(),orderList(rhs.orderList),id(rhs.id),accumulatedSalary(rhs.accumulatedSalary){
     copyCustomersList(rhs);
 }
 //copy c-tor for pointer:
@@ -49,7 +51,7 @@ Trainer::Trainer(const Trainer& rhs):capacity(rhs.capacity),open(rhs.open),custo
 //    copyCustomersList(rhs);
 //}
 //move c-tor
-Trainer::Trainer(Trainer&& rhs):capacity(rhs.capacity),open(rhs.open),customersList(),orderList(rhs.orderList),id(rhs.id),accumulatedSalary(rhs.accumulatedSalary){
+Trainer::Trainer(Trainer&& rhs):capacity(rhs.capacity),originalCapacity(rhs.originalCapacity),open(rhs.open),customersList(),orderList(rhs.orderList),id(rhs.id),accumulatedSalary(rhs.accumulatedSalary){
     copyCustomersList(rhs);
     rhs.stole();
 }

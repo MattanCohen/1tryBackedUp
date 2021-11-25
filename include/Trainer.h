@@ -35,6 +35,7 @@ public:
     Trainer(Trainer&& rhs);
     void stole();
     void copyCustomersList(const Trainer& rhs);
+    // doesn't seem to exist in cpp best to remove
     void copyCustomersList(const Trainer* rhs);
 
 private:

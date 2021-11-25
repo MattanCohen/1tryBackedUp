@@ -138,10 +138,14 @@ void Studio::stole() {
         trainers.clear();
     i=1;
     while (actionsLog.size()>i){
-        BaseAction* action=actionsLog.at(i);
-        delete action;
+        cout<<"143 stole cpp"<<endl;
+        cout<<" 142 stole deleted action is:"<<actionsLog.at(i)->toString()<<endl;
+        delete actionsLog.at(i);
+        cout<<"143 stole cpp"<<endl;
         i++;
+        cout<<"145 loop finish"<<endl;
     }
+    cout<<"146 stole cpp"<<endl;
     actionsLog.clear();
     cout<<"stole cpp 150"<<endl;
     if (workout_options.size()>0)
@@ -630,6 +634,42 @@ void Studio::start(){
     stole();
 }
 
+
+void Studio::bulkStart(const std::string &commandPath) {
+    open=true;
+    cout<<"Studio is now open!"<<endl;
+    // extract command list
+    // read command file row by row
+    ifstream ReadCommandFile(commandPath);
+    string commandRow;
+    vector<string> commandRows;
+    // add only non empty rows to a vector of strings
+    while(getline(ReadCommandFile,commandRow)) {
+        // ignore empty lines and comments
+        if(!isEmptyLine(commandRow)){
+            commandRows.push_back(commandRow);
+        }
+    }
+    // close file read session
+    ReadCommandFile.close();
+
+    //loop for actions
+    for(size_t i=0;i<commandRows.size();i++) {
+        string userAction = commandRows.at(i);
+        // no need to perform input checks
+        if (i!=commandRows.size()-1){
+        userAction = userAction.substr(0,userAction.size()-1);
+        }
+        string actionType = identifyAction(userAction);
+        cout<<"doing: "<<userAction<<endl;
+        cout<<"--------------------------------"<<endl;
+        // create action based on type, act and document action
+        startAction(actionType, userAction);
+        cout<<"--------------------------------"<<endl;
+    }
+    cout<<"Bulk action list completed"<<endl;
+    stole();
+}
 
 //returns the number of trainers
 int Studio::getNumOfTrainers() const{

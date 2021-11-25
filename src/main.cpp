@@ -72,3 +72,23 @@ int main(int argc, char** argv){
     studio.stole();
     return 0;
 }
+
+
+
+////main created for bulkStart
+//int main(int argc, char** argv){
+//    if(argc!=3){
+//        std::cout << "expected 3 inputs" << std::endl;
+//        return 0;
+//    }
+//    // get config from user
+//    string configurationFile = argv[1];
+//    // create object lists from configuration file
+//    Studio studio(configurationFile);
+//    // loop that ends with command "closeall"
+//    studio.bulkStart(argv[2]);
+//    backup->stole();
+//    backup = nullptr;
+//    studio.stole();
+//    return 0;
+//}

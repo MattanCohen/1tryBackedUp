@@ -34,6 +34,10 @@ public:
     Studio(Studio&& rhs);
     void stole();
 
+    // special pointer "constructor"
+    Studio& operator=(const Studio* rhs);
+    Studio(const Studio* rhs);
+
 //    void createBackup();
 //    bool isBacked();
 //    void restoreBackup();
@@ -52,6 +56,7 @@ private:
     void AddWorkoutOption(std::string workoutRow, int workoutId);
     bool isEmptyLine(std::string configRow);
     void copyTrainers(const Studio& rhs);
+    void copyTrainers(const Studio* rhs);
     void copyActionLogs(const Studio& rhs);
     void copyActionLogs(const Studio* rhs);
 //    Studio* backup;
